@@ -6,7 +6,7 @@
     "of the License at http://www.apache.org/licenses/LICENSE-2.0"
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.en10204.io/EN10168/v0.0.1/EN10168.schema.json",
+  "$id": "https://raw.githubusercontent.com/s1seven/EN10168-schemas/v0.0.2-0/schema.schema.json",
   "definitions": {
     "KeyValueObject": {
       "title": "KeyValueObject",
@@ -42,7 +42,9 @@
       },
       "minItems": 1,
       "maxItems": 2,
-      "default": ["EN"],
+      "default": [
+        "EN"
+      ],
       "uniqueItems": true
     },
     "ChemicalElement": {
