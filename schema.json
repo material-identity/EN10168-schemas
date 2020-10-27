@@ -1309,7 +1309,7 @@
   "title": "Certificate",
   "type": "object",
   "properties": {
-    "SchemaReference": {
+    "RefSchemaUrl": {
       "type": "string",
       "format": "uri"
     },
@@ -1377,7 +1377,7 @@
   },
   "required": [
     "Certificate",
-    "SchemaReference"
+    "RefSchemaUrl"
   ],
   "additionalProperties": false
 }

@@ -30,12 +30,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/s1seven/en10168-schemas.git"
+    "url": "git+https://github.com/s1seven/EN10168-schemas.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/s1seven/en10168-schemas/issues"
+    "url": "https://github.com/s1seven/EN10168-schemas/issues"
   },
-  "homepage": "https://github.com/s1seven/en10168-schemas#readme"
+  "homepage": "https://github.com/s1seven/EN10168-schemas#readme"
 }

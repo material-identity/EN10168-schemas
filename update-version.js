@@ -1,7 +1,9 @@
 const fs = require('fs');
 const { promisify } = require('util');
 
-const serverUrl = 'https://raw.githubusercontent.com/s1seven/schemas';
+const serverUrl = 'https://raw.githubusercontent.com/s1seven/EN10168-schemas';
+// TODO: when schema-deploys stable
+// const serverUrl = 'https://schemas.en10204.io/EN10168';
 
 function readFile(path) {
   return promisify(fs.readFile)(path, 'utf8');
@@ -11,11 +13,7 @@ function writeFile(path, data) {
   return promisify(fs.writeFile)(path, data);
 }
 
-const schemaFilePaths = [
-  'EN10168.schema.json',
-  'e-CoC.schema.json',
-  'ChemicalAnalysis.schema.json',
-];
+const schemaFilePaths = ['schema.json'];
 
 async function updateSchemasVersion(version) {
   await Promise.all(
