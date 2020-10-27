@@ -7,7 +7,7 @@
     "lint": "eslint ./*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "update-version": "node ./update-version",
-    "release": "release-it"
+    "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
