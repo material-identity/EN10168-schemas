@@ -1,0 +1,1383 @@
+{
+  "meta:license": [
+    "Copyright 2020 S1Seven Gmbh. All rights reserved.",
+    "This file is licensed to you under the Apache License, Version 2.0 (the 'License');",
+    "you may not use this file except in compliance with the License. You may obtain a copy",
+    "of the License at http://www.apache.org/licenses/LICENSE-2.0"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.en10204.io/EN10168/v0.0.1/EN10168.schema.json",
+  "definitions": {
+    "KeyValueObject": {
+      "title": "KeyValueObject",
+      "type": "object",
+      "properties": {
+        "Key": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        },
+        "Unit": {
+          "type": "string"
+        },
+        "Interpretation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Key"
+      ],
+      "additionalProperties": false
+    },
+    "CertificateLanguages": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "EN",
+          "DE",
+          "FR",
+          "PL"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 2,
+      "default": ["EN"],
+      "uniqueItems": true
+    },
+    "ChemicalElement": {
+      "title": "ChemicalElement",
+      "type": "object",
+      "description": "The chemical elements of the product.",
+      "properties": {
+        "Symbol": {
+          "description": "The symbol of the element",
+          "type": "string"
+        },
+        "Actual": {
+          "description": "The measured part of the element as absolute number.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "Minimum": {
+          "description": "The minimum if defined by the product specification, otherwise the element must not provided.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "Maximum": {
+          "description": "The maximum as defined by the product specification.",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "Symbol",
+        "Actual"
+      ],
+      "additionalProperties": false
+    },
+    "Tube": {
+      "title": "Tube",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "",
+          "const": "Tube",
+          "default": "Tube"
+        },
+        "OuterDiameter": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        },
+        "WallThickness": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "Form",
+        "OuterDiameter",
+        "WallThickness"
+      ],
+      "additionalProperties": false
+    },
+    "QuadraticTube": {
+      "title": "QuadraticTube",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "",
+          "const": "QuadraticTube",
+          "default": "QuadraticTube"
+        },
+        "SideLength": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        },
+        "WallThickness": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "Form",
+        "SideLength",
+        "WallThickness"
+      ],
+      "additionalProperties": false
+    },
+    "RectangularTube": {
+      "title": "RectangularTube",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "",
+          "const": "RectangularTube",
+          "default": "RectangularTube"
+        },
+        "Width": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        },
+        "Height": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        },
+        "WallThickness": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "Form",
+        "Width",
+        "Height",
+        "WallThickness"
+      ],
+      "additionalProperties": false
+    },
+    "Pipe": {
+      "title": "Pipe",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "",
+          "const": "Pipe",
+          "default": "Pipe"
+        },
+        "SideLength": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        },
+        "WallThickness": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "Form",
+        "SideLength",
+        "WallThickness"
+      ],
+      "additionalProperties": false
+    },
+    "RectangularPipe": {
+      "title": "RectangularPipe",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "",
+          "const": "RectangularPipe",
+          "default": "RectangularPipe"
+        },
+        "Width": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        },
+        "Height": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        },
+        "WallThickness": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "Form",
+        "Width",
+        "Height",
+        "WallThickness"
+      ],
+      "additionalProperties": true
+    },
+    "Coil": {
+      "title": "Coil",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "",
+          "const": "Coil",
+          "default": "Coil"
+        },
+        "Width": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        },
+        "WallThickness": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "Form",
+        "Width",
+        "WallThickness"
+      ],
+      "additionalProperties": true
+    },
+    "RoundBar": {
+      "title": "RoundBar",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "",
+          "const": "RoundBar",
+          "default": "RoundBar"
+        },
+        "Diameter": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "Form",
+        "Diameter"
+      ],
+      "additionalProperties": false
+    },
+    "HexagonalBar": {
+      "title": "HexagonalBar",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "",
+          "const": "HexagonalBar",
+          "default": "HexagonalBar"
+        },
+        "Diameter": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "Form",
+        "Diameter"
+      ],
+      "additionalProperties": false
+    },
+    "FlatBar": {
+      "title": "FlatBar",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "",
+          "const": "FlatBar",
+          "default": "FlatBar"
+        },
+        "Width": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        },
+        "Thickness": {
+          "description": "",
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "Form",
+        "Width",
+        "Thickness"
+      ],
+      "additionalProperties": false
+    },
+    "Other": {
+      "title": "Other",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "",
+          "const": "Other",
+          "default": "Other"
+        },
+        "Description": {
+          "description": "",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Form",
+        "Description"
+      ],
+      "additionalProperties": false
+    },
+    "ProductShape": {
+      "title": "ProductShape",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/Tube"
+        },
+        {
+          "$ref": "#/definitions/RectangularTube"
+        },
+        {
+          "$ref": "#/definitions/QuadraticTube"
+        },
+        {
+          "$ref": "#/definitions/Pipe"
+        },
+        {
+          "$ref": "#/definitions/RectangularPipe"
+        },
+        {
+          "$ref": "#/definitions/Coil"
+        },
+        {
+          "$ref": "#/definitions/RoundBar"
+        },
+        {
+          "$ref": "#/definitions/HexagonalBar"
+        },
+        {
+          "$ref": "#/definitions/FlatBar"
+        },
+        {
+          "$ref": "#/definitions/Other"
+        }
+      ]
+    },
+    "Company": {
+      "title": "Company",
+      "type": "object",
+      "properties": {
+        "CompanyName": {
+          "type": "string"
+        },
+        "Street": {
+          "type": "string"
+        },
+        "ZipCode": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "Country": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2
+        },
+        "VAT_Id": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 15
+        },
+        "Email": {
+          "type": "string",
+          "format": "email"
+        },
+        "AdditionalInformation": {
+          "description": "Each entry to the array is rendered as a new line in HTML and PDF",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "CompanyName",
+        "Street",
+        "ZipCode",
+        "City",
+        "Country",
+        "Email"
+      ],
+      "additionalProperties": true
+    },
+    "CommercialTransaction": {
+      "title": "CommercialTransaction",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "A01": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/Company"
+            }
+          ],
+          "description": "The manufacturer's works which delivers the certificate along the product"
+        },
+        "A02": {
+          "description": "The type of inspection document, e.g. 'EN 10204 3.1 Certificate'",
+          "type": "string"
+        },
+        "A03": {
+          "description": "The document number of the certifcate",
+          "type": "string"
+        },
+        "A04": {
+          "description": "The mark of the manufacturer as base64 png file. The maximum size is <TBD>",
+          "type": "string",
+          "contentEncoding": "base64",
+          "contentMediaType": "image/png"
+        },
+        "A05": {
+          "description": "The originator of the document, not necessarily equal to A01",
+          "type": "string",
+          "default": "Factory Production Control"
+        },
+        "A06": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/Company"
+            }
+          ],
+          "description": "The purchaser of the product and receiver of the certificate"
+        },
+        "A06.1": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/Company"
+            }
+          ],
+          "description": "The purchaser of the product"
+        },
+        "A06.2": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/Company"
+            }
+          ],
+          "description": "The consignee of the product"
+        },
+        "A06.3": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/Company"
+            }
+          ],
+          "description": "The receiver/consignee of the certificate"
+        },
+        "A07": {
+          "description": "Purchase number",
+          "type": "string"
+        },
+        "A08": {
+          "description": "Manufacturer's work number",
+          "type": "string"
+        },
+        "A09": {
+          "description": "The article number used by the purchaser",
+          "type": "string"
+        },
+        "SupplementaryInformation": {
+          "title": "CommercialTransactionSupplementaryInformation",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^A1[0-9]|^A[2-8][0-9]|^A[2-9][0-7]"
+          },
+          "patternProperties": {
+            "A1[0-9]|A[2-8][0-9]|A[2-9][0-7]": {
+              "$ref": "#/definitions/KeyValueObject"
+            }
+          },
+          "additionalProperties": false
+        },
+        "A97": {
+          "description": "The position number in the order",
+          "type": "number"
+        },
+        "A98": {
+          "description": "A custom field for the delivery note number",
+          "type": "string"
+        },
+        "A99": {
+          "description": "A custom field for the aviso document number",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Measurement": {
+      "title": "Measurement",
+      "type": "object",
+      "description": "Measured Values in a structured fashion for easy processing and rendering of data",
+      "properties": {
+        "Property": {
+          "description": "The property measured",
+          "type": "string"
+        },
+        "Value": {
+          "description": "A measured or calculated Value (e.g. mean of individual measurements).",
+          "type": "number"
+        },
+        "Minimum": {
+          "description": "The lower limit according product specification. If not provided it is 0.",
+          "type": "number"
+        },
+        "Maximum": {
+          "description": "The upper limit according product specification. If not provided it is ∞.",
+          "type": "number"
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Value"
+      ],
+      "additionalProperties": false
+    },
+    "ChemicalComposition": {
+      "title": "ChemicalComposition",
+      "type": "object",
+      "properties": {
+        "C70": {
+          "description": "The metallurgic process, which is restricted to 2 types: Y = Basic oxygen process, E = Electric furnace",
+          "enum": [
+            "Y",
+            "E"
+          ]
+        },
+        "C71": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C72": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C73": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C74": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C75": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C76": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C77": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C78": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C79": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C80": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C81": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C82": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C83": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C84": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C85": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C86": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C87": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C88": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C89": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C90": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C91": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C92": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C93": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C94": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C95": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C96": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C97": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C98": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C99": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C100": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C101": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C102": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C103": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C104": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C105": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C106": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C107": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C108": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "C109": {
+          "description": "Share of element",
+          "allOf": [
+            {
+              "$ref": "#/definitions/ChemicalElement"
+            }
+          ]
+        },
+        "SupplementaryInformation": {
+          "title": "ChemicalCompositionSupplementaryInformation",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^C[7-9][0-9]|^C[1][0-1][0-9]"
+          },
+          "patternProperties": {
+            "": {
+              "$ref": "#/definitions/KeyValueObject"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "ProductDescription": {
+      "title": "ProductDescription",
+      "type": "object",
+      "properties": {
+        "B01": {
+          "description": "The product",
+          "type": "string"
+        },
+        "B02": {
+          "description": "",
+          "type": "object",
+          "properties": {
+            "ProductNorm": {
+              "description": "The product norm designation",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "MaterialNorm": {
+              "description": "The material norm(s)",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "MassNorm": {
+              "description": "The mass norm(s)",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "SteelDesignation": {
+              "description": "The steel designation(s)",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "B03": {
+          "description": "Any supplemantary requirements",
+          "type": "string"
+        },
+        "B04": {
+          "description": "The delivery conditions for the product",
+          "type": "string"
+        },
+        "B05": {
+          "description": "Reference heat treatment of samples",
+          "type": "string"
+        },
+        "B06": {
+          "description": "Marking of the product",
+          "type": "string"
+        },
+        "B07": {
+          "description": "Identification of the product, usually batch, charge or lot number",
+          "type": "string"
+        },
+        "B08": {
+          "description": "Number of pieces of the product.",
+          "type": "number"
+        },
+        "B09": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/ProductShape"
+            }
+          ],
+          "description": "Product type and its describing dimensional parameters"
+        },
+        "B10": {
+          "description": "Product dimensions - length of the product",
+          "type": "number"
+        },
+        "B11": {
+          "description": "Product dimensions ",
+          "type": "number"
+        },
+        "B12": {
+          "description": "Theoretical mass",
+          "type": "number"
+        },
+        "B13": {
+          "description": "Actual mass",
+          "type": "number"
+        },
+        "SupplementaryInformation": {
+          "title": "ProductDescriptionSupplementaryInformation",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^B1[4-9]|^B[2-9][0-9]"
+          },
+          "patternProperties": {
+            "^B1[4-9]|^B[2-9][0-9]": {
+              "$ref": "#/definitions/KeyValueObject"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "B01",
+        "B02",
+        "B07",
+        "B08"
+      ],
+      "additionalProperties": false
+    },
+    "OtherTests": {
+      "title": "OtherTests",
+      "type": "object",
+      "properties": {
+        "D01": {
+          "description": "Marking and identification, surface appearance, shape and dimensional properties",
+          "type": "string"
+        },
+        "NonDestructiveTests": {
+          "title": "NonDestructiveTests",
+          "type": "object",
+          "patternProperties": {
+            "propertyNames": {
+              "pattern": "^D[0][2-9]|^D[1-4]D[0-9]"
+            },
+            "^D[0][2-9]|^D[1-4]D[0-9]": {
+              "$ref": "#/definitions/KeyValueObject"
+            }
+          },
+          "additionalProperties": false
+        },
+        "SupplementaryInformation": {
+          "title": "OtherTestsSupplementaryInformation",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^D[5-9][0-9]"
+          },
+          "patternProperties": {
+            "^D[5-9][0-9]": {
+              "$ref": "#/definitions/KeyValueObject"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "Inspection": {
+      "title": "Inspection",
+      "type": "object",
+      "properties": {
+        "C00": {
+          "description": "Heat or melt number defining the chemical properties",
+          "type": "string"
+        },
+        "C01": {
+          "description": "Location of the sample",
+          "type": "string"
+        },
+        "C02": {
+          "description": "Direction of the test pieces",
+          "type": "string"
+        },
+        "C03": {
+          "description": "Test temperature",
+          "type": "string"
+        },
+        "SupplementaryInformation": {
+          "title": "InspectionSupplementaryInformation",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^C0[4-9]"
+          },
+          "patternProperties": {
+            "^C0[4-9]": {
+              "$ref": "#/definitions/KeyValueObject"
+            }
+          },
+          "additionalProperties": false
+        },
+        "TensileTest": {
+          "title": "TensileTest",
+          "type": "object",
+          "properties": {
+            "C10": {
+              "description": "Shape of the test piece",
+              "type": "string"
+            },
+            "C11": {
+              "description": "Yield or proof strength",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Measurement"
+                }
+              ]
+            },
+            "C12": {
+              "description": "Tensile strength",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Measurement"
+                }
+              ]
+            },
+            "C13": {
+              "description": "Elongation after fracture",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Measurement"
+                }
+              ]
+            },
+            "SupplementaryInformation": {
+              "title": "TensileTestSupplementaryInformation",
+              "type": "object",
+              "propertyNames": {
+                "pattern": "^C1[4-9]|^C2[0-9]"
+              },
+              "patternProperties": {
+                "^C1[4-9]|^C2[0-9]": {
+                  "$ref": "#/definitions/KeyValueObject"
+                }
+              }
+            }
+          }
+        },
+        "HardnessTest": {
+          "title": "HardnessTest",
+          "type": "object",
+          "properties": {
+            "C30": {
+              "description": "Method of test",
+              "type": "string"
+            },
+            "C31": {
+              "description": "The individual values measured",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Measurement"
+              }
+            },
+            "C32": {
+              "description": "The average value of the individual values measured",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Measurement"
+                }
+              ]
+            },
+            "SupplementaryInformation": {
+              "title": "HardnessTestSupplementaryInformation",
+              "type": "object",
+              "propertyNames": {
+                "pattern": "^C3[3-9]"
+              },
+              "patternProperties": {
+                "^C3[3-9]": {
+                  "$ref": "#/definitions/KeyValueObject"
+                }
+              }
+            }
+          }
+        },
+        "NotchedBarImpactTest": {
+          "title": "NotchedBarImpactTest",
+          "type": "object",
+          "properties": {
+            "C40": {
+              "description": "Type of test piece",
+              "type": "string"
+            },
+            "C41": {
+              "description": "Width of test piece",
+              "type": "string"
+            },
+            "C42": {
+              "description": "Individual values",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Measurement"
+              }
+            },
+            "C43": {
+              "description": "Mean value",
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Measurement"
+                }
+              ]
+            },
+            "SupplementaryInformation": {
+              "title": "NotchedBarImpactTestSupplementaryInformation",
+              "type": "object",
+              "propertyNames": {
+                "pattern": "^C4[4-9]"
+              },
+              "patternProperties": {
+                "^C4[4-9]": {
+                  "$ref": "#/definitions/KeyValueObject"
+                }
+              }
+            }
+          }
+        },
+        "OtherMechanicalTests": {
+          "title": "OtherMechanicalTests",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^C[5-6][0-9]"
+          },
+          "patternProperties": {
+            "^C[5-6][0-9]": {
+              "$ref": "#/definitions/KeyValueObject"
+            }
+          }
+        },
+        "ChemicalComposition": {
+          "$ref": "#/definitions/ChemicalComposition"
+        }
+      },
+      "required": [
+        "C00",
+        "ChemicalComposition"
+      ],
+      "additionalProperties": false
+    },
+    "Validation": {
+      "title": "Validation",
+      "type": "object",
+      "properties": {
+        "Z01": {
+          "description": "Statement of compliance",
+          "type": "string"
+        },
+        "Z02": {
+          "description": "Date of issue and validation",
+          "type": "string",
+          "format": "date-time"
+        },
+        "Z03": {
+          "description": "Stamp of the inspection representative",
+          "type": "string"
+        },
+        "Z04": {
+          "description": "CE marking",
+          "type": "object",
+          "properties": {
+            "CE_Image": {
+              "description": "The CE image as base64 encoded png file. A default with size 90x65 is provided by example",
+              "type": "string",
+              "contentEncoding": "base64",
+              "contentMediaType": "image/png"
+            },
+            "NotifiedBodyNumber": {
+              "description": "The identification number of the Notified body. Refer to https://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CELEX:31993L0068:en:HTML and https://ec.europa.eu/growth/tools-databases/nando/index.cfm?fuseaction=notifiedbody.main",
+              "type": "string"
+            },
+            "DoCYear": {
+              "description": "The year when the declaration of conformance was issued",
+              "type": "string"
+            },
+            "DoCNumber": {
+              "description": "The declaration of conformance document number ",
+              "type": "string"
+            }
+          },
+          "required": [
+            "CE_Image",
+            "NotifiedBodyNumber",
+            "DoCYear",
+            "DoCNumber"
+          ]
+        },
+        "SupplementaryInformation": {
+          "title": "ValidationSupplementaryInformation",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^Z0[5-9]|^Z[1-9][0-9]"
+          },
+          "patternProperties": {
+            "^Z0[5-9]|^Z[1-9][0-9]": {
+              "$ref": "#/definitions/KeyValueObject"
+            }
+          }
+        }
+      },
+      "required": [
+        "Z01",
+        "Z02",
+        "Z04"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "title": "Certificate",
+  "type": "object",
+  "properties": {
+    "SchemaReference": {
+      "type": "string",
+      "format": "uri"
+    },
+    "DocumentMetadata": {
+      "title": "MetaData",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "",
+          "type": "string"
+        },
+        "version": {
+          "description": "",
+          "type": "integer",
+          "minimum": 0
+        },
+        "state": {
+          "description": "",
+          "type": "string",
+          "enum": [
+            "draft",
+            "valid",
+            "cancelled"
+          ]
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "Certificate": {
+      "description": "",
+      "type": "object",
+      "required": [
+        "CertificateLanguages",
+        "CommercialTransaction",
+        "ProductDescription",
+        "Inspection",
+        "OtherTests",
+        "Validation"
+      ],
+      "properties": {
+        "CertificateLanguages": {
+          "$ref": "#/definitions/CertificateLanguages"
+        },
+        "CommercialTransaction": {
+          "$ref": "#/definitions/CommercialTransaction"
+        },
+        "ProductDescription": {
+          "$ref": "#/definitions/ProductDescription"
+        },
+        "Inspection": {
+          "$ref": "#/definitions/Inspection"
+        },
+        "OtherTests": {
+          "$ref": "#/definitions/OtherTests"
+        },
+        "Validation": {
+          "$ref": "#/definitions/Validation"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "Certificate",
+    "SchemaReference"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,41 @@
+{
+  "name": "en10168-schemas",
+  "version": "0.0.1",
+  "description": "EN10168 JSON schema and dependencies developed by S1Seven",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./*.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update-version": "node ./update-version",
+    "release": "release-it"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "release-it": "*"
+  },
+  "release-it": {
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": false
+    },
+    "hooks": {
+      "before:init": [
+        "npm run lint"
+      ],
+      "after:bump": "npm run update-version v${version} ${name}",
+      "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s1seven/en10168-schemas.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s1seven/en10168-schemas/issues"
+  },
+  "homepage": "https://github.com/s1seven/en10168-schemas#readme"
+}
