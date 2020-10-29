@@ -26,24 +26,27 @@
       margin-top: 5px;
     }
 
-    h2 {
+    .main-title {
       font-size: 1.5em;
       border-bottom: 3px solid #0C2340;
     }
 
-
-    h3 {
-      font-size: 1em;
-    }
-
-    .h3 {
+    .second-level-title {
       font-size: 1.25em;
       border-bottom: 2px solid #0C2340;
       padding: 10px;
       width: 100%;
     }
 
-    table {
+    .third-level-title {
+      font-size: 1em;
+    }
+
+    .no-border {
+      border: none;
+    }
+
+    .main-table {
       border: 1px solid #ccc;
       border-collapse: collapse;
       margin: 0;
@@ -53,25 +56,31 @@
       /*empty-cells: show;*/
     }
 
-    table caption {
-      font-size: 1.5em;
-      margin: .5em 0 .75em;
-    }
-
-    table tr {
-      border: 1px solid #ddd;
-      padding: .15em;
-    }
-
-    table th,
-    table td {
+    .table-cells {
       padding: .525em;
       text-align: left;
     }
 
-    th {
+    .table-rows {
+      border: 1px solid #ddd;
+      padding: .15em;
+    }
+
+    .table-headers {
       font-weight: lighter;
       font-style: italic;
+      padding: .525em;
+      text-align: left;
+      max-width: 40%;
+    }
+
+    .second-level {
+      margin-left: 10px;
+    }
+
+    .caption {
+      font-weight: lighter;
+      font-size: 11px;
     }
 
     em {
@@ -102,11 +111,6 @@
       width: 8vw;
     }
 
-    .caption {
-      font-weight: lighter;
-      font-size: 11px;
-    }
-
     section:not(.header) {
       margin-top: 50px;
     }
@@ -118,16 +122,17 @@
   {{!-- COMPANIES HEADERS --}}
 
   <section class="header">
-    <table>
-      <tr>
-        <th>A04 {{ i18n "A04" "certificateFields" Certificate.CertificateLanguages}}</th>
-        <th>A01 {{ i18n "A01" "certificateFields" Certificate.CertificateLanguages}} </th>
-        <th>A06.1 {{ i18n "A06.1" "certificateFields" Certificate.CertificateLanguages}}</th>
-        <th hidden>A06.2 {{ i18n "A06.2" "certificateFields" Certificate.CertificateLanguages}}</th>
+    <table class="main-table">
+      <tr class="table-rows">
+        <th class="table-headers">A04 {{ i18n "A04" "certificateFields" Certificate.CertificateLanguages}}</th>
+        <th class="table-headers">A01 {{ i18n "A01" "certificateFields" Certificate.CertificateLanguages}} </th>
+        <th class="table-headers">A06.1 {{ i18n "A06.1" "certificateFields" Certificate.CertificateLanguages}}</th>
+        <th class="table-headers" hidden>A06.2 {{ i18n "A06.2" "certificateFields" Certificate.CertificateLanguages}}
+        </th>
       </tr>
-      <tr>
-        <td>
-          <img class="image" src="data:image/png;base64,{{Certificate.CommercialTransaction.A04}}" />
+      <tr class="table-rows">
+        <td class="table-cells">
+          <img class="image" src="{{Certificate.CommercialTransaction.A04}}" />
         <td>
           <ol>
             <li>{{Certificate.CommercialTransaction.A01.CompanyName}}</li>
@@ -138,7 +143,7 @@
           </ol>
         </td>
         {{!--  TODO: Handle case where A06.1, A06.2, A06.3 and no A06 --}}
-        <td>
+        <td class="table-cells">
           <ol>
             <li>{{Certificate.CommercialTransaction.A06.CompanyName}}</li>
             <li>{{Certificate.CommercialTransaction.A06.Street}}</li>
@@ -147,7 +152,7 @@
             <li>{{Certificate.CommercialTransaction.A06.Email}}</li>
           </ol>
         </td>
-        <td hidden>
+        <td class="table-cells" hidden>
           <ol>
             <li>{{Certificate.CommercialTransaction.['A06.1'].CompanyName}}</li>
             <li>{{Certificate.CommercialTransaction.['A06.1'].Street}}</li>
@@ -164,13 +169,13 @@
   {{!--  COMMERCIAL TRANSACTION --}}
 
   <section>
-    <h2>{{ i18n "CommercialTransaction" "certificateGroups" Certificate.CertificateLanguages }}</h2>
-    <table>
+    <h2 class="main-title">{{ i18n "CommercialTransaction" "certificateGroups" Certificate.CertificateLanguages }}</h2>
+    <table class="main-table">
       {{#each Certificate.CommercialTransaction}}
       {{#notIn @key "A01,A04,A06,A06.1,A06.2,A06.3"}}
       {{#if this}}
-      <tr>
-        <th>{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
+      <tr class="table-rows">
+        <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
         </th>
         <td>{{this}}</td>
       </tr>
@@ -180,12 +185,14 @@
     </table>
 
     {{#notEmpty Certificate.CommercialTransaction.SupplementaryInformation}}
-    <h3>{{ i18n "SupplementaryInformation" "otherFields" Certificate.CertificateLanguages}}</h3>
-    <table>
+    <h3 class="third-level-title">{{ i18n "SupplementaryInformation" "otherFields" Certificate.CertificateLanguages}}
+    </h3>
+    <table class="main-table">
       {{#each Certificate.CommercialTransaction.SupplementaryInformation}}
-      <tr>
-        <th>{{@key}} {{this.Key}}</th>
-        <td>{{this.Value}}</td>
+      <tr class="table-rows">
+        <th class="table-headers">{{@key}} </th>
+        <td class="table-cells">{{this.Key}}</td>
+        <td class="table-cells">{{this.Value}}</td>
       </tr>
       {{/each}}
     </table>
@@ -195,33 +202,36 @@
   {{!-- PRODUCT DESCRIPTION --}}
 
   <section>
-    <h2>{{ i18n "ProductDescription" "certificateGroups" Certificate.CertificateLanguages}}</h2>
-    <table>
+    <h2 class="main-title">{{ i18n "ProductDescription" "certificateGroups" Certificate.CertificateLanguages}}</h2>
+    <table class="main-table">
       {{#each Certificate.ProductDescription}}
       {{!-- ProductDescription-> SupplementaryInformation or B02 or B09 --}}
       {{#typeOf this 'object'}}
       {{!-- ProductDescription-> SupplementaryInformation  --}}
       {{#ifEqual @key "SupplementaryInformation"}}
-      <h3 style="margin-left: 10px;">
+      <h3 class="third-level-title second-level">
         {{ i18n "SupplementaryInformation" "otherFields" ../Certificate.CertificateLanguages }}</h3>
-      <table style="margin-left: 10px;">
+      <table class="main-table second-level">
         {{#each this}}
-        <tr>
-          <th>{{@key}} {{this.Key}}</th>
-          <td>{{this.Value}}</td>
+        <tr class="table-rows">
+          <th class="table-headers">{{@key}}</th>
+          <td class="table-cells">{{this.Key}}</td>
+          <td class="table-cells">{{this.Value}}</td>
         </tr>
         {{/each}}
       </table>
 
       {{!-- ProductDescription-> B02, B09 --}}
       {{else}}
-      <tr>
-        <th colspan="2">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}</th>
+      <tr class="table-rows">
+        <th class="table-headers" colspan="2">{{@key}}
+          {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}</th>
       </tr>
       {{#each this}}
-      <tr>
-        <td><em class="caption">{{ i18n @key "otherFields" ../../Certificate.CertificateLanguages}}</em></td>
-        <td>{{this}}</td>
+      <tr class="table-rows">
+        <td class="table-cells"><em
+            class="caption">{{ i18n @key "otherFields" ../../Certificate.CertificateLanguages}}</em></td>
+        <td class="table-cells">{{this}}</td>
       </tr>
       {{/each}}
       {{/ifEqual}}
@@ -229,10 +239,10 @@
       {{!-- ProductDescription-> B01, B03, B04, B05, B06, B07, B08, B10, B11, B12, B13  --}}
       {{else}}
       {{#if this}}
-      <tr>
-        <th>{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
+      <tr class="table-rows">
+        <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
         </th>
-        <td>{{this}}</td>
+        <td class="table-cells">{{this}}</td>
       </tr>
       {{/if}}
       {{/typeOf}}
@@ -245,20 +255,22 @@
   {{!-- INSPECTION --}}
 
   <section>
-    <h2>{{ i18n "Inspection" "certificateGroups" Certificate.CertificateLanguages}}</h2>
+    <h2 class="main-title">{{ i18n "Inspection" "certificateGroups" Certificate.CertificateLanguages}}</h2>
     {{#each Certificate.Inspection}}
     {{!-- Inspection-> SupplementaryInformation or ChemicalComposition or TensileTest,HardnessTest,NotchedBarImpactTest,OtherMechanicalTests --}}
     {{#typeOf this 'object'}}
-    <section style="margin-left: 10px;">
-      <h3 class="h3" style="float: left;">{{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
+    <section class="second-level">
+      <h3 class="second-level-title second-level" style="float:left;">
+        {{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
 
       {{!-- Inspection-> SupplementaryInformation --}}
       {{#ifEqual @key "SupplementaryInformation"}}
-      <table>
+      <table class="main-table">
         {{#each this}}
-        <tr>
-          <th>{{@key}} {{this.Key}}</th>
-          <td>{{this.Value}}</td>
+        <tr class="table-rows">
+          <th class="table-headers">{{@key}}</th>
+          <td class="table-cells">{{this.Key}}</td>
+          <td class="table-cells">{{this.Value}}</td>
         </tr>
         {{/each}}
       </table>
@@ -270,28 +282,29 @@
       {{#typeOf this 'object'}}
       {{!-- ChemicalComposition-> SupplementaryInformation --}}
       {{#ifEqual @key "SupplementaryInformation"}}
-      <h3 class="h3" style="margin-left: 10px; float: left;">
+      <h3 class="second-level-title second-level" style="float: left;">
         {{ i18n @key "otherFields" ../../Certificate.CertificateLanguages }}</h3>
-      <table style="margin-left: 10px;">
+      <table class="main-table second-level">
         {{#each this}}
-        <tr>
-          <th>{{@key}} {{this.Key}}</th>
-          <td>{{this.Value}}</td>
+        <tr class="table-rows">
+          <th class="table-headers">{{@key}}</th>
+          <td class="table-cells">{{this.Key}}</td>
+          <td class="table-cells">{{this.Value}}</td>
         </tr>
         {{/each}}
       </table>
       {{!-- ChemicalComposition-> ChemicalElement --}}
       {{else}}
-      <table style="margin-top: -1px;">
-        <tr>
+      <table class="main-table" style="margin-top: -1px;">
+        <tr class="table-rows">
           {{!-- No translation ? --}}
-          <th>{{@key}}</th>
+          <th class="table-headers">{{@key}}</th>
           {{#each this}}
-          <td class="caption">{{@key}}</td>
+          <td class="caption table-cells">{{@key}}</td>
           {{/each}}
         </tr>
-        <tr>
-          <td class="caption"></td>
+        <tr class="table-rows">
+          <td class="caption table-cells"></td>
           {{#each this}}
           <td>{{this}}</td>
           {{/each}}
@@ -300,12 +313,14 @@
       {{/ifEqual}}
       {{!-- ChemicalComposition-> C70 --}}
       {{else}}
-      <table style="margin-top: -1px;">
-        <tr>
-          <th>{{@key}} {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
-          <td>{{this}}<em class="caption">(Section)</em></td>
+      <table class="main-table" style="margin-top: -1px;">
+        <tr class="table-rows">
+          <th class="table-headers">{{@key}}
+            {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
+          <td class="table-cells">{{this}}<em class="caption">(Section)</em></td>
         </tr>
       </table>
+
       {{/typeOf}}
       {{/each}}
       {{/ifEqual}}
@@ -316,54 +331,59 @@
       {{#typeOf this 'object'}}
       {{!-- XTest-> SupplementaryInformation --}}
       {{#ifEqual @key "SupplementaryInformation"}}
-      <table style="margin-left: 10px;">
-        <h3 class="h3" style="margin-left: 10px; float: left;">
+      <table class="main-table second-level">
+        <h3 class="second-level-title second-level" style="float: left;">
           {{ i18n @key "otherFields" ../../Certificate.CertificateLanguages }}</h3>
 
         {{#each this}}
-        <tr>
-          <th>{{@key}} {{this.Key}}</th>
-          <td>{{this.Value}}</td>
+        <tr class="table-rows">
+          <th class="table-headers">{{@key}}</th>
+          <td class="table-cells">{{this.Key}}</td>
+          <td class="table-cells">{{this.Value}}</td>
         </tr>
         {{/each}}
       </table>
-      {{!-- XTest-> Measurement(s) (C11, C12, C13, C31, C32, C42, C43) --}}
+      {{!-- XTest-> Measurement(s) (C11, C12, C13, C31, C32, C42, C43, C44) --}}
       {{else}}
 
       {{#ifEqual @key "C42"}}
-      <table style="margin-top: -1px;">
-        <tr>
-          <th>{{@key}} {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
+      <table class="main-table" style="margin-top: -1px;">
+        <tr class="table-rows">
+          <th class="table-headers">{{@key}}
+            {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
+          <td class="table-cells">{{ join this ", " "Value" }}</td>
+        </tr>
+      </table>
+      {{else}}
+      {{#typeOf this 'object'}}
+      <table class="main-table" style="margin-top: -1px;">
+        <tr class="table-rows">
+          <th class="table-headers">{{@key}}
           {{#each this}}
-          {{#each this}}
-          <td>{{this}}</td>
-          {{/each}}
+          <td class="table-cells">{{this}}</td>
           {{/each}}
         </tr>
       </table>
       {{else}}
-      <table style="margin-top: -1px;">
-        <tr>
-          <th>{{@key}} {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
+      <table class="main-table" style="margin-top: -1px;">
+        <tr class="table-rows">
+          <th class="table-headers">{{@key}}
+            {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
           {{#each this}}
-          <td class="caption">{{@key}}</td>
-          {{/each}}
-        </tr>
-        <tr>
-          <td class="caption"></td>
-          {{#each this}}
-          <td>{{this}}</td>
+          <td class="table-cells">{{this}}</td>
           {{/each}}
         </tr>
       </table>
+      {{/typeOf}}
       {{/ifEqual}}
       {{/ifEqual}}
       {{!-- XTest-> C10, C30, C40, C41 --}}
       {{else}}
-      <table style="margin-top: -1px;">
-        <tr>
-          <th>{{@key}} {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
-          <td>{{this}}<em class="caption"></em></td>
+      <table class="main-table" style="margin-top: -1px;">
+        <tr class="table-rows">
+          <th class="table-headers">{{@key}}
+            {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
+          <td class="table-cells">{{this}}<em class="caption"></em></td>
         </tr>
       </table>
       {{/typeOf}}
@@ -374,10 +394,11 @@
     {{!-- Inspection-> C00, C01, C02, C03 --}}
     {{else}}
     {{#if this}}
-    <table>
-      <tr>
-        <th>{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}</th>
-        <td>{{this}}</td>
+    <table class="main-table">
+      <tr class="table-rows">
+        <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
+        </th>
+        <td class="table-cells">{{this}}</td>
       </tr>
     </table>
     {{/if}}
@@ -388,43 +409,48 @@
   {{!-- VALIDATION --}}
 
   <section style="float: left;">
-    <h2>{{ i18n "Validation" "certificateGroups" Certificate.CertificateLanguages }}</h2>
+    <h2 class="main-title">{{ i18n "Validation" "certificateGroups" Certificate.CertificateLanguages }}</h2>
     {{#each Certificate.Validation}}
     {{!-- Validation-> Z04 --}}
     {{#ifEqual @key "Z04"}}
-    <table style="float: left; width: 50%;">
-      <tr>
-        <th colspan="2">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}</th>
+    <table class="main-table" style="float: left; width: 50%;">
+      <tr class="table-rows">
+        <th class="table-headers" colspan="2">{{@key}}
+          {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}</th>
       </tr>
       {{#notEmpty this}}
-      <tr>
-        <td class="caption">{{ i18n "Z04.NotifiedBody" "certificateFields" ../Certificate.CertificateLanguages }}</td>
-        <td>{{this.NotifiedBodyNumber}}</td>
+      <tr class="table-rows">
+        <td class="caption table-cells">
+          {{ i18n "Z04.NotifiedBody" "certificateFields" ../Certificate.CertificateLanguages }}</td>
+        <td class="table-cells">{{this.NotifiedBodyNumber}}</td>
       </tr>
-      <tr>
-        <td class="caption">{{ i18n "Z04.DoCYear" "certificateFields" ../Certificate.CertificateLanguages }}</td>
-        <td>{{this.DoCYear}}</td>
+      <tr class="table-rows">
+        <td class="caption table-cells">
+          {{ i18n "Z04.DoCYear" "certificateFields" ../Certificate.CertificateLanguages }}</td>
+        <td class="table-cells">{{this.DoCYear}}</td>
       </tr>
-      <tr>
-        <td class="caption">{{ i18n "Z04.DoCNumber" "certificateFields" ../Certificate.CertificateLanguages }}</td>
-        <td>{{this.DoCNumber}}</td>
+      <tr class="table-rows">
+        <td class="caption table-cells">
+          {{ i18n "Z04.DoCNumber" "certificateFields" ../Certificate.CertificateLanguages }}</td>
+        <td class="table-cells">{{this.DoCNumber}}</td>
       </tr>
       {{/notEmpty}}
     </table>
-    <table style="float: left; margin-left: -1px; width: 50%; border: none;">
-      <tr style="border: none;">
-        <td style="float: right; margin-right: 350px;"><img class="ce" alt="Company CE"
-            src="data:image/png;base64,{{this.CE_Image}}" />
+    <table class="main-table" style="float: left; margin-left: -1px; width: 50%; border: none;">
+      <tr class="table-rows no-border">
+        <td class="table-cells" style="float: right; margin-right: 350px;">
+          <img class="ce" alt="Company CE" src="{{this.CE_Image}}" />
         </td>
       </tr>
     </table>
 
     {{!-- Validation-> Z01, Z02, Z03 --}}
     {{else}}
-    <table style="margin-top: -1px;">
-      <tr>
-        <th>{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}</th>
-        <td>{{this}}</td>
+    <table class="main-table" style="margin-top: -1px;">
+      <tr class="table-rows">
+        <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
+        </th>
+        <td class="table-cells">{{this}}</td>
       </tr>
     </table>
 
