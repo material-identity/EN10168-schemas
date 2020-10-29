@@ -282,7 +282,7 @@
       {{#typeOf this 'object'}}
       {{!-- ChemicalComposition-> SupplementaryInformation --}}
       {{#ifEqual @key "SupplementaryInformation"}}
-      <h3 class="second-level-title second-level" style="float: left;">
+      <h3 class="third-level-title second-level" style="float: left;">
         {{ i18n @key "otherFields" ../../Certificate.CertificateLanguages }}</h3>
       <table class="main-table second-level">
         {{#each this}}
@@ -332,7 +332,7 @@
       {{!-- XTest-> SupplementaryInformation --}}
       {{#ifEqual @key "SupplementaryInformation"}}
       <table class="main-table second-level">
-        <h3 class="second-level-title second-level" style="float: left;">
+        <h3 class="third-level-title second-level" style="float: left;">
           {{ i18n @key "otherFields" ../../Certificate.CertificateLanguages }}</h3>
 
         {{#each this}}
@@ -405,6 +405,42 @@
     {{/typeOf}}
     {{/each}}
   </section>
+
+  {{!-- OTHER TESTS --}}
+
+  <section>
+    <h2 class="main-title">{{ i18n "OtherTests" "certificateGroups" Certificate.CertificateLanguages}}</h2>
+    <table class="main-table">
+      {{#each Certificate.OtherTests}}
+      {{!-- OtherTests-> SupplementaryInformation, NonDestructiveTests or D01  --}}
+      {{#typeOf this 'object'}}
+      {{!-- OtherTests-> SupplementaryInformation, NonDestructiveTests --}}
+      <h3 class="second-level-title second-level">
+        {{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
+      <table class="main-table second-level">
+        {{#each this}}
+        <tr class="table-rows">
+          <th class="table-headers">{{@key}}</th>
+          <td class="table-cells">{{this.Key}}</td>
+          <td class="table-cells">{{this.Value}}</td>
+        </tr>
+        {{/each}}
+      </table>
+
+      {{!-- OtherTests-> D01 --}}
+      {{else}}
+      {{#if this}}
+      <tr class="table-rows">
+        <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
+        </th>
+        <td class="table-cells">{{this}}</td>
+      </tr>
+      {{/if}}
+      {{/typeOf}}
+      {{/each}}
+    </table>
+  </section>
+
 
   {{!-- VALIDATION --}}
 
