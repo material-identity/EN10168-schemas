@@ -23,28 +23,23 @@
         },
         "Interpretation": {
           "type": "string"
+        },
+        "Type": {
+          "enum": ["string", "number", "date", "date-time", "boolean"],
+          "default": "string"
         }
       },
-      "required": [
-        "Key"
-      ],
+      "required": ["Key"],
       "additionalProperties": false
     },
     "CertificateLanguages": {
       "type": "array",
       "items": {
-        "enum": [
-          "EN",
-          "DE",
-          "FR",
-          "PL"
-        ]
+        "enum": ["EN", "DE", "FR", "PL"]
       },
       "minItems": 1,
       "maxItems": 2,
-      "default": [
-        "EN"
-      ],
+      "default": ["EN"],
       "uniqueItems": true
     },
     "ChemicalElement": {
@@ -75,10 +70,7 @@
           "maximum": 100
         }
       },
-      "required": [
-        "Symbol",
-        "Actual"
-      ],
+      "required": ["Symbol", "Actual"],
       "additionalProperties": false
     },
     "Tube": {
@@ -100,13 +92,14 @@
           "description": "",
           "type": "number",
           "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "OuterDiameter",
-        "WallThickness"
-      ],
+      "required": ["Form", "OuterDiameter", "WallThickness"],
       "additionalProperties": false
     },
     "QuadraticTube": {
@@ -128,13 +121,14 @@
           "description": "",
           "type": "number",
           "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "SideLength",
-        "WallThickness"
-      ],
+      "required": ["Form", "SideLength", "WallThickness"],
       "additionalProperties": false
     },
     "RectangularTube": {
@@ -161,14 +155,14 @@
           "description": "",
           "type": "number",
           "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Height",
-        "WallThickness"
-      ],
+      "required": ["Form", "Width", "Height", "WallThickness"],
       "additionalProperties": false
     },
     "Pipe": {
@@ -190,13 +184,14 @@
           "description": "",
           "type": "number",
           "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "SideLength",
-        "WallThickness"
-      ],
+      "required": ["Form", "SideLength", "WallThickness"],
       "additionalProperties": false
     },
     "RectangularPipe": {
@@ -223,14 +218,14 @@
           "description": "",
           "type": "number",
           "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Height",
-        "WallThickness"
-      ],
+      "required": ["Form", "Width", "Height", "WallThickness"],
       "additionalProperties": true
     },
     "Coil": {
@@ -252,13 +247,14 @@
           "description": "",
           "type": "number",
           "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "WallThickness"
-      ],
+      "required": ["Form", "Width", "WallThickness"],
       "additionalProperties": true
     },
     "RoundBar": {
@@ -275,12 +271,14 @@
           "description": "",
           "type": "number",
           "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Diameter"
-      ],
+      "required": ["Form", "Diameter"],
       "additionalProperties": false
     },
     "HexagonalBar": {
@@ -297,12 +295,14 @@
           "description": "",
           "type": "number",
           "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Diameter"
-      ],
+      "required": ["Form", "Diameter"],
       "additionalProperties": false
     },
     "FlatBar": {
@@ -324,13 +324,14 @@
           "description": "",
           "type": "number",
           "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Thickness"
-      ],
+      "required": ["Form", "Width", "Thickness"],
       "additionalProperties": false
     },
     "Other": {
@@ -346,12 +347,14 @@
         "Description": {
           "description": "",
           "type": "string"
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Description"
-      ],
+      "required": ["Form", "Description"],
       "additionalProperties": false
     },
     "ProductShape": {
@@ -567,9 +570,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "Value"
-      ],
+      "required": ["Value"],
       "additionalProperties": false
     },
     "ChemicalComposition": {
@@ -578,10 +579,7 @@
       "properties": {
         "C70": {
           "description": "The metallurgic process, which is restricted to 2 types: Y = Basic oxygen process, E = Electric furnace",
-          "enum": [
-            "Y",
-            "E"
-          ]
+          "enum": ["Y", "E"]
         },
         "C71": {
           "description": "Share of element",
@@ -988,7 +986,11 @@
         },
         "B10": {
           "description": "Product dimensions - length of the product",
-          "type": "number"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Measurement"
+            }
+          ]
         },
         "B11": {
           "description": "Product dimensions ",
@@ -996,11 +998,19 @@
         },
         "B12": {
           "description": "Theoretical mass",
-          "type": "number"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Measurement"
+            }
+          ]
         },
         "B13": {
           "description": "Actual mass",
-          "type": "number"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Measurement"
+            }
+          ]
         },
         "SupplementaryInformation": {
           "title": "ProductDescriptionSupplementaryInformation",
@@ -1016,12 +1026,7 @@
           "additionalProperties": false
         }
       },
-      "required": [
-        "B01",
-        "B02",
-        "B07",
-        "B08"
-      ],
+      "required": ["B01", "B02", "B07", "B08"],
       "additionalProperties": false
     },
     "OtherTests": {
@@ -1187,7 +1192,11 @@
             },
             "C41": {
               "description": "Width of test piece",
-              "type": "string"
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Measurement"
+                }
+              ]
             },
             "C42": {
               "description": "Individual values",
@@ -1234,10 +1243,7 @@
           "$ref": "#/definitions/ChemicalComposition"
         }
       },
-      "required": [
-        "C00",
-        "ChemicalComposition"
-      ],
+      "required": ["C00", "ChemicalComposition"],
       "additionalProperties": false
     },
     "Validation": {
@@ -1280,12 +1286,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "CE_Image",
-            "NotifiedBodyNumber",
-            "DoCYear",
-            "DoCNumber"
-          ]
+          "required": ["CE_Image", "NotifiedBodyNumber", "DoCYear", "DoCNumber"]
         },
         "SupplementaryInformation": {
           "title": "ValidationSupplementaryInformation",
@@ -1300,11 +1301,7 @@
           }
         }
       },
-      "required": [
-        "Z01",
-        "Z02",
-        "Z04"
-      ],
+      "required": ["Z01", "Z02", "Z04"],
       "additionalProperties": false
     }
   },
@@ -1332,16 +1329,10 @@
         "state": {
           "description": "",
           "type": "string",
-          "enum": [
-            "draft",
-            "valid",
-            "cancelled"
-          ]
+          "enum": ["draft", "valid", "cancelled"]
         }
       },
-      "required": [
-        "id"
-      ]
+      "required": ["id"]
     },
     "Certificate": {
       "description": "",
@@ -1377,9 +1368,6 @@
       "additionalProperties": false
     }
   },
-  "required": [
-    "Certificate",
-    "RefSchemaUrl"
-  ],
+  "required": ["Certificate", "RefSchemaUrl"],
   "additionalProperties": false
 }
