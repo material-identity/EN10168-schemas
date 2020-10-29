@@ -1,34 +1,93 @@
 <mjml>
   <mj-head>
     <mj-title>EN10168 Certificate</mj-title>
-    <mj-font
-      name="Lato"
-      href="https://fonts.googleapis.com/css?family=Lato:300,400,700"
-    />
+    <mj-font name="Lato" href="https://fonts.googleapis.com/css?family=Lato:300,400,700" />
     <mj-attributes>
       <mj-text padding="0" />
       <mj-class name="blue" color="blue" />
       <mj-class name="big" font-size="20px" />
       <mj-class name="ce" width="8vw" />
-      <mj-all
-        font-family="Lato, sans-serif"
-        font-size="14px"
-        text-align="justify"
-        justify-content="center"
-      />
+      <mj-all font-family="Lato, sans-serif" font-size="14px" text-align="justify" justify-content="center" />
     </mj-attributes>
     <mj-style>
-      h2 { font-size: 1.5em; border-bottom: 3px solid #0C2340; } h3 { font-size:
-      1em; } .h3 { font-size: 1.25em; border-bottom: 2px solid #0C2340; padding:
-      10px; width: 100%; } table { border: 1px solid #ccc; border-collapse:
-      collapse; margin: 0; padding: 0; width: 100%; table-layout: fixed;
-      /*empty-cells: show;*/ } table tr { border: 1px solid #ddd; padding:
-      .15em; } table th, table td { padding: .525em !important; text-align:
-      left; } th { font-weight: lighter; font-style: italic; } em { font-style:
-      normal; } ol { list-style-type: none; padding: 0; } ul { margin: 0;
-      padding: 0; } ul li { display: inline; } .caption { font-weight: lighter;
-      font-size: 11px; }section:not(.header) { margin-top: 50px; } .cert-section
-      { max-width: 900px !important; }
+      h2 {
+        font-size: 1.5em;
+        border-bottom: 3px solid #0C2340;
+      }
+
+      h3 {
+        font-size:
+          1em;
+      }
+
+      .h3 {
+        font-size: 1.25em;
+        border-bottom: 2px solid #0C2340;
+        padding:
+          10px;
+        width: 100%;
+      }
+
+      table {
+        border: 1px solid #ccc;
+        border-collapse:
+          collapse;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        table-layout: fixed;
+        /*empty-cells: show;*/
+      }
+
+      table tr {
+        border: 1px solid #ddd;
+        padding:
+          .15em;
+      }
+
+      table th,
+      table td {
+        padding: .525em !important;
+        text-align:
+          left;
+      }
+
+      th {
+        font-weight: lighter;
+        font-style: italic;
+      }
+
+      em {
+        font-style:
+          normal;
+      }
+
+      ol {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      ul li {
+        display: inline;
+      }
+
+      .caption {
+        font-weight: lighter;
+        font-size: 11px;
+      }
+
+      section:not(.header) {
+        margin-top: 50px;
+      }
+
+      .cert-section {
+        max-width: 900px !important;
+      }
     </mj-style>
   </mj-head>
 
@@ -58,10 +117,8 @@
           </tr>
           <tr>
             <td>
-              <img width="150px"
-              src="data:image/png;base64,{{Certificate.CommercialTransaction.A04}}"
-              alt="{{ i18n "A04" "certificateFields"
-              Certificate.CertificateLanguages}}"/>
+              <img width="150px" src="{{Certificate.CommercialTransaction.A04}}" alt="{{ i18n "A04" "certificateFields"
+              Certificate.CertificateLanguages}}" />
             </td>
 
             <td>
@@ -121,31 +178,31 @@
         <mj-table>
           {{#each Certificate.CommercialTransaction}} {{#notIn @key
           "A01,A04,A06,A06.1,A06.2,A06.3"}} {{#if this}}
-          <tr>
-            <th>
-              {{@key}} {{ i18n @key "certificateFields"
+                <tr>
+                  <th>
+                    {{@key}} {{ i18n @key "certificateFields"
               ../Certificate.CertificateLanguages }}
-            </th>
-            <td>{{this}}</td>
-          </tr>
-          {{/if}} {{/notIn}} {{/each}}
+                  </th>
+                  <td>{{this}}</td>
+                </tr>
+              {{/if}} {{/notIn}} {{/each}}
         </mj-table>
 
         {{#notEmpty Certificate.CommercialTransaction.SupplementaryInformation}}
-        <mj-text>
-          <h3>
-            {{ i18n "SupplementaryInformation" "otherFields"
+          <mj-text>
+            <h3>
+              {{ i18n "SupplementaryInformation" "otherFields"
             Certificate.CertificateLanguages}}
-          </h3>
-        </mj-text>
-        <mj-table>
-          {{#each Certificate.CommercialTransaction.SupplementaryInformation}}
-          <tr>
-            <th>{{@key}} {{this.Key}}</th>
-            <td>{{this.Value}}</td>
-          </tr>
-          {{/each}}
-        </mj-table>
+            </h3>
+          </mj-text>
+          <mj-table>
+            {{#each Certificate.CommercialTransaction.SupplementaryInformation}}
+              <tr>
+                <th>{{@key}} {{this.Key}}</th>
+                <td>{{this.Value}}</td>
+              </tr>
+            {{/each}}
+          </mj-table>
         {{/notEmpty}}
       </mj-column>
     </mj-section>
@@ -163,51 +220,51 @@
 
         <mj-table>
           {{#each Certificate.ProductDescription}} {{#typeOf this 'object'}}
-          {{#ifEqual @key "SupplementaryInformation"}} {{!--
+              {{#ifEqual @key "SupplementaryInformation"}} {{!--
           ProductDescription-> SupplementaryInformation --}}
-          <mj-text>
-            <h3 style="margin-left: 10px">
-              {{ i18n "SupplementaryInformation" "otherFields"
+                <mj-text>
+                  <h3 style="margin-left: 10px">
+                    {{ i18n "SupplementaryInformation" "otherFields"
               ../Certificate.CertificateLanguages }}
-            </h3>
-          </mj-text>
-          <mj-table style="margin-left: 10px">
-            {{#each this}}
-            <tr>
-              <th>{{@key}} {{this.Key}}</th>
-              <td>{{this.Value}}</td>
-            </tr>
-            {{/each}}
-          </mj-table>
+                  </h3>
+                </mj-text>
+                <mj-table style="margin-left: 10px">
+                  {{#each this}}
+                    <tr>
+                      <th>{{@key}} {{this.Key}}</th>
+                      <td>{{this.Value}}</td>
+                    </tr>
+                  {{/each}}
+                </mj-table>
 
           {{else}} {{!-- ProductDescription-> B02, B09 --}}
-          <tr>
-            <th colspan="2">
-              {{@key}} {{ i18n @key "certificateFields"
+            <tr>
+              <th colspan="2">
+                {{@key}} {{ i18n @key "certificateFields"
               ../Certificate.CertificateLanguages }}
-            </th>
-          </tr>
-          {{#each this}}
-          <tr>
-            <td>
-              <em class="caption"
-                >{{ i18n @key "otherFields"
-                ../../Certificate.CertificateLanguages}}</em
-              >
-            </td>
-            <td>{{this}}</td>
-          </tr>
-          {{/each}} {{/ifEqual}} {{else}} {{#if this}} {{!--
+              </th>
+            </tr>
+            {{#each this}}
+              <tr>
+                <td>
+                  <em class="caption">{{ i18n @key "otherFields"
+                ../../Certificate.CertificateLanguages}}</em>
+                </td>
+                <td>{{this}}</td>
+              </tr>
+            {{/each}}
+              {{/ifEqual}}
+          {{else}} {{#if this}} {{!--
           ProductDescription-> B01, B03, B04, B05, B06, B07, B08, B10, B11, B12,
           B13 --}}
-          <tr>
-            <th>
-              {{@key}} {{ i18n @key "certificateFields"
+              <tr>
+                <th>
+                  {{@key}} {{ i18n @key "certificateFields"
               ../Certificate.CertificateLanguages }}
-            </th>
-            <td>{{this}}</td>
-          </tr>
-          {{/if}} {{/typeOf}} {{/each}}
+                </th>
+                <td>{{this}}</td>
+              </tr>
+            {{/if}} {{/typeOf}} {{/each}}
         </mj-table>
       </mj-column>
     </mj-section>
