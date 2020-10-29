@@ -994,7 +994,11 @@
         },
         "B11": {
           "description": "Product dimensions ",
-          "type": "number"
+          "allOf": [
+            {
+              "$ref": "#/definitions/Measurement"
+            }
+          ]
         },
         "B12": {
           "description": "Theoretical mass",
