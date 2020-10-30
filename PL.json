@@ -93,8 +93,7 @@
     "Diameter": "Średnica",
     "WallThickness": "Grubość ścian",
     "Height": "Wysokość",
-    "SideLength": "Side Length",
-
-    "Outer": ""
+    "SideLength": "Długość boku",
+    "Unit": "Jednostka"
   }
 }

@@ -93,6 +93,7 @@
     "Diameter": "Diameter",
     "WallThickness": "Wall Thickness",
     "Height": "Height",
-    "SideLength": "Side Length"
+    "SideLength": "Side Length",
+    "Unit": "Unité"
   }
 }
