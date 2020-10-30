@@ -385,9 +385,17 @@
         <tr class="table-rows">
           <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}
           </th>
-          {{#each this}}
-          <td class="table-cells">{{this}}</td>
-          {{/each}}
+          <td class="table-cells">
+            {{this.Value}} {{this.Unit}}
+          </td>
+          <td>
+            {{#if this.Minimum}}
+            min {{this.Minimum}} {{this.Unit}}
+            {{/if}}
+            {{#if this.Maximum}}
+            max {{this.Maximum}} {{this.Unit}}
+            {{/if}}
+          </td>
         </tr>
       </table>
       {{!-- XTest-> Measurement(s) (C10, C30, C40) --}}
