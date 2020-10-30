@@ -205,7 +205,7 @@
     <h2 class="main-title">{{ i18n "ProductDescription" "certificateGroups" Certificate.CertificateLanguages}}</h2>
     <table class="main-table">
       {{#each Certificate.ProductDescription}}
-      {{!-- ProductDescription-> SupplementaryInformation or B02 or B09 --}}
+      {{!-- ProductDescription-> SupplementaryInformation or B02,B09 or B10,B11,B12,B13--}}
       {{#typeOf this 'object'}}
       {{!-- ProductDescription-> SupplementaryInformation  --}}
       {{#ifEqual @key "SupplementaryInformation"}}
@@ -220,7 +220,19 @@
         </tr>
         {{/each}}
       </table>
-      {{!-- ProductDescription-> B02, B09 --}}
+      {{!-- ProductDescription-> B02, B09 or B10,B11,B12,B13--}}
+      {{else}}
+      {{!-- ProductDescription-> B10,B11,B12,B13--}}
+      {{#in @key "B10,B11,B12,B13"}}
+      <table class="main-table" style="margin-top: -1px;">
+        <tr class="table-rows">
+          <th class="table-headers">{{@key}}</th>
+          {{#each this}}
+          <td class="table-cells">{{this}}</td>
+          {{/each}}
+        </tr>
+      </table>
+      {{!-- ProductDescription-> B02, B09--}}
       {{else}}
       <tr class="table-rows">
         <th class="table-headers" colspan="2">{{@key}}
@@ -233,8 +245,9 @@
         <td class="table-cells">{{this}}</td>
       </tr>
       {{/each}}
+      {{/in }}
       {{/ifEqual}}
-      {{!-- ProductDescription-> B01, B03, B04, B05, B06, B07, B08, B10, B11, B12, B13  --}}
+      {{!-- ProductDescription-> B01, B03, B04, B05, B06, B07, B08  --}}
       {{else}}
       {{#if this}}
       <tr class="table-rows">
@@ -349,14 +362,16 @@
           <th class="table-headers">{{@key}}
             {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
           <td class="table-cells">{{ join this ", " "Value" }}</td>
+          <td class="table-cells">{{ this.[0].Unit }}</td>
         </tr>
       </table>
       {{else}}
-      {{!-- XTest-> Measurement(s) (C11, C12, C13, C31, C32, C43, C44) --}}
+      {{!-- XTest-> Measurement(s) (C11, C12, C13, C31, C32, C41, C43, C44) --}}
       {{#typeOf this 'object'}}
       <table class="main-table" style="margin-top: -1px;">
         <tr class="table-rows">
-          <th class="table-headers">{{@key}}</th>
+          <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}
+          </th>
           {{#each this}}
           <td class="table-cells">{{this}}</td>
           {{/each}}
