@@ -91,6 +91,7 @@
     "Diameter": "Diamètre",
     "WallThickness": "Épaisseur de la paroi",
     "Height": "Hauteur",
-    "SideLength": "Longueur de la face"
+    "SideLength": "Longueur de la face",
+    "Unit": "Unité"
   }
 }

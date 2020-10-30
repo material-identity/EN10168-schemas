@@ -93,6 +93,7 @@
     "Diameter": "Durchmesser",
     "WallThickness": "Wandstärke",
     "Height": "Höhe",
-    "SideLength": "Seitenlänge"
+    "SideLength": "Seitenlänge",
+    "Unit": "Einheit"
   }
 }
