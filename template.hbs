@@ -220,7 +220,6 @@
         </tr>
         {{/each}}
       </table>
-
       {{!-- ProductDescription-> B02, B09 --}}
       {{else}}
       <tr class="table-rows">
@@ -235,7 +234,6 @@
       </tr>
       {{/each}}
       {{/ifEqual}}
-
       {{!-- ProductDescription-> B01, B03, B04, B05, B06, B07, B08, B10, B11, B12, B13  --}}
       {{else}}
       {{#if this}}
@@ -246,7 +244,6 @@
       </tr>
       {{/if}}
       {{/typeOf}}
-
       {{/each}}
     </table>
   </section>
@@ -343,9 +340,9 @@
         </tr>
         {{/each}}
       </table>
-      {{!-- XTest-> Measurement(s) (C11, C12, C13, C31, C32, C42, C43, C44) --}}
+      {{!-- XTest-> Measurement(s) (C10, C11, C12, C13, C31, C32, C42, C43, C44) --}}
       {{else}}
-
+      {{!-- XTest-> Measurement(s) ( C42) --}}
       {{#ifEqual @key "C42"}}
       <table class="main-table" style="margin-top: -1px;">
         <tr class="table-rows">
@@ -355,15 +352,17 @@
         </tr>
       </table>
       {{else}}
+      {{!-- XTest-> Measurement(s) (C11, C12, C13, C31, C32, C43, C44) --}}
       {{#typeOf this 'object'}}
       <table class="main-table" style="margin-top: -1px;">
         <tr class="table-rows">
-          <th class="table-headers">{{@key}}
+          <th class="table-headers">{{@key}}</th>
           {{#each this}}
           <td class="table-cells">{{this}}</td>
           {{/each}}
         </tr>
       </table>
+      {{!-- XTest-> Measurement(s) (C10, C30, C40) --}}
       {{else}}
       <table class="main-table" style="margin-top: -1px;">
         <tr class="table-rows">
@@ -390,7 +389,6 @@
       {{/each}}
       {{/in}}
     </section>
-
     {{!-- Inspection-> C00, C01, C02, C03 --}}
     {{else}}
     {{#if this}}
@@ -412,9 +410,8 @@
     <h2 class="main-title">{{ i18n "OtherTests" "certificateGroups" Certificate.CertificateLanguages}}</h2>
     <table class="main-table">
       {{#each Certificate.OtherTests}}
-      {{!-- OtherTests-> SupplementaryInformation, NonDestructiveTests or D01  --}}
-      {{#typeOf this 'object'}}
       {{!-- OtherTests-> SupplementaryInformation, NonDestructiveTests --}}
+      {{#typeOf this 'object'}}
       <h3 class="second-level-title second-level">
         {{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
       <table class="main-table second-level">
@@ -426,7 +423,6 @@
         </tr>
         {{/each}}
       </table>
-
       {{!-- OtherTests-> D01 --}}
       {{else}}
       {{#if this}}
@@ -479,7 +475,6 @@
         </td>
       </tr>
     </table>
-
     {{!-- Validation-> Z01, Z02, Z03 --}}
     {{else}}
     <table class="main-table" style="margin-top: -1px;">
@@ -489,10 +484,8 @@
         <td class="table-cells">{{this}}</td>
       </tr>
     </table>
-
     {{/ifEqual}}
     {{/each}}
-
   </section>
 
   <footer style="float: left;">
