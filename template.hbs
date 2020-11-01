@@ -490,12 +490,14 @@
     {{!-- OtherTests-> D01 --}}
     {{else}}
     {{#if this}}
+    <table class="main-table">
     <tr class="table-rows">
       <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
       </th>
       <td class="table-cells">{{this}}</td>
       <td class="table-cells"></td>
     </tr>
+    </table>
     {{/if}}
     {{/typeOf}}
     {{/each}}
