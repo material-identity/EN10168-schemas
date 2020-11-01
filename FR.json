@@ -69,6 +69,7 @@
     "NotchedBarImpactTest": "Test de choc avec barre crantée",
     "OtherMechanicalTests": "Autres essais mécaniques",
     "NonDestructiveTests": "Essais non destructifs",
+    "OtherProductTests": "Autres essais sur le produit", 
     "ProductNorm": "Norme du produit",
     "MaterialNorm": "Norme matérielle",
     "MassNorm": "Norme de masse",

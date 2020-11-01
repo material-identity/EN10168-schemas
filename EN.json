@@ -69,6 +69,7 @@
     "NotchedBarImpactTest": "Notched bar impact test",
     "OtherMechanicalTests": "Other mechanical tests",
     "NonDestructiveTests": "Nondestructive tests",
+    "OtherProductTests": "Other product tests", 
     "ProductNorm": "Product norm",
     "MaterialNorm": "Material norm",
     "MassNorm": "Mass norm",

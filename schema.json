@@ -1046,22 +1046,22 @@
           "type": "object",
           "patternProperties": {
             "propertyNames": {
-              "pattern": "^D[0][2-9]|^D[1-4]D[0-9]"
+              "pattern": "^D[0][2-9]|^D[1-4]D[0-9]^D50"
             },
-            "^D[0][2-9]|^D[1-4]D[0-9]": {
+            "^D[0][2-9]|^D[1-4]D[0-9]^D50": {
               "$ref": "#/definitions/KeyValueObject"
             }
           },
           "additionalProperties": false
         },
-        "SupplementaryInformation": {
-          "title": "OtherTestsSupplementaryInformation",
+        "OtherProductTests": {
+          "title": "OtherProductTests",
           "type": "object",
-          "propertyNames": {
-            "pattern": "^D[5-9][0-9]"
-          },
           "patternProperties": {
-            "^D[5-9][0-9]": {
+            "propertyNames": {
+              "pattern": "^^D[5][1-9]|^D[6-9]D[0-9]"
+            },
+            "^D[5][1-9]|^D[6-9]D[0-9]": {
               "$ref": "#/definitions/KeyValueObject"
             }
           },
