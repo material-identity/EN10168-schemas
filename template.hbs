@@ -259,7 +259,7 @@
           <tr class="table-rows">
             <td class="table-cells"><em
                 class="caption">{{ i18n @key "otherFields" ../../Certificate.CertificateLanguages}}</em></td>
-            <td class="table-cells">{{this}}</td>
+            <td class="table-cells">{{join this ", " value }}</td>
           </tr>
           {{/each}}
       {{!-- ProductDescription-> B09--}}
