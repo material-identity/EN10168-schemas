@@ -547,6 +547,7 @@
     </table>
     {{!-- Validation-> Z01, Z02, Z03 --}}
     {{else}}
+    {{#in @key "Z01,Z02,Z03"}}
     <table class="main-table" style="margin-top: 0px;">
       <tr class="table-rows">
         <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
@@ -554,6 +555,20 @@
         <td class="table-cells">{{this}}</td>
       </tr>
     </table>
+    {{else}}
+    {{!-- Supplementary Information--}}
+    <h3 class="second-level-title second-level">
+      {{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
+    <table class="main-table second-level">
+      {{#each this}}
+      <tr class="table-rows">
+        <th class="table-headers">{{@key}} {{this.Key}}</th>
+        <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
+        <td class="table-cells">{{this.Interpretation}}</td>
+      </tr>
+      {{/each}}
+    </table>
+    {{/in}}
     {{/ifEqual}}
     {{/each}}
   </section>
