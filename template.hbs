@@ -475,7 +475,7 @@
     <h2 class="main-title">{{ i18n "OtherTests" "certificateGroups" Certificate.CertificateLanguages}}</h2>
     {{!-- <table class="main-table"> --}}
     {{#each Certificate.OtherTests}}
-    {{!-- OtherTests-> SupplementaryInformation, NonDestructiveTests --}}
+    {{!-- OtherTests-> NonDestructiveTests, OtherProductTests --}}
     {{#typeOf this 'object'}}
     <h3 class="second-level-title second-level">
       {{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
