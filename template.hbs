@@ -175,7 +175,7 @@
     <h2 class="main-title">{{ i18n "CommercialTransaction" "certificateGroups" Certificate.CertificateLanguages }}</h2>
     <table class="main-table">
       {{#each Certificate.CommercialTransaction}}
-      {{#notIn @key "A01,A04,A06,A06.1,A06.2,A06.3"}}
+      {{#notIn @key "A01,A04,A06,A06.1,A06.2,A06.3,SupplementaryInformation"}}
       {{#if this}}
       <tr class="table-rows">
         <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
