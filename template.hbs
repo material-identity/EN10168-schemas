@@ -34,7 +34,7 @@
     .second-level-title {
       font-size: 1.25em;
       border-bottom: 2px solid #0C2340;
-      padding: 10px;
+      padding: 0px;
       width: 100%;
     }
 
@@ -47,7 +47,7 @@
     }
 
     .main-table {
-      border: 1px solid #ccc;
+      border: 0px solid #ccc;
       border-collapse: collapse;
       margin: 0;
       padding: 0;
@@ -62,7 +62,7 @@
     }
 
     .table-rows {
-      border: 1px solid #ddd;
+      border: 0px solid #ddd;
       padding: .15em;
     }
 
@@ -247,9 +247,9 @@
       {{#typeOf this 'object'}}
       {{!-- ProductDescription-> SupplementaryInformation  --}}
       {{#ifEqual @key "SupplementaryInformation"}}
-      <h3 class="third-level-title second-level">
+      <h3 class="third-level-title">
         {{ i18n "SupplementaryInformation" "otherFields" ../Certificate.CertificateLanguages }}</h3>
-      <table class="main-table second-level">
+      <table class="main-table">
         {{#each this}}
         <tr class="table-rows">
           <th class="table-headers">{{@key}} {{this.Key}}</th>
@@ -345,8 +345,8 @@
     {{#each Certificate.Inspection}}
     {{!-- Inspection-> SupplementaryInformation or ChemicalComposition or TensileTest,HardnessTest,NotchedBarImpactTest,OtherMechanicalTests --}}
     {{#typeOf this 'object'}}
-    <section class="second-level">
-      <h3 class="second-level-title second-level" style="float:left;">
+    <section>
+      <h3 class="second-level-title">
         {{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
 
       {{!-- Inspection-> SupplementaryInformation --}}
@@ -368,9 +368,9 @@
       {{#typeOf this 'object'}}
       {{!-- ChemicalComposition-> SupplementaryInformation --}}
       {{#ifEqual @key "SupplementaryInformation"}}
-      <h3 class="third-level-title second-level" style="float: left;">
+      <h3 class="third-level-title">
         {{ i18n @key "otherFields" ../../Certificate.CertificateLanguages }}</h3>
-      <table class="main-table second-level">
+      <table class="main-table">
         {{#each this}}
         <tr class="table-rows">
           <th class="table-headers">{{@key}} {{this.Key}}</th>
@@ -417,8 +417,8 @@
       {{#typeOf this 'object'}}
       {{!-- XTest-> SupplementaryInformation --}}
       {{#ifEqual @key "SupplementaryInformation"}}
-      <table class="main-table second-level">
-        <h3 class="third-level-title second-level" style="float: left;">
+      <table class="main-table">
+        <h3 class="third-level-title">
           {{ i18n @key "otherFields" ../../Certificate.CertificateLanguages }}</h3>
 
         {{#each this}}
@@ -511,9 +511,9 @@
     {{#each Certificate.OtherTests}}
     {{!-- OtherTests-> NonDestructiveTests, OtherProductTests --}}
     {{#typeOf this 'object'}}
-    <h3 class="second-level-title second-level">
+    <h3 class="second-level-title">
       {{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
-    <table class="main-table second-level">
+      <table class="main-table">
       {{#each this}}
       <tr class="table-rows">
         <th class="table-headers">{{@key}} {{this.Key}}</th>
@@ -545,17 +545,11 @@
   <section style="float: left;">
     <h2 class="main-title pdf-pagebreak-before">
       {{ i18n "Validation" "certificateGroups" Certificate.CertificateLanguages }}</h2>
-      <table class="main-table" style="float: left; width: 100%;">
+      <table class="main-table" style="float: left; width: 80%;">
         <tr class="table-rows">
           <th class="table-headers">Z01 {{ i18n "Z01" "certificateFields" Certificate.CertificateLanguages }} </th>
           <td colspan="1">{{Certificate.Validation.Z01}}</td>
-          <td rowspan="3" align="center">
-            <table>
-               <tr align="center"><td align="center"><img class="ce" alt="Company CE" src="{{Certificate.Validation.Z04.CE_Image}}" /></td></tr>
-               <tr align="center"><td align="center">{{Certificate.Validation.Z04.NotifiedBodyNumber}}</td></tr>
-               <tr align="center"><td align="center">{{Certificate.Validation.Z04.DoCYear}}</td></tr>
-               <tr align="center"><td align="center">{{Certificate.Validation.Z04.DoCNumber}}</td></tr>
-            </table>
+           
           </td>
         </tr>
         <tr class="table-rows">
@@ -567,10 +561,17 @@
           <td colspan="1">{{Certificate.Validation.Z03}}</td>
         </tr>
       </table>
-
+      <table style="float: right; width: 20%;">
+         <tr align="center"><td><img class="ce" alt="Company CE" src="{{Certificate.Validation.Z04.CE_Image}}" /></td></tr>
+         <tr align="center"><td>{{Certificate.Validation.Z04.NotifiedBodyNumber}}</td></tr>
+         <tr align="center"><td>{{Certificate.Validation.Z04.DoCYear}}</td></tr>
+         <tr align="center"><td>{{Certificate.Validation.Z04.DoCNumber}}</td></tr>
+      </table>
+  </section>
+  <section>
       {{#if Certificate.Validation.SupplementaryInformation}}
       <table class="main-table second-level">
-        <h3 class="third-level-title second-level" style="float: left;">
+        <h3 class="third-level-title">
         {{ i18n "SupplementaryInformation" "otherFields" Certificate.CertificateLanguages }}</h3>
         <table class="main-table second-level">
           {{#each Certificate.Validation.SupplementaryInformation}}
