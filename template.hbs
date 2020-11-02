@@ -228,7 +228,6 @@
       {{else}}
       {{!-- ProductDescription-> B10,B11,B12,B13--}}
 
-
       {{!-- TODO: improve Table formatting !! --}}
 
 
@@ -287,7 +286,6 @@
       {{/ifEqual}}
       {{/in }}
       {{/ifEqual}}
-
 
       {{!-- ProductDescription-> B01, B03, B04, B05, B06, B07, B08  --}}
       {{else}}
@@ -386,7 +384,6 @@
       <table class="main-table second-level">
         <h3 class="third-level-title second-level" style="float: left;">
           {{ i18n @key "otherFields" ../../Certificate.CertificateLanguages }}</h3>
-
         {{#each this}}
         {{!-- KeyValueObject --}}
         <tr class="table-rows">
@@ -463,10 +460,21 @@
         </th>
         <td class="table-cells">{{this}}</td>
       </tr>
+      {{/each}}
     </table>
+    {{!-- OtherTests-> D01 --}}
+    {{else}}
+    {{#if this}}
+    <tr class="table-rows">
+      <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
+      </th>
+      <td class="table-cells">{{this}}</td>
+      <td class="table-cells"></td>
+    </tr>
     {{/if}}
     {{/typeOf}}
     {{/each}}
+    {{!-- </table> --}}
   </section>
 
   {{!-- OTHER TESTS --}}
@@ -504,7 +512,6 @@
     {{/each}}
     {{!-- </table> --}}
   </section>
-
 
   {{!-- VALIDATION --}}
 
