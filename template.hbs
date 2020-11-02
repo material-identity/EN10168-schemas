@@ -545,66 +545,39 @@
   <section style="float: left;">
     <h2 class="main-title pdf-pagebreak-before">
       {{ i18n "Validation" "certificateGroups" Certificate.CertificateLanguages }}</h2>
-    {{#each Certificate.Validation}}
-    {{!-- Validation-> Z04 --}}
-    {{#ifEqual @key "Z04"}}
-    <table class="main-table" style="float: left; width: 50%;">
-      <tr class="table-rows">
-        <th class="table-headers">{{@key}}
-          {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}</th>
-        <td class="table-cells"></td>
-      </tr>
-      {{#notEmpty this}}
-      <tr class="table-rows">
-        <td class="caption table-cells">
-          {{ i18n "Z04.NotifiedBody" "certificateFields" ../Certificate.CertificateLanguages }}</td>
-        <td class="table-cells">{{this.NotifiedBodyNumber}}</td>
-      </tr>
-      <tr class="table-rows">
-        <td class="caption table-cells">
-          {{ i18n "Z04.DoCYear" "certificateFields" ../Certificate.CertificateLanguages }}</td>
-        <td class="table-cells">{{this.DoCYear}}</td>
-      </tr>
-      <tr class="table-rows">
-        <td class="caption table-cells">
-          {{ i18n "Z04.DoCNumber" "certificateFields" ../Certificate.CertificateLanguages }}</td>
-        <td class="table-cells">{{this.DoCNumber}}</td>
-      </tr>
-      {{/notEmpty}}
-    </table>
-    <table class="main-table" style="float: left; margin-left: 0px; width: 50%; border: none;">
-      <tr class="table-rows no-border">
-        <td class="table-cells" style="float: right; margin-right: 350px;">
-          <img class="ce" alt="Company CE" src="{{this.CE_Image}}" />
-        </td>
-      </tr>
-    </table>
-    {{!-- Validation-> Z01, Z02, Z03 --}}
-    {{else}}
-    {{#in @key "Z01,Z02,Z03"}}
-    <table class="main-table" style="margin-top: 0px;">
-      <tr class="table-rows">
-        <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
-        </th>
-        <td class="table-cells">{{this}}</td>
-      </tr>
-    </table>
-    {{else}}
-    {{!-- Supplementary Information--}}
-    <h3 class="second-level-title second-level">
-      {{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
-    <table class="main-table second-level">
-      {{#each this}}
-      <tr class="table-rows">
-        <th class="table-headers">{{@key}} {{this.Key}}</th>
-        <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
-        <td class="table-cells">{{this.Interpretation}}</td>
-      </tr>
-      {{/each}}
-    </table>
-    {{/in}}
-    {{/ifEqual}}
-    {{/each}}
+      <table class="main-table" style="float: left; width: 100%;">
+        <tr class="table-rows">
+          <th class="table-headers">Z01 {{ i18n "Z01" "certificateFields" Certificate.CertificateLanguages }} </th>
+          <td colspan="1">{{Certificate.Validation.Z01}}</td>
+          <td rowspan="3" align="center">
+            <table>
+               <tr align="center"><td align="center"><img class="ce" alt="Company CE" src="{{Certificate.Validation.Z04.CE_Image}}" /></td></tr>
+               <tr align="center"><td align="center">{{Certificate.Validation.Z04.NotifiedBodyNumber}}</td></tr>
+               <tr align="center"><td align="center">{{Certificate.Validation.Z04.DoCYear}}</td></tr>
+               <tr align="center"><td align="center">{{Certificate.Validation.Z04.DoCNumber}}</td></tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="table-rows">
+          <th class="table-headers">Z02 {{ i18n "Z02" "certificateFields" Certificate.CertificateLanguages }} </th>
+          <td colspan="1">{{Certificate.Validation.Z02}}</td>
+        </tr>
+        <tr class="table-rows">
+          <th class="table-headers">Z03 {{ i18n "Z03" "certificateFields" Certificate.CertificateLanguages }} </th>
+          <td colspan="1">{{Certificate.Validation.Z03}}</td>
+        </tr>
+      </table>
+
+      {{#if Certificate.Validation.SupplementaryInformation}}
+      <table class="main-table second-level">
+        <h3 class="third-level-title second-level" style="float: left;">
+        {{ i18n "SupplementaryInformation" "otherFields" Certificate.CertificateLanguages }}</h3>
+        <table class="main-table second-level">
+          {{#each Certificate.Validation.SupplementaryInformation}}
+          <tr class="table-rows">
+            <th class="table-headers">{{@key}} {{this.Key}}</th>
+            <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
+            <td class="table-cells">{{this.Interpretation}}</td>
           </tr>
           {{/each}}
       </table>
