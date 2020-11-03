@@ -125,20 +125,20 @@
   <section class="header">
     <table class="main-table">
       <tr class="table-rows">
-        <th class="table-headers">A04 {{ i18n "A04" "certificateFields" Certificate.CertificateLanguages }}</th>
-        <th class="table-headers">A01 {{ i18n "A01" "certificateFields" Certificate.CertificateLanguages }} </th>
-        {{#if Certificate.CommercialTransaction.A06}} 
+        <th class="table-headers">A04 {{ i18n "A04" "certificateFields" Certificate.CertificateLanguages}}</th>
+        <th class="table-headers">A01 {{ i18n "A01" "certificateFields" Certificate.CertificateLanguages}} </th>
+        {{#hasKey Certificate.CommercialTransaction "A06"}} 
             <th class="table-headers">A06 {{ i18n "A06" "certificateFields" Certificate.CertificateLanguages}}</th>
-        {{/if}}
-        {{#if Certificate.CommercialTransaction.['A06.1']}}
+        {{/hasKey}}
+        {{#hasKey Certificate.CommercialTransaction "A06.1"}}
             <th class="table-headers">A06.1 {{ i18n "A06.1" "certificateFields" Certificate.CertificateLanguages}}</th>
-        {{/if}}
-        {{#if Certificate.CommercialTransaction.['A06.2']}}
+        {{/hasKey}}
+        {{#hasKey Certificate.CommercialTransaction "A06.2"}}
             <th class="table-headers">A06.1 {{ i18n "A06.2" "certificateFields" Certificate.CertificateLanguages}}</th>
-        {{/if}}
-        {{#if Certificate.CommercialTransaction.['A06.3']}}
+        {{/hasKey}}
+        {{#hasKey Certificate.CommercialTransaction "A06.3"}}
             <th class="table-headers">A06.3 {{ i18n "A06.3" "certificateFields" Certificate.CertificateLanguages}}</th>
-        {{/if}}
+        {{/hasKey}}
       </tr>
       <tr class="table-rows">
         <td class="table-cells">
@@ -164,42 +164,42 @@
           </ol>
         </td>
         {{/if}}
-        {{#if Certificate.CommercialTransaction.['A06.1']}} 
+        {{#hasKey Certificate.CommercialTransaction "A06.1"}} 
         <td class="table-cells">
           <ol>
-            <li>{{Certificate.CommercialTransaction.['A06.1'].CompanyName}}</li>
-            <li>{{Certificate.CommercialTransaction.['A06.1'].Street}}</li>
-            <li>{{Certificate.CommercialTransaction.['A06.1'].ZipCode}},
-              {{Certificate.CommercialTransaction.['A06.1'].City}},
-              {{Certificate.CommercialTransaction.['A06.1'].Country}}</li>
-            <li>{{Certificate.CommercialTransaction.['A06.1'].Email}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.1,CompanyName"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.1,Street"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.1,ZipCode"}},
+              {{get Certificate.CommercialTransaction "A06.1,City"}},
+              {{get Certificate.CommercialTransaction "A06.1,Country"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.1,Email"}}</li>
           </ol>
         </td>
-        {{/if}}
-        {{#if Certificate.CommercialTransaction.['A06.2']}} 
+        {{/hasKey}}
+        {{#hasKey Certificate.CommercialTransaction "A06.2"}} 
         <td class="table-cells"></td>
           <ol>
-            <li>{{Certificate.CommercialTransaction.['A06.2'].CompanyName}}</li>
-            <li>{{Certificate.CommercialTransaction.['A06.2'].Street}}</li>
-            <li>{{Certificate.CommercialTransaction.['A06.2'].ZipCode}},
-              {{Certificate.CommercialTransaction.['A06.2'].City}},
-              {{Certificate.CommercialTransaction.['A06.2'].Country}}</li>
-            <li>{{Certificate.CommercialTransaction.['A06.2'].Email}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.2,CompanyName"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.2,Street"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.2,ZipCode"}},
+              {{get Certificate.CommercialTransaction "A06.2,City"}},
+              {{get Certificate.CommercialTransaction "A06.2,Country"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.2,Email"}}</li>    
           </ol>
         </td>
-        {{/if}}
-        {{#if Certificate.CommercialTransaction.['A06.3']}} 
+        {{/hasKey}}
+        {{#hasKey Certificate.CommercialTransaction "A06.3"}} 
         <td class="table-cells"></td>
           <ol>
-            <li>{{Certificate.CommercialTransaction.['A06.3'].CompanyName}}</li>
-            <li>{{Certificate.CommercialTransaction.['A06.3'].Street}}</li>
-            <li>{{Certificate.CommercialTransaction.['A06.3'].ZipCode}},
-              {{Certificate.CommercialTransaction.['A06.3'].City}},
-              {{Certificate.CommercialTransaction.['A06.3'].Country}}</li>
-            <li>{{Certificate.CommercialTransaction.['A06.3'].Email}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.3,CompanyName"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.3,Street"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.3,ZipCode"}},
+              {{get Certificate.CommercialTransaction "A06.3,City"}},
+              {{get Certificate.CommercialTransaction "A06.3,Country"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.3,Email"}}</li>
           </ol>
         </td>
-        {{/if}}
+        {{/hasKey}}
       </tr>
     </table>
   </section>
