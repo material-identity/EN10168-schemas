@@ -1,8 +1,11 @@
 import { createCommercialTransaction } from './lib/commercialTransaction';
+import { Translate } from './utils/translate'
+import {Certificate} from './types';
 
-export function Generate(certificate) {
+export function Generate(certificate: Certificate) {
+  const i18n: Translate = new Translate(certificate.Certificate.CertificateLanguages);
 
-  const commercialTransaction = createCommercialTransaction(certificate);
+  const commercialTransaction = createCommercialTransaction(certificate.Certificate.CommercialTransaction, i18n);
 
   return [
     { text: 'Certificate', style: 'h1' },
