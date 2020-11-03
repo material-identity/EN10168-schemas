@@ -361,55 +361,43 @@
         {{/each}}
       </table>
       {{/ifEqual}}
-
-      {{!-- Inspection-> ChemicalComposition --}}
-      {{#ifEqual @key "ChemicalComposition"}}
-      {{#each this}}
-      {{#typeOf this 'object'}}
-      {{!-- ChemicalComposition-> SupplementaryInformation --}}
-      {{#ifEqual @key "SupplementaryInformation"}}
+     {{#ifEqual @key "ChemicalComposition"}}
+     <table class="main-table" style="margin-top: 0px;">
+        <tr class="table-rows">
+          <th></th>
+          {{#each this}}
+          <th class="table-headers">{{@key}}</th>
+          {{/each}}
+        </tr>
+        <tr class="table-rows">
+          <th>Symbol</th>
+          {{#each this}}
+          <th class="table-headers">{{this.Symbol}}</th>
+          {{/each}}
+        </tr>
+        <tr class="table-rows">
+          <th>Actual [%]</th>
+          {{#each this}}
+          <th class="table-headers">{{this.Actual}}</th>
+          {{/each}}
+        </tr>
+      </table>
+      {{@key.SupplementaryInformation}}
+      {{#if @key.SupplementaryInformation}}
       <h3 class="third-level-title">
         {{ i18n @key "otherFields" ../../Certificate.CertificateLanguages }}</h3>
       <table class="main-table">
-        {{#each this}}
+        {{#each @key.SupplementaryInformation}}
         <tr class="table-rows">
-          <th class="table-headers">{{@key}} {{this.Key}}</th>
+          <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
           <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
         {{/each}}
       </table>
-      {{!-- ChemicalComposition-> ChemicalElement --}}
-      {{else}}
-      <table class="main-table" style="margin-top: 0px;">
-        <tr class="table-rows">
-          {{!-- No translation ? --}}
-          <th class="table-headers">{{@key}}</th>
-          {{#each this}}
-          <td class="caption table-cells">{{@key}}</td>
-          {{/each}}
-        </tr>
-        <tr class="table-rows">
-          <td class="caption table-cells"></td>
-          {{#each this}}
-          <td>{{this}}</td>
-          {{/each}}
-        </tr>
-      </table>
-      {{/ifEqual}}
-      {{!-- ChemicalComposition-> C70 --}}
-      {{else}}
-      <table class="main-table" style="margin-top: 0px;">
-        <tr class="table-rows">
-          <th class="table-headers">{{@key}}
-            {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
-          <td class="table-cells">{{this}}<em class="caption">(Section)</em></td>
-        </tr>
-      </table>
-
-      {{/typeOf}}
-      {{/each}}
-      {{/ifEqual}}
+      {{/if}}
+     {{/ifEqual}}
+      
 
       {{!-- Inspection-> TensileTest, HardnessTest, NotchedBarImpactTest, OtherMechanicalTests --}}
       {{#in @key "TensileTest,HardnessTest,NotchedBarImpactTest,OtherMechanicalTests"}}
