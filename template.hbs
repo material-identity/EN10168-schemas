@@ -228,7 +228,7 @@
     <table class="main-table">
       {{#each Certificate.CommercialTransaction.SupplementaryInformation}}
       <tr class="table-rows">
-        <th class="table-headers">{{@key}} {{this.Key}}</th>
+        <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
         <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
         <td class="table-cells">{{this.Interpretation}}</td>
       </tr>
@@ -253,7 +253,7 @@
       <table class="main-table">
         {{#each this}}
         <tr class="table-rows">
-          <th class="table-headers">{{@key}} {{this.Key}}</th>
+          <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
           <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
@@ -270,7 +270,7 @@
       {{#in @key "B10,B11,B12,B13"}}
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
-          <th class="table-headers">{{@key}} {{this.Property}}</th>
+          <th class="table-headers"colspan="2">{{@key}} {{this.Property}}</th>
           <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
           <td class="table-cells">
             {{#if this.Minimum}}
@@ -355,7 +355,7 @@
       <table class="main-table">
         {{#each this}}
         <tr class="table-rows">
-          <th class="table-headers">{{@key}} {{this.Key}}</th>
+          <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
           <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
@@ -413,7 +413,7 @@
         {{#each this}}
         {{!-- KeyValueObject --}}
         <tr class="table-rows">
-          <th class="table-headers">{{@key}} {{this.Key}}</th>
+          <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
           <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
@@ -425,7 +425,7 @@
       {{#ifEqual @key "C42"}}
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
-          <th class="table-headers">{{@key}}
+          <th class="table-headers" colspan="2">{{@key}}
             {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
           <td class="table-cells" colspan="2">{{ join this ", " "Value" }} {{ this.[0].Unit }}</td>
         </tr>
@@ -435,7 +435,7 @@
       {{#typeOf this 'object'}}
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
-          <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}
+          <th class="table-headers" colspan="2">{{@key}} {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}
           </th>
           <td class="table-cells">
             {{this.Value}} {{this.Unit}}
@@ -454,7 +454,7 @@
       {{else}}
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
-          <th class="table-headers">{{@key}}
+          <th class="table-headers" colspan="2">{{@key}}
             {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
           {{#each this}}
           <td class="table-cells" colspan="2">{{this}}</td>
@@ -468,7 +468,7 @@
       {{else}}
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
-          <th class="table-headers">{{@key}}
+          <th class="table-headers" colspan="2">{{@key}}
             {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
           <td class="table-cells" colspan="2">{{this}}</td>
         </tr>
@@ -505,7 +505,7 @@
       <table class="main-table">
       {{#each this}}
       <tr class="table-rows">
-        <th class="table-headers">{{@key}} {{this.Key}}</th>
+        <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
         <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
         <td class="table-cells">{{this.Interpretation}}</td>
       </tr>
@@ -516,7 +516,7 @@
     {{#if this}}
     <table class="main-table">
       <tr class="table-rows">
-        <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
+        <th class="table-headers" colspan="2">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
         </th>
         <td class="table-cells">{{this}}</td>
         <td class="table-cells"></td>
@@ -559,13 +559,13 @@
   </section>
   <section>
       {{#if Certificate.Validation.SupplementaryInformation}}
-      <table class="main-table second-level">
+      <table class="main-table">
         <h3 class="third-level-title">
         {{ i18n "SupplementaryInformation" "otherFields" Certificate.CertificateLanguages }}</h3>
-        <table class="main-table second-level">
+        <table class="main-table">
           {{#each Certificate.Validation.SupplementaryInformation}}
           <tr class="table-rows">
-            <th class="table-headers">{{@key}} {{this.Key}}</th>
+            <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
             <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
             <td class="table-cells">{{this.Interpretation}}</td>
           </tr>
