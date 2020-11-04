@@ -430,14 +430,7 @@
           }
         }
       },
-      "required": [
-        "CompanyName",
-        "Street",
-        "ZipCode",
-        "City",
-        "Country",
-        "Email"
-      ],
+      "required": ["CompanyName", "Street", "ZipCode", "City", "Country", "Email"],
       "additionalProperties": true
     },
     "CommercialTransactionBase": {
