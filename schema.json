@@ -925,7 +925,7 @@
           "title": "ChemicalCompositionSupplementaryInformation",
           "type": "object",
           "propertyNames": {
-            "pattern": "^C[7-9][0-9]|^C[1][0-1][0-9]"
+            "pattern": "^C[1][1][0-9]|^C120"
           },
           "patternProperties": {
             "": {
