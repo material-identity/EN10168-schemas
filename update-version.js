@@ -17,11 +17,10 @@ async function updateSchemasVersion(version) {
     schemaFilePaths.map(async (filePath) => {
       const schema = JSON.parse(await readFile(filePath));
       let [schemaName] = filePath.split('.');
-      schemaName =
-        schemaName === 'schema' ? schemaName : `${schemaName}.schema`;
+      schemaName = schemaName === 'schema' ? schemaName : `${schemaName}.schema`;
       schema.$id = `${serverUrl}/${version}/${schemaName}.json`;
       await writeFile(filePath, JSON.stringify(schema, null, 2));
-    })
+    }),
   );
 }
 

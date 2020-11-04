@@ -25,36 +25,21 @@
           "type": "string"
         },
         "Type": {
-          "enum": [
-            "string",
-            "number",
-            "date",
-            "date-time",
-            "boolean"
-          ],
+          "enum": ["string", "number", "date", "date-time", "boolean"],
           "default": "string"
         }
       },
-      "required": [
-        "Key"
-      ],
+      "required": ["Key"],
       "additionalProperties": false
     },
     "CertificateLanguages": {
       "type": "array",
       "items": {
-        "enum": [
-          "EN",
-          "DE",
-          "FR",
-          "PL"
-        ]
+        "enum": ["EN", "DE", "FR", "PL"]
       },
       "minItems": 1,
       "maxItems": 2,
-      "default": [
-        "EN"
-      ],
+      "default": ["EN"],
       "uniqueItems": true
     },
     "ChemicalElement": {
@@ -85,10 +70,7 @@
           "maximum": 100
         }
       },
-      "required": [
-        "Symbol",
-        "Actual"
-      ],
+      "required": ["Symbol", "Actual"],
       "additionalProperties": false
     },
     "Tube": {
@@ -117,11 +99,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "OuterDiameter",
-        "WallThickness"
-      ],
+      "required": ["Form", "OuterDiameter", "WallThickness"],
       "additionalProperties": false
     },
     "QuadraticTube": {
@@ -150,11 +128,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "SideLength",
-        "WallThickness"
-      ],
+      "required": ["Form", "SideLength", "WallThickness"],
       "additionalProperties": false
     },
     "RectangularTube": {
@@ -188,12 +162,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Height",
-        "WallThickness"
-      ],
+      "required": ["Form", "Width", "Height", "WallThickness"],
       "additionalProperties": false
     },
     "Pipe": {
@@ -222,11 +191,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "SideLength",
-        "WallThickness"
-      ],
+      "required": ["Form", "SideLength", "WallThickness"],
       "additionalProperties": false
     },
     "RectangularPipe": {
@@ -260,12 +225,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Height",
-        "WallThickness"
-      ],
+      "required": ["Form", "Width", "Height", "WallThickness"],
       "additionalProperties": true
     },
     "Coil": {
@@ -294,11 +254,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "WallThickness"
-      ],
+      "required": ["Form", "Width", "WallThickness"],
       "additionalProperties": true
     },
     "RoundBar": {
@@ -322,10 +278,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Diameter"
-      ],
+      "required": ["Form", "Diameter"],
       "additionalProperties": false
     },
     "HexagonalBar": {
@@ -349,10 +302,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Diameter"
-      ],
+      "required": ["Form", "Diameter"],
       "additionalProperties": false
     },
     "FlatBar": {
@@ -381,11 +331,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Thickness"
-      ],
+      "required": ["Form", "Width", "Thickness"],
       "additionalProperties": false
     },
     "Other": {
@@ -408,10 +354,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Description"
-      ],
+      "required": ["Form", "Description"],
       "additionalProperties": false
     },
     "ProductShape": {
@@ -487,18 +430,11 @@
           }
         }
       },
-      "required": [
-        "CompanyName",
-        "Street",
-        "ZipCode",
-        "City",
-        "Country",
-        "Email"
-      ],
+      "required": ["CompanyName", "Street", "ZipCode", "City", "Country", "Email"],
       "additionalProperties": true
     },
-    "CommercialTransaction": {
-      "title": "CommercialTransaction",
+    "CommercialTransactionBase": {
+      "title": "CommercialTransactionBase",
       "description": "",
       "type": "object",
       "properties": {
@@ -528,38 +464,6 @@
           "description": "The originator of the document, not necessarily equal to A01",
           "type": "string",
           "default": "Factory Production Control"
-        },
-        "A06": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/Company"
-            }
-          ],
-          "description": "The purchaser of the product and receiver of the certificate"
-        },
-        "A06.1": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/Company"
-            }
-          ],
-          "description": "The purchaser of the product"
-        },
-        "A06.2": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/Company"
-            }
-          ],
-          "description": "The consignee of the product"
-        },
-        "A06.3": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/Company"
-            }
-          ],
-          "description": "The receiver/consignee of the certificate"
         },
         "A07": {
           "description": "Purchase number",
@@ -599,7 +503,67 @@
           "type": "string"
         }
       },
-      "additionalProperties": false
+      "required": ["A01", "A02", "A03", "A04", "A05", "A07"]
+    },
+    "CommercialTransactionReceivers": {
+      "title": "CommercialTransactionReceivers",
+      "description": "",
+      "oneOf": [
+        {
+          "properties": {
+            "A06": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Company"
+                }
+              ],
+              "description": "The purchaser of the product and receiver of the certificate"
+            }
+          },
+          "required": ["A06"]
+        },
+        {
+          "properties": {
+            "A06.1": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Company"
+                }
+              ],
+              "description": "The purchaser of the product"
+            },
+            "A06.2": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Company"
+                }
+              ],
+              "description": "The consignee of the product"
+            },
+            "A06.3": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Company"
+                }
+              ],
+              "description": "The receiver/consignee of the certificate"
+            }
+          },
+          "required": ["A06.1"]
+        }
+      ]
+    },
+    "CommercialTransaction": {
+      "title": "CommercialTransaction",
+      "description": "List parties and details involved in the transaction",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CommercialTransactionBase"
+        },
+        {
+          "$ref": "#/definitions/CommercialTransactionReceivers"
+        }
+      ]
     },
     "Measurement": {
       "title": "Measurement",
@@ -627,9 +591,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "Value"
-      ],
+      "required": ["Value"],
       "additionalProperties": false
     },
     "ChemicalComposition": {
@@ -638,10 +600,7 @@
       "properties": {
         "C70": {
           "description": "The metallurgic process, which is restricted to 2 types: Y = Basic oxygen process, E = Electric furnace",
-          "enum": [
-            "Y",
-            "E"
-          ]
+          "enum": ["Y", "E"]
         },
         "C71": {
           "description": "Share of element",
@@ -959,7 +918,7 @@
           "title": "ChemicalCompositionSupplementaryInformation",
           "type": "object",
           "propertyNames": {
-            "pattern": "^C[7-9][0-9]|^C[1][0-1][0-9]"
+            "pattern": "^C[1][1][0-9]|^C120"
           },
           "patternProperties": {
             "": {
@@ -1092,12 +1051,7 @@
           "additionalProperties": false
         }
       },
-      "required": [
-        "B01",
-        "B02",
-        "B07",
-        "B08"
-      ],
+      "required": ["B01", "B02", "B07", "B08"],
       "additionalProperties": false
     },
     "OtherTests": {
@@ -1214,7 +1168,8 @@
                 }
               }
             }
-          }
+          },
+          "additionalProperties": false
         },
         "HardnessTest": {
           "title": "HardnessTest",
@@ -1251,7 +1206,8 @@
                 }
               }
             }
-          }
+          },
+          "additionalProperties": false
         },
         "NotchedBarImpactTest": {
           "title": "NotchedBarImpactTest",
@@ -1296,7 +1252,8 @@
                 }
               }
             }
-          }
+          },
+          "additionalProperties": false
         },
         "OtherMechanicalTests": {
           "title": "OtherMechanicalTests",
@@ -1314,10 +1271,7 @@
           "$ref": "#/definitions/ChemicalComposition"
         }
       },
-      "required": [
-        "C00",
-        "ChemicalComposition"
-      ],
+      "required": ["C00", "ChemicalComposition"],
       "additionalProperties": false
     },
     "Validation": {
@@ -1360,12 +1314,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "CE_Image",
-            "NotifiedBodyNumber",
-            "DoCYear",
-            "DoCNumber"
-          ]
+          "required": ["CE_Image", "NotifiedBodyNumber", "DoCYear", "DoCNumber"]
         },
         "SupplementaryInformation": {
           "title": "ValidationSupplementaryInformation",
@@ -1380,11 +1329,7 @@
           }
         }
       },
-      "required": [
-        "Z01",
-        "Z02",
-        "Z04"
-      ],
+      "required": ["Z01", "Z02", "Z04"],
       "additionalProperties": false
     }
   },
@@ -1412,16 +1357,10 @@
         "state": {
           "description": "",
           "type": "string",
-          "enum": [
-            "draft",
-            "valid",
-            "cancelled"
-          ]
+          "enum": ["draft", "valid", "cancelled"]
         }
       },
-      "required": [
-        "id"
-      ]
+      "required": ["id"]
     },
     "Certificate": {
       "description": "",
@@ -1457,9 +1396,6 @@
       "additionalProperties": false
     }
   },
-  "required": [
-    "Certificate",
-    "RefSchemaUrl"
-  ],
+  "required": ["Certificate", "RefSchemaUrl"],
   "additionalProperties": false
 }

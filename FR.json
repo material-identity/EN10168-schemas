@@ -48,7 +48,7 @@
     "Z01": "Déclaration de conformité",
     "Z02": "Date d'émission et validation",
     "Z03": "Timbre du contrôleur",
-    "Z04":  "Marquage CE",
+    "Z04": "Marquage CE",
     "Z04.NotifiedBody": "Organisme notifié",
     "Z04.DoCYear": "Année de la déclaration de conformité",
     "Z04.DoCNumber": "Numéro de la déclaration de conformité"
@@ -69,7 +69,7 @@
     "NotchedBarImpactTest": "Test de choc avec barre crantée",
     "OtherMechanicalTests": "Autres essais mécaniques",
     "NonDestructiveTests": "Essais non destructifs",
-    "OtherProductTests": "Autres essais sur le produit", 
+    "OtherProductTests": "Autres essais sur le produit",
     "ProductNorm": "Norme du produit",
     "MaterialNorm": "Norme matérielle",
     "MassNorm": "Norme de masse",
