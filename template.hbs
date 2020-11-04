@@ -134,7 +134,7 @@
         <th class="table-headers">A06.1 {{ i18n "A06.1" "certificateFields" Certificate.CertificateLanguages}}</th>
         {{/hasKey}}
         {{#hasKey Certificate.CommercialTransaction "A06.2"}}
-        <th class="table-headers">A06.1 {{ i18n "A06.2" "certificateFields" Certificate.CertificateLanguages}}</th>
+        <th class="table-headers">A06.2 {{ i18n "A06.2" "certificateFields" Certificate.CertificateLanguages}}</th>
         {{/hasKey}}
         {{#hasKey Certificate.CommercialTransaction "A06.3"}}
         <th class="table-headers">A06.3 {{ i18n "A06.3" "certificateFields" Certificate.CertificateLanguages}}</th>
@@ -293,7 +293,7 @@
       <tr class="table-rows">
         <td class="table-cells"><em
             class="caption">{{ i18n @key "otherFields" ../../Certificate.CertificateLanguages}}</em></td>
-        <td class="table-cells">{{join this ", " value }}</td>
+        <td class="table-cells">{{ join this ", " }}</td>
       </tr>
       {{/each}}
       {{!-- ProductDescription-> B09--}}
