@@ -433,14 +433,13 @@
       </table>
       {{else}}
       {{!-- XTest-> Measurement(s) (C11, C12, C13, C31, C32, C41, C43, C44) --}}
-      {{#typeOf this 'object'}}
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}}
             {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}
           </th>
           <td class="table-cells">
-            {{this.Value}} {{this.Unit}}
+            {{localizeNumber this.Value ../../Certificate.CertificateLanguages.[0]}} {{this.Unit}}
           </td>
           <td class="table-cells">
             {{#if this.Minimum}}
@@ -452,21 +451,10 @@
           </td>
         </tr>
       </table>
-      {{!-- XTest-> Measurement(s) (C10, C30, C40) --}}
-      {{else}}
-      <table class="main-table" style="margin-top: 0px;">
-        <tr class="table-rows">
-          <th class="table-headers" colspan="2">{{@key}}
-            {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
-          {{#each this}}
-          <td class="table-cells" colspan="2">{{this}}</td>
-          {{/each}}
-        </tr>
-      </table>
-      {{/typeOf}}
+
       {{/ifEqual}}
       {{/ifEqual}}
-      {{!-- XTest-> C10, C30, C40, C41 --}}
+      {{!-- XTest-> C10, C30, C40 --}}
       {{else}}
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
@@ -555,7 +543,7 @@
       </tr>
       <tr class="table-rows">
         <th class="table-headers">Z02 {{ i18n "Z02" "certificateFields" Certificate.CertificateLanguages }} </th>
-        <td colspan="1">{{Certificate.Validation.Z02}}</td>
+        <td colspan="1"> {{localizeDate Certificate.Validation.Z02 ../../Certificate.CertificateLanguages.[0] }} </td>
       </tr>
       <tr class="table-rows">
         <th class="table-headers">Z03 {{ i18n "Z03" "certificateFields" Certificate.CertificateLanguages }} </th>
