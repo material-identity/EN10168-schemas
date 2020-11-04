@@ -440,8 +440,8 @@
       ],
       "additionalProperties": true
     },
-    "CommercialTransaction": {
-      "title": "CommercialTransaction",
+    "CommercialTransactionBase": {
+      "title": "CommercialTransactionBase",
       "description": "",
       "type": "object",
       "properties": {
@@ -471,38 +471,6 @@
           "description": "The originator of the document, not necessarily equal to A01",
           "type": "string",
           "default": "Factory Production Control"
-        },
-        "A06": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/Company"
-            }
-          ],
-          "description": "The purchaser of the product and receiver of the certificate"
-        },
-        "A06.1": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/Company"
-            }
-          ],
-          "description": "The purchaser of the product"
-        },
-        "A06.2": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/Company"
-            }
-          ],
-          "description": "The consignee of the product"
-        },
-        "A06.3": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/Company"
-            }
-          ],
-          "description": "The receiver/consignee of the certificate"
         },
         "A07": {
           "description": "Purchase number",
@@ -542,8 +510,67 @@
           "type": "string"
         }
       },
-      "required": ["A01"],
-      "additionalProperties": false
+      "required": ["A01", "A02", "A03", "A04", "A05", "A07"]
+    },
+    "CommercialTransactionReceivers": {
+      "title": "CommercialTransactionReceivers",
+      "description": "",
+      "oneOf": [
+        {
+          "properties": {
+            "A06": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Company"
+                }
+              ],
+              "description": "The purchaser of the product and receiver of the certificate"
+            }
+          },
+          "required": ["A06"]
+        },
+        {
+          "properties": {
+            "A06.1": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Company"
+                }
+              ],
+              "description": "The purchaser of the product"
+            },
+            "A06.2": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Company"
+                }
+              ],
+              "description": "The consignee of the product"
+            },
+            "A06.3": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/Company"
+                }
+              ],
+              "description": "The receiver/consignee of the certificate"
+            }
+          },
+          "required": ["A06.1"]
+        }
+      ]
+    },
+    "CommercialTransaction": {
+      "title": "CommercialTransaction",
+      "description": "List parties and details involved in the transaction",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CommercialTransactionBase"
+        },
+        {
+          "$ref": "#/definitions/CommercialTransactionReceivers"
+        }
+      ]
     },
     "Measurement": {
       "title": "Measurement",
