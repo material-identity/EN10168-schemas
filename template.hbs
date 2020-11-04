@@ -367,19 +367,25 @@
         <tr class="table-rows">
           <th></th>
           {{#each this}}
+          {{#notIn @key "SupplementaryInformation"}}
           <th class="table-headers">{{@key}}</th>
+          {{/notIn}}
           {{/each}}
         </tr>
         <tr class="table-rows">
           <th>Symbol</th>
           {{#each this}}
+          {{#notIn @key "SupplementaryInformation"}}
           <th class="table-headers">{{this.Symbol}}</th>
+          {{/notIn}}
           {{/each}}
         </tr>
         <tr class="table-rows">
           <th>Actual [%]</th>
           {{#each this}}
+          {{#notIn @key "SupplementaryInformation"}}
           <th class="table-headers">{{this.Actual}}</th>
+          {{/notIn}}
           {{/each}}
         </tr>
       </table>
