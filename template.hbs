@@ -262,10 +262,7 @@
       {{!-- ProductDescription-> B02, B09 or B10,B11,B12,B13--}}
       {{else}}
       {{!-- ProductDescription-> B10,B11,B12,B13--}}
-
       {{!-- TODO: improve Table formatting !! --}}
-
-
       {{#in @key "B10,B11,B12,B13"}}
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
@@ -293,7 +290,7 @@
       <tr class="table-rows">
         <td class="table-cells"><em
             class="caption">{{ i18n @key "otherFields" ../../Certificate.CertificateLanguages}}</em></td>
-        <td class="table-cells">{{ join this ", " }}</td>
+        <td class="table-cells">{{ join this ", " "" }}</td>
       </tr>
       {{/each}}
       {{!-- ProductDescription-> B09--}}
@@ -303,20 +300,18 @@
           {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}</th>
         <td class="table-cells"></td>
       </tr>
-      <tr class="table-rows">
-        <td class="table-headers"><em class="caption">{{@key.Form}}
-            {{ i18n "Form" "otherFields" ../Certificate.CertificateLanguages }}</th>
-        <td class="table-cells">{{ i18n this.Form "otherFields"../Certificate.CertificateLanguages }}</td>
-      </tr>
       {{#each this}}
-      {{#in @key "Unit,Form"}}
-      {{else}}
+      {{#notIn @key "Unit"}}
       <tr class="table-rows">
         <td class="table-cells"><em
-            class="caption">{{ i18n @key "otherFields" ../../Certificate.CertificateLanguages}}</em></td>
+            class="caption">{{ i18n @key "otherFields" ../../Certificate.CertificateLanguages }}</em></td>
+        {{#ifEqual @key "Form"}}
+        <td class="table-cells">{{ i18n this "otherFields" ../../Certificate.CertificateLanguages }}</td>
+        {{else}}
         <td class="table-cells">{{this}} {{../this.Unit}}</td>
+        {{/ifEqual}}
       </tr>
-      {{/in}}
+      {{/notIn}}
       {{/each}}
       {{/ifEqual}}
       {{/in }}
