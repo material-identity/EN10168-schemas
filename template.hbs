@@ -267,13 +267,13 @@
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}} {{this.Property}}</th>
-          <td class="table-cells">{{this.Value}} {{this.Unit}}</td>
+          <td class="table-cells">{{localizeNumber this.Value ../Certificate.CertificateLanguages.[0]}} {{this.Unit}}</td>
           <td class="table-cells">
             {{#if this.Minimum}}
-            min {{this.Minimum}} {{this.Unit}}
+            min {{localizeNumber this.Minimum ../Certificate.CertificateLanguages.[0]}} {{this.Unit}}
             {{/if}}
             {{#if this.Maximum}}
-            max {{this.Maximum}} {{this.Unit}}
+            max {{localizeNumber this.Maximum ../Certificate.CertificateLanguages.[0]}} {{this.Unit}}
             {{/if}}
           </td>
         </tr>
@@ -308,7 +308,7 @@
         {{#ifEqual @key "Form"}}
         <td class="table-cells">{{ i18n this "otherFields" ../../Certificate.CertificateLanguages }}</td>
         {{else}}
-        <td class="table-cells">{{this}} {{../this.Unit}}</td>
+        <td class="table-cells">{{localizeNumber this ../../Certificate.CertificateLanguages.[0]}} {{../this.Unit}}</td>
         {{/ifEqual}}
       </tr>
       {{/notIn}}
@@ -379,7 +379,7 @@
           <th>Actual [%]</th>
           {{#each this}}
           {{#notIn @key "SupplementaryInformation"}}
-          <th class="table-headers">{{this.Actual}}</th>
+          <th class="table-headers">{{localizeNumber this.Actual ../../Certificate.CertificateLanguages.[0]}}</th>
           {{/notIn}}
           {{/each}}
         </tr>
@@ -428,7 +428,7 @@
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}}
             {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
-          <td class="table-cells" colspan="2">{{ join this ", " "Value" }} {{ this.[0].Unit }}</td>
+          <td class="table-cells" colspan="2">{{ this }} {{ this.[0].Unit }}</td>
         </tr>
       </table>
       {{else}}
@@ -443,10 +443,10 @@
           </td>
           <td class="table-cells">
             {{#if this.Minimum}}
-            min {{this.Minimum}} {{this.Unit}}
+            min {{localizeNumber this.Minimum ../../Certificate.CertificateLanguages.[0]}} {{this.Unit}}
             {{/if}}
             {{#if this.Maximum}}
-            max {{this.Maximum}} {{this.Unit}}
+            max {{localizeNumber this.Maximum ../../Certificate.CertificateLanguages.[0]}} {{this.Unit}}
             {{/if}}
           </td>
         </tr>
