@@ -428,7 +428,7 @@
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}}
             {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
-          <td class="table-cells" colspan="2">{{ this }} {{ this.[0].Unit }}</td>
+          <td class="table-cells" colspan="2">{{ joinAndLocalizeNumber this ", " ../../Certificate.CertificateLanguages.[0] "Value" }} {{ this.[0].Unit }}</td>
         </tr>
       </table>
       {{else}}
