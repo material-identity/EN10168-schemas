@@ -28,7 +28,7 @@
     "B11": "Maße des Erzeugnisses",
     "B12": "Theoretische Masse",
     "B13": "Ist-Masse",
-    "C00": "Identifizierung des Probenabschnittes",
+    "C00": "Nummer der Schmelze",
     "C01": "Lage des Probenabschnittes",
     "C02": "Probenentnahmeort in Bezug zur Hauptwalzrichtung",
     "C03": "Prüftemperatur",
@@ -61,8 +61,6 @@
     "Validation": "Bestätigungen"
   },
   "otherFields": {
-    "Seller": "Verkäufer",
-    "Buyer": "Abnehmer",
     "AdditionalInformation": "Zusatzinformation",
     "SupplementaryInformation": "Ergänzende Angaben",
     "TensileTest": "Zugversuch",
