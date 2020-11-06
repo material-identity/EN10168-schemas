@@ -38,7 +38,6 @@
     },
     "hooks": {
       "before:init": [
-        "npm run format",
         "npm run lint"
       ],
       "after:bump": "npm run update-version v${version} ${name}",
