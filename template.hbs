@@ -229,7 +229,7 @@
       {{#each Certificate.CommercialTransaction.SupplementaryInformation}}
       <tr class="table-rows">
         <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
-        <td class="table-cells">{{localizeValue this.Value this.Type ../../Certificate.CertificateLanguages.[0]}} {{this.Unit}}</td>
+        <td class="table-cells">{{localizeValue this.Value this.Type ../Certificate.CertificateLanguages.[0]}} {{this.Unit}}</td>
         <td class="table-cells">{{this.Interpretation}}</td>
       </tr>
       {{/each}}
@@ -576,7 +576,7 @@
         {{#each Certificate.Validation.SupplementaryInformation}}
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
-          <td class="table-cells">{{localizeValue this.Value this.Type ../../Certificate.CertificateLanguages.[0]}} {{this.Unit}}</td>
+          <td class="table-cells">{{localizeValue this.Value this.Type ../Certificate.CertificateLanguages.[0]}} {{this.Unit}}</td>
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
         {{/each}}
