@@ -178,26 +178,26 @@
         {{/hasKey}}
         {{#hasKey Certificate.CommercialTransaction "A06.2"}}
         <td class="table-cells">
-        <ol>
-          <li>{{get Certificate.CommercialTransaction "A06.2,CompanyName"}}</li>
-          <li>{{get Certificate.CommercialTransaction "A06.2,Street"}}</li>
-          <li>{{get Certificate.CommercialTransaction "A06.2,ZipCode"}},
-            {{get Certificate.CommercialTransaction "A06.2,City"}},
-            {{get Certificate.CommercialTransaction "A06.2,Country"}}</li>
-          <li>{{get Certificate.CommercialTransaction "A06.2,Email"}}</li>
-        </ol>
+          <ol>
+            <li>{{get Certificate.CommercialTransaction "A06.2,CompanyName"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.2,Street"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.2,ZipCode"}},
+              {{get Certificate.CommercialTransaction "A06.2,City"}},
+              {{get Certificate.CommercialTransaction "A06.2,Country"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.2,Email"}}</li>
+          </ol>
         </td>
         {{/hasKey}}
         {{#hasKey Certificate.CommercialTransaction "A06.3"}}
         <td class="table-cells">
-        <ol>
-          <li>{{get Certificate.CommercialTransaction "A06.3,CompanyName"}}</li>
-          <li>{{get Certificate.CommercialTransaction "A06.3,Street"}}</li>
-          <li>{{get Certificate.CommercialTransaction "A06.3,ZipCode"}},
-            {{get Certificate.CommercialTransaction "A06.3,City"}},
-            {{get Certificate.CommercialTransaction "A06.3,Country"}}</li>
-          <li>{{get Certificate.CommercialTransaction "A06.3,Email"}}</li>
-        </ol>
+          <ol>
+            <li>{{get Certificate.CommercialTransaction "A06.3,CompanyName"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.3,Street"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.3,ZipCode"}},
+              {{get Certificate.CommercialTransaction "A06.3,City"}},
+              {{get Certificate.CommercialTransaction "A06.3,Country"}}</li>
+            <li>{{get Certificate.CommercialTransaction "A06.3,Email"}}</li>
+          </ol>
         </td>
         {{/hasKey}}
       </tr>
@@ -339,11 +339,10 @@
     <h2 class="main-title pdf-pagebreak-before">
       {{ i18n "Inspection" "certificateGroups" Certificate.CertificateLanguages}}</h2>
     {{#each Certificate.Inspection}}
-    {{!-- Inspection-> SupplementaryInformation or ChemicalComposition or TensileTest,HardnessTest,NotchedBarImpactTest,OtherMechanicalTests --}}
+    {{!-- Inspection-> SupplementaryInformation or ChemicalComposition or OtherMechanicalTests or TensileTest,HardnessTest,NotchedBarImpactTest --}}
     {{#typeOf this 'object'}}
     <section>
-      <h3 class="second-level-title">
-        {{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
+      <h3 class="second-level-title">{{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
 
       {{!-- Inspection-> SupplementaryInformation --}}
       {{#ifEqual @key "SupplementaryInformation"}}
@@ -361,11 +360,21 @@
 
       {{!-- Inspection-> ChemicalComposition --}}
       {{#ifEqual @key "ChemicalComposition"}}
+      {{#if this.C70}}
+      <table class="main-table" style="margin-top: 0px;">
+        <tr class="table-rows">
+          <th class="table-headers">C70 {{ i18n "C70" "certificateFields" ../Certificate.CertificateLanguages }}</th>
+          <td class="table-cells">{{this.C70}}</td>
+        </tr>
+      </table>
+      </br>
+      {{/if}}
+
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
           <th></th>
           {{#each this}}
-          {{#notIn @key "SupplementaryInformation"}}
+          {{#notIn @key "SupplementaryInformation,C70"}}
           <th class="table-headers">{{@key}}</th>
           {{/notIn}}
           {{/each}}
@@ -373,7 +382,7 @@
         <tr class="table-rows">
           <th>Symbol</th>
           {{#each this}}
-          {{#notIn @key "SupplementaryInformation"}}
+          {{#notIn @key "SupplementaryInformation,C70"}}
           <th class="table-headers">{{this.Symbol}}</th>
           {{/notIn}}
           {{/each}}
@@ -381,7 +390,7 @@
         <tr class="table-rows">
           <th>Actual [%]</th>
           {{#each this}}
-          {{#notIn @key "SupplementaryInformation"}}
+          {{#notIn @key "SupplementaryInformation,C70"}}
           <th class="table-headers">{{this.Actual}}</th>
           {{/notIn}}
           {{/each}}
@@ -398,7 +407,6 @@
           <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
           <td class="table-cells">{{ localizeValue this.Value this.Type ../../Certificate.CertificateLanguages.[0] }}
             {{this.Unit}}</td>
-
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
         {{/each}}
@@ -406,9 +414,23 @@
       {{/hasKey}}
       {{/ifEqual}}
 
+      {{!-- Inspection-> OtherMechanicalTests --}}
+      {{#ifEqual @key "OtherMechanicalTests"}}
+      <table class="main-table">
+        {{#each this}}
+        {{!-- KeyValueObject --}}
+        <tr class="table-rows">
+          <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
+          <td class="table-cells">{{ localizeValue this.Value this.Type ../../Certificate.CertificateLanguages.[0] }}
+            {{this.Unit}}</td>
+          <td class="table-cells">{{this.Interpretation}}</td>
+        </tr>
+        {{/each}}
+      </table>
+      {{/ifEqual}}
 
-      {{!-- Inspection-> TensileTest, HardnessTest, NotchedBarImpactTest, OtherMechanicalTests --}}
-      {{#in @key "TensileTest,HardnessTest,NotchedBarImpactTest,OtherMechanicalTests"}}
+      {{!-- Inspection-> TensileTest, HardnessTest, NotchedBarImpactTest --}}
+      {{#in @key "TensileTest,HardnessTest,NotchedBarImpactTest"}}
       {{#each this}}
       {{#typeOf this 'object'}}
       {{!-- XTest-> SupplementaryInformation --}}
@@ -426,8 +448,8 @@
         </tr>
         {{/each}}
       </table>
-      {{!-- XTest-> Measurement(s) (C10, C11, C12, C13, C31, C32, C42, C43, C44) --}}
       {{else}}
+
       {{!-- XTest-> Measurement(s) ( C42) --}}
       {{#ifEqual @key "C42"}}
       <table class="main-table" style="margin-top: 0px;">
@@ -439,8 +461,9 @@
           </td>
         </tr>
       </table>
+
+      {{!-- XTest-> Measurement(s) (C10, C11, C12, C13, C31, C32, C41, C43, C44) --}}
       {{else}}
-      {{!-- XTest-> Measurement(s) (C11, C12, C13, C31, C32, C41, C43, C44) --}}
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}}
@@ -459,9 +482,9 @@
           </td>
         </tr>
       </table>
-
       {{/ifEqual}}
       {{/ifEqual}}
+      
       {{!-- XTest-> C10, C30, C40 --}}
       {{else}}
       <table class="main-table" style="margin-top: 0px;">
@@ -475,6 +498,7 @@
       {{/each}}
       {{/in}}
     </section>
+
     {{!-- Inspection-> C00, C01, C02, C03 --}}
     {{else}}
     {{#if this}}
@@ -485,16 +509,7 @@
         <td class="table-cells">{{this}}</td>
       </tr>
     </table>
-    {{!-- OtherTests-> D01 --}}
-    {{else}}
-    {{#if this}}
-    <tr class="table-rows">
-      <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
-      </th>
-      <td class="table-cells">{{this}}</td>
-      <td class="table-cells"></td>
-    </tr>
-    {{/if}}
+
     {{/if}}
     {{/typeOf}}
     {{/each}}
