@@ -371,32 +371,31 @@
       </br>
       {{/if}}
 
-      <table class="main-table" style="margin-top: 0px;">
+      {{!-- ChemicalComposition-> ChemicalElements --}}
+      {{#each (chemicalElementsChunks this 15)}}
+      <table class="main-table" style="justify-content: left; text-align: left; margin-top: 0px;">
         <tr class="table-rows">
-          <th></th>
+          <th style="width: 80px; "></th>
           {{#each this}}
-          {{#notIn @key "SupplementaryInformation,C70"}}
-          <th class="table-headers">{{@key}}</th>
-          {{/notIn}}
+          <th class="table-headers" style="width: 60px; float: left;">{{this.key}}</th>
           {{/each}}
         </tr>
         <tr class="table-rows">
-          <th>Symbol</th>
+          <th style="width: 80px; ">Symbol</th>
           {{#each this}}
-          {{#notIn @key "SupplementaryInformation,C70"}}
-          <th class="table-headers">{{this.Symbol}}</th>
-          {{/notIn}}
+          <th class="table-headers" style="width: 60px; float: left;">{{this.value.Symbol}}</th>
           {{/each}}
         </tr>
         <tr class="table-rows">
-          <th>Actual [%]</th>
+          <th style="width: 80px; ">Actual [%]</th>
           {{#each this}}
-          {{#notIn @key "SupplementaryInformation,C70"}}
-          <th class="table-headers">{{localizeNumber this.Actual ../../Certificate.CertificateLanguages.[0]}}</th>
-          {{/notIn}}
+          <th class="table-headers" style="width: 60px; float: left;">
+            {{localizeNumber this.value.Actual ../../../Certificate.CertificateLanguages.[0]}}</th>
           {{/each}}
         </tr>
       </table>
+      <br />
+      {{/each}}
 
       {{!-- ChemicalComposition-> SupplementaryInformation --}}
       {{#hasKey this "SupplementaryInformation"}}
