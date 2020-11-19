@@ -230,7 +230,8 @@
       <tr class="table-rows">
         <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
         <td class="table-cells">{{localizeValue this.Value this.Type ../Certificate.CertificateLanguages.[0]}}
-          {{this.Unit}}</td>
+          {{this.Unit}}
+        </td>
         <td class="table-cells">{{this.Interpretation}}</td>
       </tr>
       {{/each}}
@@ -256,7 +257,8 @@
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
           <td class="table-cells">{{localizeValue this.Value this.Type ../../Certificate.CertificateLanguages.[0]}}
-            {{this.Unit}}</td>
+            {{this.Unit}}
+          </td>
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
         {{/each}}
@@ -286,13 +288,14 @@
       {{#ifEqual @key "B02"}}
       <tr class="table-rows">
         <th class="table-headers">{{@key}}
-          {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}</th>
+          {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
+        </th>
         <td class="table-cells"></td>
       </tr>
       {{#each this}}
       <tr class="table-rows">
-        <td class="table-cells"><em
-            class="caption">{{ i18n @key "otherFields" ../../Certificate.CertificateLanguages}}</em></td>
+        <td class="table-cells"><em class="caption">{{ i18n @key "otherFields" ../../Certificate.CertificateLanguages}}
+          </em></td>
         <td class="table-cells">{{ join this ", " "" }}</td>
       </tr>
       {{/each}}
@@ -300,14 +303,15 @@
       {{else}}
       <tr class="table-rows">
         <th class="table-headers">{{@key}}
-          {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}</th>
+          {{ i18n @key "certificateFields" ../Certificate.CertificateLanguages }}
+        </th>
         <td class="table-cells"></td>
       </tr>
       {{#each this}}
       {{#notIn @key "Unit"}}
       <tr class="table-rows">
-        <td class="table-cells"><em
-            class="caption">{{ i18n @key "otherFields" ../../Certificate.CertificateLanguages }}</em></td>
+        <td class="table-cells"><em class="caption">{{ i18n @key "otherFields" ../../Certificate.CertificateLanguages }}
+          </em></td>
         {{#ifEqual @key "Form"}}
         <td class="table-cells">{{ i18n this "otherFields" ../../Certificate.CertificateLanguages }}</td>
         {{else}}
@@ -352,7 +356,8 @@
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
           <td class="table-cells">{{localizeValue this.Value this.Type ../../Certificate.CertificateLanguages.[0]}}
-            {{this.Unit}}</td>
+            {{this.Unit}}
+          </td>
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
         {{/each}}
@@ -372,7 +377,7 @@
       {{/if}}
 
       {{!-- ChemicalComposition-> ChemicalElements --}}
-      {{#each (chemicalElementsChunks this 15)}}
+      {{#each (chunk this 15 "SupplementaryInformation, C70" 1)}}
       <table class="main-table" style="justify-content: left; text-align: left; margin-top: 0px;">
         <tr class="table-rows">
           <th style="width: 80px; "></th>
@@ -390,9 +395,34 @@
           <th style="width: 80px; ">Actual [%]</th>
           {{#each this}}
           <th class="table-headers" style="width: 60px; float: left;">
-            {{localizeNumber this.value.Actual ../../../Certificate.CertificateLanguages.[0]}}</th>
+            {{localizeNumber this.value.Actual ../../../Certificate.CertificateLanguages.[0]}}
+          </th>
           {{/each}}
         </tr>
+        {{#some this "value.Minimum"}}
+        <tr class="table-rows">
+          <th style="width: 80px; ">Minimum</th>
+          {{#each this}}
+          <th class="table-headers" style="width: 60px; float: left;">
+            {{#if this.value.Minimum}}
+            {{localizeNumber this.value.Minimum ../../../Certificate.CertificateLanguages.[0]}}
+            {{/if}}
+          </th>
+          {{/each}}
+        </tr>
+        {{/some}}
+        {{#some this "value.Maximum"}}
+        <tr class="table-rows">
+          <th style="width: 80px; ">Maximum</th>
+          {{#each this}}
+          <th class="table-headers" style="width: 60px; float: left;">
+            {{#if this.value.Maximum}}
+            {{localizeNumber this.value.Maximum ../../../Certificate.CertificateLanguages.[0]}}
+            {{/if}}
+          </th>
+          {{/each}}
+        </tr>
+        {{/some}}
       </table>
       <br />
       {{/each}}
@@ -406,7 +436,8 @@
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
           <td class="table-cells">{{ localizeValue this.Value this.Type ../../Certificate.CertificateLanguages.[0] }}
-            {{this.Unit}}</td>
+            {{this.Unit}}
+          </td>
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
         {{/each}}
@@ -422,7 +453,8 @@
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
           <td class="table-cells">{{ localizeValue this.Value this.Type ../../Certificate.CertificateLanguages.[0] }}
-            {{this.Unit}}</td>
+            {{this.Unit}}
+          </td>
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
         {{/each}}
@@ -443,7 +475,8 @@
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
           <td class="table-cells">{{ localizeValue this.Value this.Type ../../../Certificate.CertificateLanguages.[0] }}
-            {{this.Unit}}</td>
+            {{this.Unit}}
+          </td>
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
         {{/each}}
@@ -455,7 +488,8 @@
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}}
-            {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
+            {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}
+          </th>
           <td class="table-cells" colspan="2">
             {{ joinAndLocalizeNumber this ", " ../../Certificate.CertificateLanguages.[0] "Value" }} {{ this.[0].Unit }}
           </td>
@@ -490,7 +524,8 @@
       <table class="main-table" style="margin-top: 0px;">
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}}
-            {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}</th>
+            {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}
+          </th>
           <td class="table-cells" colspan="2">{{this}}</td>
         </tr>
       </table>
@@ -519,18 +554,19 @@
 
   <section>
     <h2 class="main-title">{{ i18n "OtherTests" "certificateGroups" Certificate.CertificateLanguages}}</h2>
-    {{!-- <table class="main-table"> --}}
     {{#each Certificate.OtherTests}}
     {{!-- OtherTests-> NonDestructiveTests, OtherProductTests --}}
     {{#typeOf this 'object'}}
     <h3 class="second-level-title">
-      {{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
+      {{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}
+    </h3>
     <table class="main-table">
       {{#each this}}
       <tr class="table-rows">
         <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
         <td class="table-cells">{{ localizeValue this.Value this.Type ../../Certificate.CertificateLanguages.[0] }}
-          {{this.Unit}}</td>
+          {{this.Unit}}
+        </td>
         <td class="table-cells">{{this.Interpretation}}</td>
       </tr>
       {{/each}}
@@ -550,7 +586,6 @@
     {{/if}}
     {{/typeOf}}
     {{/each}}
-    {{!-- </table> --}}
   </section>
 
   {{!-- VALIDATION --}}
@@ -598,7 +633,8 @@
         <tr class="table-rows">
           <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
           <td class="table-cells">{{localizeValue this.Value this.Type ../Certificate.CertificateLanguages.[0]}}
-            {{this.Unit}}</td>
+            {{this.Unit}}
+          </td>
           <td class="table-cells">{{this.Interpretation}}</td>
         </tr>
         {{/each}}
