@@ -84,6 +84,11 @@
       font-size: 11px;
     }
 
+    .element {
+      padding: .325em;
+      font-size: 12px;
+    }
+
     em {
       font-style: normal;
     }
@@ -377,24 +382,25 @@
       {{/if}}
 
       {{!-- ChemicalComposition-> ChemicalElements --}}
+      {{!-- TODO reduce fontsize for proper display in emails ? --}}
       {{#each (chunk this 15 "SupplementaryInformation, C70" 1)}}
       <table class="main-table" style="justify-content: left; text-align: left; margin-top: 0px;">
         <tr class="table-rows">
           <th style="width: 80px; "></th>
           {{#each this}}
-          <th class="table-headers" style="width: 60px; float: left;">{{this.key}}</th>
+          <th class="element" style="width: 60px; float: left;">{{this.key}}</th>
           {{/each}}
         </tr>
         <tr class="table-rows">
           <th style="width: 80px; ">Symbol</th>
           {{#each this}}
-          <th class="table-headers" style="width: 60px; float: left;">{{this.value.Symbol}}</th>
+          <th class="element" style="width: 60px; float: left;">{{this.value.Symbol}}</th>
           {{/each}}
         </tr>
         <tr class="table-rows">
           <th style="width: 80px; ">Actual [%]</th>
           {{#each this}}
-          <th class="table-headers" style="width: 60px; float: left;">
+          <th class="element" style="width: 60px; float: left;">
             {{localizeNumber this.value.Actual ../../../Certificate.CertificateLanguages.[0]}}
           </th>
           {{/each}}
@@ -403,7 +409,7 @@
         <tr class="table-rows">
           <th style="width: 80px; ">Minimum</th>
           {{#each this}}
-          <th class="table-headers" style="width: 60px; float: left;">
+          <th class="element" style="width: 60px; float: left;">
             {{#if this.value.Minimum}}
             {{localizeNumber this.value.Minimum ../../../Certificate.CertificateLanguages.[0]}}
             {{/if}}
@@ -415,7 +421,7 @@
         <tr class="table-rows">
           <th style="width: 80px; ">Maximum</th>
           {{#each this}}
-          <th class="table-headers" style="width: 60px; float: left;">
+          <th class="element" style="width: 60px; float: left;">
             {{#if this.value.Maximum}}
             {{localizeNumber this.value.Maximum ../../../Certificate.CertificateLanguages.[0]}}
             {{/if}}
