@@ -6,7 +6,7 @@
     "of the License at http://www.apache.org/licenses/LICENSE-2.0"
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.en10204.io/en10168-schemas/v0.0.3-2/schema.json",
+  "$id": "https://schemas.en10204.io/en10168-schemas/v0.0.3-3/schema.json",
   "definitions": {
     "KeyValueObject": {
       "title": "KeyValueObject",
