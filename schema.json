@@ -97,18 +97,18 @@
       "type": "object",
       "properties": {
         "Form": {
-          "description": "",
+          "description": "Constant describing tube",
           "type": "string",
           "const": "Tube",
           "default": "Tube"
         },
         "OuterDiameter": {
-          "description": "",
+          "description": "Outer diameter of tube",
           "type": "number",
           "minimum": 0
         },
         "WallThickness": {
-          "description": "",
+          "description": "Wall thickness of tube",
           "type": "number",
           "minimum": 0
         },
@@ -131,17 +131,18 @@
       "type": "object",
       "properties": {
         "Form": {
-          "description": "",
+          "description": "Constant describing quadratic tube",
+          "type": "string",
           "const": "QuadraticTube",
           "default": "QuadraticTube"
         },
         "SideLength": {
-          "description": "",
+          "description": "Side length of quadratic tube",
           "type": "number",
           "minimum": 0
         },
         "WallThickness": {
-          "description": "",
+          "description": "Wall thickness of quadratic tube",
           "type": "number",
           "minimum": 0
         },
@@ -164,22 +165,23 @@
       "type": "object",
       "properties": {
         "Form": {
-          "description": "",
+          "description": "Constant describing rectangular tube",
+          "type": "string",
           "const": "RectangularTube",
           "default": "RectangularTube"
         },
         "Width": {
-          "description": "",
+          "description": "Width of rectangular tube",
           "type": "number",
           "minimum": 0
         },
         "Height": {
-          "description": "",
+          "description": "Height of rectangular tube",
           "type": "number",
           "minimum": 0
         },
         "WallThickness": {
-          "description": "",
+          "description": "Wall thickness of rectangular tube",
           "type": "number",
           "minimum": 0
         },
@@ -203,17 +205,18 @@
       "type": "object",
       "properties": {
         "Form": {
-          "description": "",
+          "description": "Form of product",
+          "type": "string",
           "const": "Pipe",
           "default": "Pipe"
         },
         "SideLength": {
-          "description": "",
+          "description": "Side length of pipe",
           "type": "number",
           "minimum": 0
         },
         "WallThickness": {
-          "description": "",
+          "description": "Wall thickness of pipe",
           "type": "number",
           "minimum": 0
         },
@@ -236,22 +239,23 @@
       "type": "object",
       "properties": {
         "Form": {
-          "description": "",
+          "description": "Constant defining rectangular pipe",
+          "type": "string",
           "const": "RectangularPipe",
           "default": "RectangularPipe"
         },
         "Width": {
-          "description": "",
+          "description": "Width of rectangular pipe",
           "type": "number",
           "minimum": 0
         },
         "Height": {
-          "description": "",
+          "description": "Height of rectangular pipe",
           "type": "number",
           "minimum": 0
         },
         "WallThickness": {
-          "description": "",
+          "description": "Wall thickness of rectangular pipe",
           "type": "number",
           "minimum": 0
         },
@@ -275,17 +279,18 @@
       "type": "object",
       "properties": {
         "Form": {
-          "description": "",
+          "description": "Constant defining coil",
+          "type": "string",
           "const": "Coil",
           "default": "Coil"
         },
         "Width": {
-          "description": "",
+          "description": "Width of coil",
           "type": "number",
           "minimum": 0
         },
         "WallThickness": {
-          "description": "",
+          "description": "Wall thickness of coil",
           "type": "number",
           "minimum": 0
         },
@@ -308,12 +313,13 @@
       "type": "object",
       "properties": {
         "Form": {
-          "description": "",
+          "description": "Constant defining roound bar",
+          "type": "string",
           "const": "RoundBar",
           "default": "RoundBar"
         },
         "Diameter": {
-          "description": "",
+          "description": "Diameter of round bar",
           "type": "number",
           "minimum": 0
         },
@@ -335,12 +341,13 @@
       "type": "object",
       "properties": {
         "Form": {
-          "description": "",
+          "description": "Constant defining hexagonal bar",
+          "type": "string",
           "const": "HexagonalBar",
           "default": "HexagonalBar"
         },
         "Diameter": {
-          "description": "",
+          "description": "Diamater of hexagonal bar",
           "type": "number",
           "minimum": 0
         },
@@ -362,17 +369,18 @@
       "type": "object",
       "properties": {
         "Form": {
-          "description": "",
+          "description": "Form of product",
+          "type": "string",
           "const": "FlatBar",
           "default": "FlatBar"
         },
         "Width": {
-          "description": "",
+          "description": "Width of flat bar",
           "type": "number",
           "minimum": 0
         },
         "Thickness": {
-          "description": "",
+          "description": "Thickness of flat bar",
           "type": "number",
           "minimum": 0
         },
@@ -395,13 +403,13 @@
       "type": "object",
       "properties": {
         "Form": {
-          "description": "",
+          "description": "Form of product",
           "type": "string",
           "const": "Other",
           "default": "Other"
         },
         "Description": {
-          "description": "",
+          "description": "Free text describing the form",
           "type": "string"
         },
         "Unit": {
