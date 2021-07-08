@@ -2,9 +2,19 @@
   "name": "en10168-schemas",
   "version": "0.0.3",
   "description": "EN10168 JSON schema and dependencies developed by S1Seven",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s1seven/EN10168-schemas.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s1seven/EN10168-schemas/issues"
+  },
+  "homepage": "https://github.com/s1seven/EN10168-schemas#readme",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./*.js --fix",
+    "lint": "eslint ./*.js",
     "lint:staged": "lint-staged",
     "format": "prettier --write \"**/*.{js,json}\"",
     "test": "jest --runInBand",
@@ -23,18 +33,17 @@
     "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.6",
     "lint-staged": "^11.0.0",
-    "pdf2pic": "^2.1.4",
+    "pdf2img": "^0.5.0",
     "pre-commit": "^1.2.2",
     "prettier": "^2.3.2",
     "release-it": "*"
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": [
+    "*.{js}": [
       "eslint"
     ]
   },
   "pre-commit": [
-    "format",
     "lint:staged"
   ],
   "release-it": {
@@ -53,16 +62,6 @@
       "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/s1seven/EN10168-schemas.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/s1seven/EN10168-schemas/issues"
-  },
-  "homepage": "https://github.com/s1seven/EN10168-schemas#readme",
   "jest": {
     "rootDir": ".",
     "maxConcurrency": 2,
@@ -72,8 +71,5 @@
       "json",
       "node"
     ]
-  },
-  "dependencies": {
-    "pdf2img": "^0.5.0"
   }
 }
