@@ -25,36 +25,21 @@
           "type": "string"
         },
         "Type": {
-          "enum": [
-            "string",
-            "number",
-            "date",
-            "date-time",
-            "boolean"
-          ],
+          "enum": ["string", "number", "date", "date-time", "boolean"],
           "default": "string"
         }
       },
-      "required": [
-        "Key"
-      ],
+      "required": ["Key"],
       "additionalProperties": false
     },
     "CertificateLanguages": {
       "type": "array",
       "items": {
-        "enum": [
-          "EN",
-          "DE",
-          "FR",
-          "PL"
-        ]
+        "enum": ["EN", "DE", "FR", "PL"]
       },
       "minItems": 1,
       "maxItems": 2,
-      "default": [
-        "EN"
-      ],
+      "default": ["EN"],
       "uniqueItems": true
     },
     "ChemicalElement": {
@@ -85,10 +70,7 @@
           "maximum": 100
         }
       },
-      "required": [
-        "Symbol",
-        "Actual"
-      ],
+      "required": ["Symbol", "Actual"],
       "additionalProperties": false
     },
     "Tube": {
@@ -117,11 +99,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "OuterDiameter",
-        "WallThickness"
-      ],
+      "required": ["Form", "OuterDiameter", "WallThickness"],
       "additionalProperties": false
     },
     "QuadraticTube": {
@@ -150,11 +128,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "SideLength",
-        "WallThickness"
-      ],
+      "required": ["Form", "SideLength", "WallThickness"],
       "additionalProperties": false
     },
     "RectangularTube": {
@@ -188,12 +162,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Height",
-        "WallThickness"
-      ],
+      "required": ["Form", "Width", "Height", "WallThickness"],
       "additionalProperties": false
     },
     "Pipe": {
@@ -222,11 +191,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "SideLength",
-        "WallThickness"
-      ],
+      "required": ["Form", "SideLength", "WallThickness"],
       "additionalProperties": false
     },
     "RectangularPipe": {
@@ -260,12 +225,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Height",
-        "WallThickness"
-      ],
+      "required": ["Form", "Width", "Height", "WallThickness"],
       "additionalProperties": true
     },
     "Coil": {
@@ -294,11 +254,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "WallThickness"
-      ],
+      "required": ["Form", "Width", "WallThickness"],
       "additionalProperties": true
     },
     "RoundBar": {
@@ -322,10 +278,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Diameter"
-      ],
+      "required": ["Form", "Diameter"],
       "additionalProperties": false
     },
     "HexagonalBar": {
@@ -349,10 +302,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Diameter"
-      ],
+      "required": ["Form", "Diameter"],
       "additionalProperties": false
     },
     "FlatBar": {
@@ -381,11 +331,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Thickness"
-      ],
+      "required": ["Form", "Width", "Thickness"],
       "additionalProperties": false
     },
     "Other": {
@@ -408,10 +354,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Description"
-      ],
+      "required": ["Form", "Description"],
       "additionalProperties": false
     },
     "ProductShape": {
@@ -487,14 +430,7 @@
           }
         }
       },
-      "required": [
-        "CompanyName",
-        "Street",
-        "ZipCode",
-        "City",
-        "Country",
-        "Email"
-      ],
+      "required": ["CompanyName", "Street", "ZipCode", "City", "Country", "Email", "VAT_Id"],
       "additionalProperties": true
     },
     "CommercialTransactionBase": {
@@ -567,14 +503,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "A01",
-        "A02",
-        "A03",
-        "A04",
-        "A05",
-        "A07"
-      ]
+      "required": ["A01", "A02", "A03", "A04", "A05", "A07"]
     },
     "CommercialTransactionReceivers": {
       "title": "CommercialTransactionReceivers",
@@ -591,9 +520,7 @@
               "description": "The purchaser of the product and receiver of the certificate"
             }
           },
-          "required": [
-            "A06"
-          ]
+          "required": ["A06"]
         },
         {
           "properties": {
@@ -622,9 +549,7 @@
               "description": "The receiver/consignee of the certificate"
             }
           },
-          "required": [
-            "A06.1"
-          ]
+          "required": ["A06.1"]
         }
       ]
     },
@@ -666,9 +591,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "Value"
-      ],
+      "required": ["Value"],
       "additionalProperties": false
     },
     "ChemicalComposition": {
@@ -677,10 +600,7 @@
       "properties": {
         "C70": {
           "description": "The metallurgic process, which is restricted to 2 types: Y = Basic oxygen process, E = Electric furnace",
-          "enum": [
-            "Y",
-            "E"
-          ]
+          "enum": ["Y", "E"]
         },
         "C71": {
           "description": "Share of element",
@@ -1131,15 +1051,7 @@
           "additionalProperties": false
         }
       },
-      "required": [
-        "B01",
-        "B02",
-        "B07",
-        "B08",
-        "B09",
-        "B10",
-        "B13"
-      ],
+      "required": ["B01", "B02", "B07", "B08", "B09", "B10", "B13"],
       "additionalProperties": false
     },
     "OtherTests": {
@@ -1359,10 +1271,7 @@
           "$ref": "#/definitions/ChemicalComposition"
         }
       },
-      "required": [
-        "C00",
-        "ChemicalComposition"
-      ],
+      "required": ["C00", "ChemicalComposition"],
       "additionalProperties": false
     },
     "Validation": {
@@ -1405,12 +1314,7 @@
               "type": "string"
             }
           },
-          "required": [
-            "CE_Image",
-            "NotifiedBodyNumber",
-            "DoCYear",
-            "DoCNumber"
-          ]
+          "required": ["CE_Image", "NotifiedBodyNumber", "DoCYear", "DoCNumber"]
         },
         "SupplementaryInformation": {
           "title": "ValidationSupplementaryInformation",
@@ -1425,11 +1329,7 @@
           }
         }
       },
-      "required": [
-        "Z01",
-        "Z02",
-        "Z04"
-      ],
+      "required": ["Z01", "Z02", "Z04"],
       "additionalProperties": false
     }
   },
@@ -1457,16 +1357,10 @@
         "state": {
           "description": "",
           "type": "string",
-          "enum": [
-            "draft",
-            "valid",
-            "cancelled"
-          ]
+          "enum": ["draft", "valid", "cancelled"]
         }
       },
-      "required": [
-        "id"
-      ]
+      "required": ["id"]
     },
     "Certificate": {
       "description": "",
@@ -1502,9 +1396,6 @@
       "additionalProperties": false
     }
   },
-  "required": [
-    "Certificate",
-    "RefSchemaUrl"
-  ],
+  "required": ["Certificate", "RefSchemaUrl"],
   "additionalProperties": false
 }
