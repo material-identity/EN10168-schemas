@@ -4,6 +4,7 @@ const Ajv = require('ajv');
 const addFormats = require('ajv-formats');
 const { readFileSync } = require('fs');
 const { resolve } = require('path');
+const { getRefSchemaUrl } = require('./helpers');
 
 describe('Validate', function () {
   it('should validate schema', () => {
@@ -18,24 +19,60 @@ describe('Validate', function () {
 
   const validCertTestSuitesMap = [
     {
-      certificatePath: `${__dirname}/fixtures/valid_certificate_1.json`,
+      certificateName: `valid_certificate_1`,
     },
   ];
 
-  validCertTestSuitesMap.forEach((testSuite) => {
-    it(`${testSuite.certificatePath} should be a valid certificate`, async () => {
-      const errors = await validate(testSuite.certificatePath);
+  validCertTestSuitesMap.forEach(({ certificateName }) => {
+    it(`${certificateName} should be a valid certificate`, async () => {
+      const certificatePath = resolve(__dirname, `./fixtures/${certificateName}.json`);
+      const certificate = JSON.parse(readFileSync(certificatePath, 'utf8'));
+      certificate.RefSchemaUrl = getRefSchemaUrl();
+      //
+      const errors = await validate(certificate);
       expect(errors).toBeNull();
     });
   });
 
-  // TODO:
-  // const invalidCertTestSuitesMap = [];
+  const invalidCertTestSuitesMap = [
+    {
+      certificateName: `invalid_certificate_1`,
+      expectedErrors: {
+        'v0.0.3': [
+          {
+            root: 'v0.0.3',
+            path: 'schema.json/Certificate',
+            keyword: 'required',
+            schemaPath: '#/properties/Certificate/required',
+            expected: "must have required property 'CertificateLanguages'",
+          },
+          {
+            root: 'v0.0.3',
+            path: 'schema.json/Certificate/ProductDescription',
+            keyword: 'required',
+            schemaPath: '#/required',
+            expected: "must have required property 'B10'",
+          },
+          {
+            root: 'v0.0.3',
+            path: 'schema.json/Certificate/Inspection/ChemicalComposition/C71',
+            keyword: 'required',
+            schemaPath: '#/definitions/ChemicalElement/required',
+            expected: "must have required property 'Symbol'",
+          },
+        ],
+      },
+    },
+  ];
 
-  // invalidCertTestSuitesMap.forEach((testSuite) => {
-  //   it(`${testSuite.certificatePath} should be an invalid certificate`, async () => {
-  //     const errors = await validate(testSuite.certificatePath);
-  //     expect(JSON.stringify(errors, null, 2)).toBe(testSuite.expectedErrors);
-  //   });
-  // });
+  invalidCertTestSuitesMap.forEach(({ certificateName, expectedErrors }) => {
+    it(`${certificateName} should be an invalid certificate`, async () => {
+      const certificatePath = resolve(__dirname, `./fixtures/${certificateName}.json`);
+      const certificate = JSON.parse(readFileSync(certificatePath, 'utf8'));
+      certificate.RefSchemaUrl = getRefSchemaUrl();
+      //
+      const errors = await validate(certificate);
+      expect(errors).toEqual(expectedErrors);
+    });
+  });
 });
