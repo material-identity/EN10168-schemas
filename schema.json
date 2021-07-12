@@ -1486,7 +1486,6 @@
         "CommercialTransaction",
         "ProductDescription",
         "Inspection",
-        "OtherTests",
         "Validation"
       ],
       "properties": {
