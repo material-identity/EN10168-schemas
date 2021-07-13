@@ -508,6 +508,7 @@
     "CommercialTransactionReceivers": {
       "title": "CommercialTransactionReceivers",
       "description": "",
+      "type": "object",
       "oneOf": [
         {
           "properties": {
@@ -1067,6 +1068,7 @@
           "type": "object",
           "patternProperties": {
             "propertyNames": {
+              "type": "string",
               "pattern": "^D[0][2-9]|^D[1-4]D[0-9]|^D50"
             },
             "^D[0][2-9]|^D[1-4]D[0-9]|^D50": {
@@ -1080,6 +1082,7 @@
           "type": "object",
           "patternProperties": {
             "propertyNames": {
+              "type": "string",
               "pattern": "^D[5][1-9]|^D[6-9][0-9]"
             },
             "^D[5][1-9]|^D[6-9][0-9]": {
