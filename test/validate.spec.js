@@ -10,8 +10,15 @@ describe('Validate', function () {
   it('should validate schema', () => {
     const schemaPath = resolve(__dirname, '../schema.json');
     const schemaToValidate = JSON.parse(readFileSync(schemaPath, 'utf-8'));
-    const ajv = new Ajv({ strict: false, allErrors: true });
+    const ajv = new Ajv({
+      strictSchema: true,
+      strictNumbers: true,
+      strictRequired: true,
+      strictTypes: true,
+      allErrors: true,
+    });
     addFormats(ajv);
+    ajv.addKeyword('meta:license');
     //
     const validateSchema = ajv.compile(schemaToValidate);
     expect(() => validateSchema()).not.toThrow();
