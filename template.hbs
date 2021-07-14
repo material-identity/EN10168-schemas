@@ -209,7 +209,7 @@
     </table>
   </section>
 
-  {{!--  COMMERCIAL TRANSACTION --}}
+  {{!-- COMMERCIAL TRANSACTION --}}
 
   <section>
     <h2 class="main-title">{{ i18n "CommercialTransaction" "certificateGroups" Certificate.CertificateLanguages }}</h2>
@@ -253,7 +253,7 @@
       {{#each Certificate.ProductDescription}}
       {{!-- ProductDescription-> SupplementaryInformation or B02,B09 or B10,B11,B12,B13--}}
       {{#typeOf this 'object'}}
-      {{!-- ProductDescription-> SupplementaryInformation  --}}
+      {{!-- ProductDescription-> SupplementaryInformation --}}
       {{#ifEqual @key "SupplementaryInformation"}}
       <h3 class="third-level-title">
         {{ i18n "SupplementaryInformation" "otherFields" ../Certificate.CertificateLanguages }}</h3>
@@ -329,7 +329,7 @@
       {{/in }}
       {{/ifEqual}}
 
-      {{!-- ProductDescription-> B01, B03, B04, B05, B06, B07, B08  --}}
+      {{!-- ProductDescription-> B01, B03, B04, B05, B06, B07, B08 --}}
       {{else}}
       {{#if this}}
       <tr class="table-rows">
@@ -349,7 +349,8 @@
     <h2 class="main-title pdf-pagebreak-before">
       {{ i18n "Inspection" "certificateGroups" Certificate.CertificateLanguages}}</h2>
     {{#each Certificate.Inspection}}
-    {{!-- Inspection-> SupplementaryInformation or ChemicalComposition or OtherMechanicalTests or TensileTest,HardnessTest,NotchedBarImpactTest --}}
+    {{!-- Inspection-> SupplementaryInformation or ChemicalComposition or OtherMechanicalTests or
+    TensileTest,HardnessTest,NotchedBarImpactTest --}}
     {{#typeOf this 'object'}}
     <section>
       <h3 class="second-level-title">{{ i18n @key "otherFields" ../Certificate.CertificateLanguages }}</h3>
@@ -378,7 +379,7 @@
           <td class="table-cells">{{this.C70}}</td>
         </tr>
       </table>
-      </br>
+      <br>
       {{/if}}
 
       {{!-- ChemicalComposition-> ChemicalElements --}}
@@ -430,7 +431,7 @@
         </tr>
         {{/some}}
       </table>
-      <br />
+      <br>
       {{/each}}
 
       {{!-- ChemicalComposition-> SupplementaryInformation --}}
@@ -653,7 +654,7 @@
       {{!-- {{choose valueFromData 'en10204.io'}} --}}
       <em class="caption">Powered by <a href="https://en10204.io">en10204.io</a></em>
       <em style="color:lightgray; margin-left: 35%;" class="caption">{{RefSchemaUrl}}</em>
-      <br />
+      <br>
     </p>
   </footer>
 </body>
