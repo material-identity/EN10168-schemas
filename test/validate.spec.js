@@ -41,6 +41,7 @@ describe('Validate', function () {
   const validCertTestSuitesMap = [
     {
       certificateName: `valid_certificate_1`,
+      certificateName: `valid_certificate_2`,
     },
   ];
 
