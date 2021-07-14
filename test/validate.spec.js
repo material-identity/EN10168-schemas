@@ -1,15 +1,29 @@
 /* eslint-disable no-undef */
-const { validate } = require('@s1seven/schema-tools-validate');
+const { loadExternalFile } = require('@s1seven/schema-tools-utils');
 const Ajv = require('ajv');
 const addFormats = require('ajv-formats');
 const { readFileSync } = require('fs');
 const { resolve } = require('path');
-const { getRefSchemaUrl } = require('./helpers');
+
+const createAjvInstance = () => {
+  const ajv = new Ajv({
+    loadSchema: (uri) => loadExternalFile(uri, 'json'),
+    strictSchema: true,
+    strictNumbers: true,
+    strictRequired: true,
+    strictTypes: true,
+    allErrors: true,
+  });
+  ajv.addKeyword('meta:license');
+  addFormats(ajv);
+  return ajv;
+};
 
 describe('Validate', function () {
+  const schemaPath = resolve(__dirname, '../schema.json');
+  const localSchema = JSON.parse(readFileSync(schemaPath, 'utf-8'));
+
   it('should validate schema', () => {
-    const schemaPath = resolve(__dirname, '../schema.json');
-    const schemaToValidate = JSON.parse(readFileSync(schemaPath, 'utf-8'));
     const ajv = new Ajv({
       strictSchema: true,
       strictNumbers: true,
@@ -20,7 +34,7 @@ describe('Validate', function () {
     addFormats(ajv);
     ajv.addKeyword('meta:license');
     //
-    const validateSchema = ajv.compile(schemaToValidate);
+    const validateSchema = ajv.compile(localSchema);
     expect(() => validateSchema()).not.toThrow();
   });
 
@@ -34,41 +48,47 @@ describe('Validate', function () {
     it(`${certificateName} should be a valid certificate`, async () => {
       const certificatePath = resolve(__dirname, `./fixtures/${certificateName}.json`);
       const certificate = JSON.parse(readFileSync(certificatePath, 'utf8'));
-      certificate.RefSchemaUrl = getRefSchemaUrl();
+      const validator = await createAjvInstance().compileAsync(localSchema);
       //
-      const errors = await validate(certificate);
-      expect(errors).toBeNull();
+      const isValid = await validator(certificate);
+      expect(isValid).toBe(true);
+      expect(validator.errors).toBeNull();
     });
   });
 
   const invalidCertTestSuitesMap = [
     {
       certificateName: `invalid_certificate_1`,
-      expectedErrors: {
-        'v0.0.3': [
-          {
-            root: 'v0.0.3',
-            path: 'schema.json/Certificate',
-            keyword: 'required',
-            schemaPath: '#/properties/Certificate/required',
-            expected: "must have required property 'CertificateLanguages'",
-          },
-          {
-            root: 'v0.0.3',
-            path: 'schema.json/Certificate/ProductDescription',
-            keyword: 'required',
-            schemaPath: '#/required',
-            expected: "must have required property 'B10'",
-          },
-          {
-            root: 'v0.0.3',
-            path: 'schema.json/Certificate/Inspection/ChemicalComposition/C71',
-            keyword: 'required',
-            schemaPath: '#/definitions/ChemicalElement/required',
-            expected: "must have required property 'Symbol'",
-          },
-        ],
-      },
+      expectedErrors: [
+        {
+          instancePath: '/Certificate',
+          schemaPath: '#/properties/Certificate/required',
+          keyword: 'required',
+          params: { missingProperty: 'CertificateLanguages' },
+          message: "must have required property 'CertificateLanguages'",
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction/A01',
+          schemaPath: '#/definitions/Company/required',
+          keyword: 'required',
+          params: { missingProperty: 'VAT_Id' },
+          message: "must have required property 'VAT_Id'",
+        },
+        {
+          instancePath: '/Certificate/ProductDescription',
+          schemaPath: '#/required',
+          keyword: 'required',
+          params: { missingProperty: 'B10' },
+          message: "must have required property 'B10'",
+        },
+        {
+          instancePath: '/Certificate/Inspection/ChemicalComposition/C71',
+          schemaPath: '#/definitions/ChemicalElement/required',
+          keyword: 'required',
+          params: { missingProperty: 'Symbol' },
+          message: "must have required property 'Symbol'",
+        },
+      ],
     },
   ];
 
@@ -76,10 +96,11 @@ describe('Validate', function () {
     it(`${certificateName} should be an invalid certificate`, async () => {
       const certificatePath = resolve(__dirname, `./fixtures/${certificateName}.json`);
       const certificate = JSON.parse(readFileSync(certificatePath, 'utf8'));
-      certificate.RefSchemaUrl = getRefSchemaUrl();
+      const validator = await createAjvInstance().compileAsync(localSchema);
       //
-      const errors = await validate(certificate);
-      expect(errors).toEqual(expectedErrors);
+      const isValid = await validator(certificate);
+      expect(isValid).toBe(false);
+      expect(validator.errors).toEqual(expectedErrors);
     });
   });
 });
