@@ -19,7 +19,6 @@
     "format": "prettier --write \"**/*.{js,json}\"",
     "test": "jest --runInBand",
     "update-version": "node ./update-version.js",
-    "validate": "node ./validate.js",
     "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it"
   },
   "devDependencies": {
@@ -31,11 +30,12 @@
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "html-differ": "^1.4.0",
     "jest": "^27.0.6",
     "lint-staged": "^11.0.0",
     "pdf2pic": "^2.1.4",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.3.2",
+    "prettier": "2.3.2",
     "release-it": "*"
   },
   "lint-staged": {
@@ -56,7 +56,7 @@
     "hooks": {
       "before:init": [
         "npm run lint",
-        "npm run validate"
+        "npm run test"
       ],
       "after:bump": "npm run update-version v${version} ${name}",
       "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
