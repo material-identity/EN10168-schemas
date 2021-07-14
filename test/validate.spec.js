@@ -42,6 +42,8 @@ describe('Validate', function () {
     {
       certificateName: `valid_certificate_1`,
       certificateName: `valid_certificate_2`,
+      certificateName: `valid_certificate_3`,
+      certificateName: `valid_certificate_4`,
     },
   ];
 
