@@ -22,40 +22,11 @@ const createAjvInstance = () => {
 describe('Validate', function () {
   const schemaPath = resolve(__dirname, '../schema.json');
   const localSchema = JSON.parse(readFileSync(schemaPath, 'utf-8'));
-
-  it('should validate schema', () => {
-    const ajv = new Ajv({
-      strictSchema: true,
-      strictNumbers: true,
-      strictRequired: true,
-      strictTypes: true,
-      allErrors: true,
-    });
-    addFormats(ajv);
-    ajv.addKeyword('meta:license');
-    //
-    const validateSchema = ajv.compile(localSchema);
-    expect(() => validateSchema()).not.toThrow();
-  });
-
   const validCertTestSuitesMap = [
     {
       certificateName: `valid_certificate_1`,
     },
   ];
-
-  validCertTestSuitesMap.forEach(({ certificateName }) => {
-    it(`${certificateName} should be a valid certificate`, async () => {
-      const certificatePath = resolve(__dirname, `./fixtures/${certificateName}.json`);
-      const certificate = JSON.parse(readFileSync(certificatePath, 'utf8'));
-      const validator = await createAjvInstance().compileAsync(localSchema);
-      //
-      const isValid = await validator(certificate);
-      expect(isValid).toBe(true);
-      expect(validator.errors).toBeNull();
-    });
-  });
-
   const invalidCertTestSuitesMap = [
     {
       certificateName: `invalid_certificate_1`,
@@ -91,6 +62,23 @@ describe('Validate', function () {
       ],
     },
   ];
+
+  it('should validate schema', () => {
+    const validateSchema = createAjvInstance().compile(localSchema);
+    expect(() => validateSchema()).not.toThrow();
+  });
+
+  validCertTestSuitesMap.forEach(({ certificateName }) => {
+    it(`${certificateName} should be a valid certificate`, async () => {
+      const certificatePath = resolve(__dirname, `./fixtures/${certificateName}.json`);
+      const certificate = JSON.parse(readFileSync(certificatePath, 'utf8'));
+      const validator = await createAjvInstance().compileAsync(localSchema);
+      //
+      const isValid = await validator(certificate);
+      expect(isValid).toBe(true);
+      expect(validator.errors).toBeNull();
+    });
+  });
 
   invalidCertTestSuitesMap.forEach(({ certificateName, expectedErrors }) => {
     it(`${certificateName} should be an invalid certificate`, async () => {
