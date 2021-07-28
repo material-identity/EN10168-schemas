@@ -83,10 +83,11 @@ describe('Render', function () {
         inputType: 'json',
         outputType: 'buffer',
         generatorPath,
+        translations,
       });
       const result = await fromBuffer(buffer, options)(1, true);
       expect(buffer instanceof Buffer).toEqual(true);
       expect(result.base64).toEqual(expectedPDF.base64);
-    }, 10000);
+    }, 8000);
   });
 });
