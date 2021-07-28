@@ -61,8 +61,6 @@
     "Validation": "Walidacja"
   },
   "otherFields": {
-    "Seller": "Sprzedający",
-    "Buyer": "Kupujący",
     "AdditionalInformation": "Informacje dodatkowe",
     "SupplementaryInformation": "Informacje dodatkowe",
     "TensileTest": "Test ciągliwości",
