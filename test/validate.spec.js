@@ -26,6 +26,15 @@ describe('Validate', function () {
     {
       certificateName: `valid_certificate_1`,
     },
+    {
+      certificateName: `valid_certificate_2`,
+    },
+    {
+      certificateName: `valid_certificate_3`,
+    },
+    {
+      certificateName: `valid_certificate_4`,
+    },
   ];
   const invalidCertTestSuitesMap = [
     {
@@ -61,7 +70,176 @@ describe('Validate', function () {
         },
       ],
     },
+    {
+      certificateName: `invalid_certificate_2`,
+      expectedErrors: [
+        {
+          instancePath: '/Certificate/CommercialTransaction/A97',
+          schemaPath: '#/properties/A97/type',
+          keyword: 'type',
+          params: { type: 'number' },
+          message: 'must be number',
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction/A98',
+          schemaPath: '#/properties/A98/type',
+          keyword: 'type',
+          params: { type: 'string' },
+          message: 'must be string',
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction/A99',
+          schemaPath: '#/properties/A99/type',
+          keyword: 'type',
+          params: { type: 'string' },
+          message: 'must be string',
+        },
+        {
+          instancePath: '/Certificate/ProductDescription',
+          schemaPath: '#/additionalProperties',
+          keyword: 'additionalProperties',
+          params: { additionalProperty: 'B14' },
+          message: 'must NOT have additional properties',
+        },
+        {
+          instancePath: '/Certificate/ProductDescription',
+          schemaPath: '#/additionalProperties',
+          keyword: 'additionalProperties',
+          params: { additionalProperty: 'B99' },
+          message: 'must NOT have additional properties',
+        },
+        {
+          instancePath: '/Certificate/Inspection',
+          schemaPath: '#/required',
+          keyword: 'required',
+          params: { missingProperty: 'C00' },
+          message: "must have required property 'C00'",
+        },
+        {
+          instancePath: '/Certificate/Inspection/ChemicalComposition/C71/Actual',
+          schemaPath: '#/definitions/ChemicalElement/properties/Actual/maximum',
+          keyword: 'maximum',
+          params: { comparison: '<=', limit: 100 },
+          message: 'must be <= 100',
+        },
+        {
+          instancePath: '/Certificate/Validation',
+          schemaPath: '#/required',
+          keyword: 'required',
+          params: { missingProperty: 'Z01' },
+          message: "must have required property 'Z01'",
+        },
+        {
+          instancePath: '/Certificate/Validation',
+          schemaPath: '#/required',
+          keyword: 'required',
+          params: { missingProperty: 'Z02' },
+          message: "must have required property 'Z02'",
+        },
+        {
+          instancePath: '/Certificate/Validation',
+          schemaPath: '#/required',
+          keyword: 'required',
+          params: { missingProperty: 'Z04' },
+          message: "must have required property 'Z04'",
+        },
+      ],
+    },
   ];
+
+  const languages = ['DE', 'EN', 'FR', 'PL'];
+  const translationProperties = {
+    certificateFields: [
+      'A01',
+      'A02',
+      'A03',
+      'A04',
+      'A05',
+      'A06',
+      'A06.1',
+      'A06.2',
+      'A06.3',
+      'A07',
+      'A08',
+      'A09',
+      'A97',
+      'A98',
+      'A99',
+      'B01',
+      'B02',
+      'B03',
+      'B04',
+      'B05',
+      'B06',
+      'B07',
+      'B08',
+      'B09',
+      'B10',
+      'B11',
+      'B12',
+      'B13',
+      'C00',
+      'C01',
+      'C02',
+      'C03',
+      'C10',
+      'C11',
+      'C12',
+      'C13',
+      'C30',
+      'C31',
+      'C32',
+      'C40',
+      'C41',
+      'C42',
+      'C43',
+      'C70',
+      'D01',
+      'Z01',
+      'Z02',
+      'Z03',
+      'Z04',
+      'Z04.NotifiedBody',
+      'Z04.DoCYear',
+      'Z04.DoCNumber',
+    ],
+    certificateGroups: ['CommercialTransaction', 'ProductDescription', 'Inspection', 'OtherTests', 'Validation'],
+    otherFields: [
+      'AdditionalInformation',
+      'SupplementaryInformation',
+      'TensileTest',
+      'HardnessTest',
+      'ChemicalComposition',
+      'NotchedBarImpactTest',
+      'OtherMechanicalTests',
+      'NonDestructiveTests',
+      'OtherProductTests',
+      'ProductNorm',
+      'MaterialNorm',
+      'MassNorm',
+      'SteelDesignation',
+      'Form',
+      'Tube',
+      'QuadraticTube',
+      'RectangularTube',
+      'Pipe',
+      'RectangularPipe',
+      'Coil',
+      'RoundBar',
+      'HexagonalBar',
+      'FlatBar',
+      'Validation',
+      'Other',
+      'Width',
+      'Thickness',
+      'OuterDiameter',
+      'Diameter',
+      'WallThickness',
+      'Height',
+      'SideLength',
+      'Unit',
+    ],
+  };
 
   it('should validate schema', () => {
     const validateSchema = createAjvInstance().compile(localSchema);
@@ -89,6 +267,20 @@ describe('Validate', function () {
       const isValid = await validator(certificate);
       expect(isValid).toBe(false);
       expect(validator.errors).toEqual(expectedErrors);
+    });
+  });
+
+  languages.forEach((language) => {
+    it(`${language} translations should contain all required properties`, () => {
+      const translationsPath = resolve(__dirname, `../${language}.json`);
+      const translations = JSON.parse(readFileSync(translationsPath, 'utf8'));
+      const certificateFieldsProperties = Object.keys(translations.certificateFields);
+      const certificateGroupsProperties = Object.keys(translations.certificateGroups);
+      const otherFieldsProperties = Object.keys(translations.otherFields);
+      //
+      expect(certificateFieldsProperties).toEqual(translationProperties.certificateFields);
+      expect(certificateGroupsProperties).toEqual(translationProperties.certificateGroups);
+      expect(otherFieldsProperties).toEqual(translationProperties.otherFields);
     });
   });
 });
