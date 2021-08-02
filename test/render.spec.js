@@ -6,9 +6,10 @@ const { HtmlDiffer } = require('@markedjs/html-differ');
 const logger = require('@markedjs/html-differ/lib/logger');
 const { resolve } = require('path');
 const { fromBuffer } = require('pdf2pic');
+const { languages } = require('./constants');
 
 describe('Render', function () {
-  const translations = ['DE', 'EN', 'FR', 'PL'].reduce((acc, ln) => {
+  const translations = languages.reduce((acc, ln) => {
     acc[ln] = JSON.parse(readFileSync(resolve(__dirname, `../${ln}.json`), 'utf-8'));
     return acc;
   }, {});
