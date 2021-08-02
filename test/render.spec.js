@@ -2,7 +2,8 @@
 const { generateHtml } = require('@s1seven/schema-tools-generate-html');
 const { generatePdf } = require('@s1seven/schema-tools-generate-pdf');
 const { readFileSync } = require('fs');
-const { HtmlDiffer } = require('html-differ');
+const { HtmlDiffer } = require('@markedjs/html-differ');
+const logger = require('@markedjs/html-differ/lib/logger');
 const { resolve } = require('path');
 const { fromBuffer } = require('pdf2pic');
 
@@ -40,15 +41,20 @@ describe('Render', function () {
       });
 
       const htmlDiffer = new HtmlDiffer({
-        ignoreAttributes: [],
+        ignoreAttributes: ['src'],
         ignoreWhitespaces: true,
         ignoreComments: true,
-        ignoreEndTags: false,
+        ignoreEndTags: true,
+        ignoreSelfClosingSlash: true,
         ignoreDuplicateAttributes: false,
       });
 
-      const isEqual = htmlDiffer.isEqual(expectedHTML, html);
-      expect(isEqual).toBe(false);
+      const isEqual = await htmlDiffer.isEqual(expectedHTML, html);
+      if (!isEqual) {
+        const diff = await htmlDiffer.diffHtml(expectedHTML, html);
+        logger.logDiffText(diff, { charsAroundDiff: 40 });
+      }
+      expect(isEqual).toBe(true);
     });
 
     it(`${certificateName} should be rendered as a valid PDF`, async () => {
