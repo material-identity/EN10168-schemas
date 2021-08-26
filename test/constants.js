@@ -82,6 +82,7 @@ const translationProperties = {
     'FlatBar',
     'Validation',
     'Other',
+    'Description',
     'Width',
     'Thickness',
     'OuterDiameter',
