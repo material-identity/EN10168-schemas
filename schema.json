@@ -556,7 +556,7 @@
           "title": "CommercialTransactionSupplementaryInformation",
           "type": "object",
           "propertyNames": {
-            "pattern": "^A1[0-9]|^A[2-8][0-9]|^A[2-9][0-7]"
+            "pattern": "^A1[0-9]|^A[2-8][0-9]|^A[2-9][0-6]"
           },
           "patternProperties": {
             "A1[0-9]|A[2-8][0-9]|A[2-9][0-6]": {
