@@ -16,4 +16,4 @@ To run the PDF rendering tests we use [pdf2image](https://github.com/yakovmeiste
 
 ## License
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fs1seven%2FEN10168-schemas.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fs1seven%2FEN10168-schemas?ref=badge_large)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fthematerials-network%2FEN10168-schemas.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fthematerials-network%2FEN10168-schemas?ref=badge_large)
