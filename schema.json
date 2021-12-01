@@ -1390,7 +1390,7 @@
         "Z02": {
           "description": "Date of issue and validation",
           "type": "string",
-          "format": "date-time"
+          "format": "date"
         },
         "Z03": {
           "description": "Stamp of the inspection representative",
