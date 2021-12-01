@@ -137,13 +137,6 @@ describe('Validate', function () {
           params: { missingProperty: 'Z02' },
           message: "must have required property 'Z02'",
         },
-        {
-          instancePath: '/Certificate/Validation',
-          schemaPath: '#/required',
-          keyword: 'required',
-          params: { missingProperty: 'Z04' },
-          message: "must have required property 'Z04'",
-        },
       ],
     },
   ];
