@@ -1441,8 +1441,7 @@
       },
       "required": [
         "Z01",
-        "Z02",
-        "Z04"
+        "Z02"
       ],
       "additionalProperties": false
     }
