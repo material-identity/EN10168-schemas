@@ -20,7 +20,8 @@
     "test": "jest --runInBand",
     "update-version": "node ./utils/update-version.js",
     "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it",
-    "release:dry-run": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --dry-run"
+    "release:dry-run": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --dry-run",
+    "generate-pdf": "node ./utils/generate-pdf"
   },
   "devDependencies": {
     "@markedjs/html-differ": "^3.0.4",

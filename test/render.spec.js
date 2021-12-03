@@ -6,7 +6,7 @@ const { HtmlDiffer } = require('@markedjs/html-differ');
 const logger = require('@markedjs/html-differ/lib/logger');
 const { resolve } = require('path');
 const { fromBuffer } = require('pdf2pic');
-const { languages } = require('./constants');
+const { languages } = require('../utils/constants');
 
 describe('Render', function () {
   const translations = languages.reduce((acc, ln) => {
