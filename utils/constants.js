@@ -1,4 +1,12 @@
+const { readFileSync } = require('fs');
+const { resolve } = require('path');
+
 const languages = ['DE', 'EN', 'FR', 'PL'];
+
+const translations = languages.reduce((acc, ln) => {
+  acc[ln] = JSON.parse(readFileSync(resolve(`${ln}.json`), 'utf-8'));
+  return acc;
+}, {});
 
 const translationProperties = {
   certificateFields: [
@@ -97,4 +105,5 @@ const translationProperties = {
 module.exports = {
   languages,
   translationProperties,
+  translations,
 };

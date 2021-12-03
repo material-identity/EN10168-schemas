@@ -1,8 +1,7 @@
 const { generatePdf } = require('@s1seven/schema-tools-generate-pdf');
 const { createWriteStream, readFileSync } = require('fs');
-const glob = require('glob');
 const path = require('path');
-const { languages } = require('./constants');
+const { translations } = require('./constants');
 
 const generatorPath = path.resolve('generate-pdf.min.js');
 
@@ -32,11 +31,6 @@ const docDefinition = {
   styles,
 };
 
-const translations = languages.reduce((acc, ln) => {
-  acc[ln] = JSON.parse(readFileSync(path.resolve(`${ln}.json`), 'utf-8'));
-  return acc;
-}, {});
-
 async function generatePdfCertificate(certificatePath) {
   const outputPath = certificatePath.replace('.json', '.pdf');
   const pdfDoc = await generatePdf(path.resolve(certificatePath), {
@@ -57,13 +51,6 @@ async function generatePdfCertificate(certificatePath) {
   });
 }
 
-(async function (argv) {
-  const certificatePattern = argv[2] || 'test/fixtures/valid_certificate_*.json';
-  console.log(__dirname);
-  try {
-    const filePaths = glob.sync(certificatePattern);
-    await Promise.all(filePaths.map((filePath) => generatePdfCertificate(filePath)));
-  } catch (error) {
-    console.error(error);
-  }
-})(process.argv);
+module.exports = {
+  generatePdfCertificate,
+};

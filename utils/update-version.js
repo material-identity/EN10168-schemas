@@ -4,12 +4,17 @@ const fs = require('fs');
 const jsdom = require('jsdom');
 const prettier = require('prettier');
 const { promisify } = require('util');
+const { generatePdfCertificate } = require('./generate-pdf');
 const { version: pkgVersion } = require('../package.json');
 
 const serverUrl = 'https://schemas.s1seven.com/en10168-schemas';
 const schemaFilePaths = ['schema.json'];
-const jsonFixturesPattern = 'test/fixtures/*valid_certificate_*.json';
-const htmlFixturesPattern = 'test/fixtures/*valid_certificate_*.html';
+const fixturesFolder = 'test/fixtures';
+const jsonFixturesPattern = `${fixturesFolder}/*valid_certificate_*.json`;
+const htmlFixturesPattern = `${fixturesFolder}/*valid_certificate_*.html`;
+const pdfFixturesPattern = `${fixturesFolder}/valid_certificate_*.pdf`;
+const validCertificateFixturesPattern = `${fixturesFolder}/valid_certificate_*.json`;
+
 const { JSDOM } = jsdom;
 
 function readFile(path) {
@@ -55,6 +60,11 @@ async function updateHTMLFixturesVersion(version) {
   );
 }
 
+async function updatePdfFixturesVersion() {
+  const filePaths = glob.sync(validCertificateFixturesPattern);
+  await Promise.all(filePaths.map((filePath) => generatePdfCertificate(filePath)));
+}
+
 async function updateSchemasVersion(version) {
   await Promise.all(
     schemaFilePaths.map(async (filePath) => {
@@ -70,7 +80,7 @@ async function updateSchemasVersion(version) {
 }
 
 function stageAndCommitChanges(version) {
-  execSync(`git add ${jsonFixturesPattern} ${htmlFixturesPattern} ${schemaFilePaths.join(' ')}`);
+  execSync(`git add ${jsonFixturesPattern} ${htmlFixturesPattern} ${pdfFixturesPattern} ${schemaFilePaths.join(' ')}`);
   execSync(`git commit -m 'chore: sync versions to ${version}'`);
 }
 
@@ -79,5 +89,6 @@ function stageAndCommitChanges(version) {
   await updateSchemasVersion(version);
   await updateJsonFixturesVersion(version);
   await updateHTMLFixturesVersion(version);
+  await updatePdfFixturesVersion();
   stageAndCommitChanges(version);
 })(process.argv);
