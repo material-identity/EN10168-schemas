@@ -1,5 +1,5 @@
 {
-  "RefSchemaUrl": "https://schemas.s1seven.com/en10168-schemas/v0.1.1/schema.json",
+  "RefSchemaUrl": "https://schemas.s1seven.com/en10168-schemas/v0.1.0/schema.json",
   "Certificate": {
     "CertificateLanguages": ["EN", "FR"],
     "CommercialTransaction": {
@@ -68,17 +68,17 @@
       "B04": "normalized",
       "B06": "SST 200x150x6",
       "B07": "7282841",
-      "B08": 16.0,
+      "B08": 16,
       "B09": {
         "Form": "RectangularTube",
-        "Width": 200.0,
-        "Height": 150.0,
-        "WallThickness": 6.0,
+        "Width": 200,
+        "Height": 150,
+        "WallThickness": 6,
         "Unit": "mm"
       },
       "B10": {
         "Property": "Length",
-        "Value": 12000.0,
+        "Value": 12000,
         "Unit": "mm"
       },
       "B11": {
@@ -88,12 +88,12 @@
       },
       "B12": {
         "Property": "Theoretical mass",
-        "Value": 5738.0,
+        "Value": 5738,
         "Unit": "kg"
       },
       "B13": {
         "Property": "Actual mass",
-        "Value": 5739.0,
+        "Value": 5739,
         "Unit": "kg"
       },
       "SupplementaryInformation": {
@@ -125,7 +125,7 @@
           "Symbol": "Si"
         },
         "C73": {
-          "Actual": 1.0,
+          "Actual": 1,
           "Symbol": "Mn"
         },
         "C74": {
@@ -180,12 +180,12 @@
       "TensileTest": {
         "C11": {
           "Property": "Streckgrenze ReH/RP0,2",
-          "Value": 377.0,
+          "Value": 377,
           "Unit": "MPa"
         },
         "C12": {
           "Property": "Zugfestigkeit Rm",
-          "Value": 456.0,
+          "Value": 456,
           "Unit": "MPa"
         },
         "C13": {
@@ -210,7 +210,7 @@
         "C40": "0001 längs",
         "C41": {
           "Property": "Width",
-          "Value": 5.0,
+          "Value": 5,
           "Unit": "mm"
         },
         "C42": [
