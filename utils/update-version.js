@@ -1,9 +1,9 @@
 const { execSync } = require('child_process');
 const glob = require('glob');
 const fs = require('fs');
-const jsdom = require('jsdom');
 const prettier = require('prettier');
 const { promisify } = require('util');
+const { generateHtmlCertificate } = require('./generate-html');
 const { generatePdfCertificate } = require('./generate-pdf');
 const { version: pkgVersion } = require('../package.json');
 
@@ -14,8 +14,6 @@ const jsonFixturesPattern = `${fixturesFolder}/*valid_certificate_*.json`;
 const htmlFixturesPattern = `${fixturesFolder}/*valid_certificate_*.html`;
 const pdfFixturesPattern = `${fixturesFolder}/valid_certificate_*.pdf`;
 const validCertificateFixturesPattern = `${fixturesFolder}/valid_certificate_*.json`;
-
-const { JSDOM } = jsdom;
 
 function readFile(path) {
   return promisify(fs.readFile)(path, 'utf8');
@@ -44,20 +42,25 @@ async function updateJsonFixturesVersion(version) {
   );
 }
 
-async function updateHTMLFixturesVersion(version) {
-  const propertyPath = 'footer p em';
-  const filePaths = glob.sync(htmlFixturesPattern);
-  await Promise.all(
-    filePaths.map(async (filePath) => {
-      const file = await readFile(filePath);
-      const RefSchemaUrl = buildRefSchemaUrl(version);
-      const dom = new JSDOM(file);
-      const captions = dom.window.document.querySelectorAll(propertyPath);
-      captions[1].textContent = RefSchemaUrl;
-      const html = prettier.format(dom.window.document.documentElement.outerHTML, { parser: 'html' });
-      await writeFile(filePath, html);
-    }),
-  );
+// async function updateHTMLFixturesVersion(version) {
+// const filePaths = glob.sync(htmlFixturesPattern);
+// const propertyPath = 'footer p em';
+// await Promise.all(
+//   filePaths.map(async (filePath) => {
+//     const file = await readFile(filePath);
+//     const RefSchemaUrl = buildRefSchemaUrl(version);
+//     const dom = new JSDOM(file);
+//     const captions = dom.window.document.querySelectorAll(propertyPath);
+//     captions[1].textContent = RefSchemaUrl;
+//     const html = prettier.format(dom.window.document.documentElement.outerHTML, { parser: 'html' });
+//     await writeFile(filePath, html);
+//   }),
+// );
+// }
+
+async function updateHTMLFixturesVersion() {
+  const filePaths = glob.sync(validCertificateFixturesPattern);
+  await Promise.all(filePaths.map((filePath) => generateHtmlCertificate(filePath)));
 }
 
 async function updatePdfFixturesVersion() {

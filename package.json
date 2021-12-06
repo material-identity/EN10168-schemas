@@ -21,6 +21,7 @@
     "update-version": "node ./utils/update-version.js",
     "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it",
     "release:dry-run": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --dry-run",
+    "generate-html": "node ./utils/generate-html-cli",
     "generate-pdf": "node ./utils/generate-pdf-cli"
   },
   "devDependencies": {
@@ -35,7 +36,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "glob": "^7.2.0",
     "jest": "^27.4.3",
-    "jsdom": "^19.0.0",
     "lint-staged": "^12.1.2",
     "pdf2pic": "^2.1.4",
     "pre-commit": "^1.2.2",
