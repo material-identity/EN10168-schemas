@@ -1,5 +1,5 @@
 {
-  "RefSchemaUrl": "https://schemas.en10204.io/en10168-schemas/v0.0.3/schema.json",
+  "RefSchemaUrl": "https://schemas.s1seven.com/en10168-schemas/v0.1.0/schema.json",
   "Certificate": {
     "CommercialTransaction": {
       "A01": {
@@ -54,11 +54,11 @@
       "B04": "normalized",
       "B06": "SST 200x150x6",
       "B07": "7282841",
-      "B08": 16.0,
+      "B08": 16,
       "B09": {
         "Form": "RectangularTube",
-        "Width": 200.0,
-        "Height": 150.0,
+        "Width": 200,
+        "Height": 150,
         "WallThickness": 6.5,
         "Unit": "mm"
       },
@@ -105,7 +105,7 @@
           "Symbol": "Si"
         },
         "C73": {
-          "Actual": 1.0,
+          "Actual": 1,
           "Symbol": "Mn"
         },
         "C74": {
@@ -190,7 +190,7 @@
         "C40": "0001 längs",
         "C41": {
           "Property": "Width",
-          "Value": 5.0,
+          "Value": 5,
           "Unit": "mm"
         },
         "C42": [
@@ -259,7 +259,7 @@
     },
     "Validation": {
       "Z01": "We hereby certify, that the material described above has been tested and complies with the terms of the order. This certificate has been created by a data processing system and does not contain a personal signature but the name and the offical address of the appointet department.",
-      "Z02": "2018-10-23T09:30:10-01:00",
+      "Z02": "2018-10-23",
       "Z03": "Mr. Super Inspector",
       "Z04": {
         "NotifiedBodyNumber": "0780",

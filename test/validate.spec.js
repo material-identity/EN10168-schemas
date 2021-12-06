@@ -4,7 +4,7 @@ const Ajv = require('ajv');
 const addFormats = require('ajv-formats');
 const { readFileSync } = require('fs');
 const { resolve } = require('path');
-const { languages, translationProperties } = require('./constants');
+const { languages, translationProperties } = require('../utils/constants');
 
 const createAjvInstance = () => {
   const ajv = new Ajv({
@@ -136,13 +136,6 @@ describe('Validate', function () {
           keyword: 'required',
           params: { missingProperty: 'Z02' },
           message: "must have required property 'Z02'",
-        },
-        {
-          instancePath: '/Certificate/Validation',
-          schemaPath: '#/required',
-          keyword: 'required',
-          params: { missingProperty: 'Z04' },
-          message: "must have required property 'Z04'",
         },
       ],
     },
