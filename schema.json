@@ -494,7 +494,7 @@
             "pattern": "^A1[0-9]|^A[2-8][0-9]|^A[2-9][0-6]"
           },
           "patternProperties": {
-            "A1[0-9]|A[2-8][0-9]|A[2-9][0-6]": {
+            "^A1[0-9]|^A[2-8][0-9]|^A[2-9][0-6]": {
               "$ref": "#/definitions/KeyValueObject"
             }
           },
