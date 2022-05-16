@@ -63,7 +63,7 @@ describe('Validate', function () {
           message: "must have required property 'B10'",
         },
         {
-          instancePath: '/Certificate/Inspection/ChemicalComposition/C71',
+          instancePath: '/Certificate/Inspections/0/ChemicalComposition/C71',
           schemaPath: '#/definitions/ChemicalElement/required',
           keyword: 'required',
           params: { missingProperty: 'Symbol' },
@@ -110,14 +110,14 @@ describe('Validate', function () {
           message: 'must NOT have additional properties',
         },
         {
-          instancePath: '/Certificate/Inspection',
+          instancePath: '/Certificate/Inspections/0',
           schemaPath: '#/required',
           keyword: 'required',
           params: { missingProperty: 'C00' },
           message: "must have required property 'C00'",
         },
         {
-          instancePath: '/Certificate/Inspection/ChemicalComposition/C71/Actual',
+          instancePath: '/Certificate/Inspections/0/ChemicalComposition/C71/Actual',
           schemaPath: '#/definitions/ChemicalElement/properties/Actual/maximum',
           keyword: 'maximum',
           params: { comparison: '<=', limit: 100 },

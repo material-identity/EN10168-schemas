@@ -1378,7 +1378,7 @@
     "Certificate": {
       "description": "",
       "type": "object",
-      "required": ["CertificateLanguages", "CommercialTransaction", "ProductDescription", "Inspection", "Validation"],
+      "required": ["CertificateLanguages", "CommercialTransaction", "ProductDescription", "Inspections", "Validation"],
       "properties": {
         "CertificateLanguages": {
           "$ref": "#/definitions/CertificateLanguages"
@@ -1389,8 +1389,12 @@
         "ProductDescription": {
           "$ref": "#/definitions/ProductDescription"
         },
-        "Inspection": {
-          "$ref": "#/definitions/Inspection"
+        "Inspections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Inspection"
+          },
+          "minItems": 1
         },
         "OtherTests": {
           "$ref": "#/definitions/OtherTests"
