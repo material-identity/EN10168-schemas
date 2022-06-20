@@ -1,7 +1,7 @@
 {
   "RefSchemaUrl": "https://schemas.s1seven.com/en10168-schemas/0.2.1/schema.json",
   "Certificate": {
-    "CertificateLanguages": ["PL"],
+    "CertificateLanguages": ["DE"],
     "CommercialTransaction": {
       "A01": {
         "CompanyName": "Steel Mill SE",
@@ -92,146 +92,7 @@
         }
       }
     },
-    "Inspection": [
-      {
-        "C00": "175508",
-        "C02": "0001 längs",
-        "C03": "-20 Celsius",
-        "SupplementaryInformation": {
-          "C04": {
-            "Key": "Sample Identifier",
-            "Value": "10001011/175508",
-            "Type": "string"
-          }
-        },
-        "ChemicalComposition": {
-          "C71": {
-            "Actual": 0.15,
-            "Symbol": "C"
-          },
-          "C72": {
-            "Actual": 0.005,
-            "Symbol": "Si"
-          },
-          "C73": {
-            "Actual": 1,
-            "Symbol": "Mn"
-          },
-          "C74": {
-            "Actual": 0.014,
-            "Symbol": "P"
-          },
-          "C75": {
-            "Actual": 0.007,
-            "Symbol": "S"
-          },
-          "C76": {
-            "Actual": 0.041,
-            "Symbol": "Al"
-          },
-          "C77": {
-            "Actual": 0.02,
-            "Symbol": "Cr"
-          },
-          "C78": {
-            "Actual": 0.009,
-            "Symbol": "Ni"
-          },
-          "C79": {
-            "Actual": 0.002,
-            "Symbol": "Mo"
-          },
-          "C80": {
-            "Actual": 0.01,
-            "Symbol": "Cu"
-          },
-          "C81": {
-            "Actual": 0.002,
-            "Symbol": "V"
-          },
-          "C82": {
-            "Actual": 0.001,
-            "Symbol": "Ti"
-          },
-          "C85": {
-            "Actual": 0.0047,
-            "Symbol": "N"
-          },
-          "C86": {
-            "Actual": 0.00001,
-            "Symbol": "B"
-          },
-          "C92": {
-            "Actual": 0.3227,
-            "Symbol": "CEV"
-          }
-        },
-        "TensileTest": {
-          "C11": {
-            "Property": "Streckgrenze ReH/RP0,2",
-            "Value": 377.12,
-            "Unit": "MPa"
-          },
-          "C12": {
-            "Property": "Zugfestigkeit Rm",
-            "Value": 456.18,
-            "Unit": "MPa"
-          },
-          "C13": {
-            "Property": "Bruchdehnung A5/A80",
-            "Value": 29.7,
-            "Unit": "%"
-          },
-          "SupplementaryInformation": {
-            "C14": {
-              "Key": "Re/Rm",
-              "Value": "0.83",
-              "Type": "number"
-            },
-            "C15": {
-              "Key": "Sample Identifier",
-              "Value": "10001011/175508",
-              "Type": "string"
-            }
-          }
-        },
-        "NotchedBarImpactTest": {
-          "C40": "0001 längs",
-          "C41": {
-            "Property": "Width",
-            "Value": 5,
-            "Unit": "mm"
-          },
-          "C42": [
-            {
-              "Value": 71.2,
-              "Unit": "J"
-            },
-            {
-              "Value": 84.2,
-              "Unit": "J"
-            },
-            {
-              "Value": 85.2,
-              "Unit": "J"
-            }
-          ],
-          "C43": {
-            "Value": 80.3,
-            "Unit": "J",
-            "Minimum": 78.5,
-            "Maximum": 90.6
-          },
-          "SupplementaryInformation": {
-            "C44": {
-              "Key": "Sample Identifier",
-              "Value": "10001011/175508",
-              "Type": "string"
-            }
-          }
-        }
-      }
-    ],
+    "Inspection": [],
     "OtherTests": {
       "D01": "Marking",
       "NonDestructiveTests": {
@@ -271,6 +132,12 @@
       "Z01": "We hereby certify, that the material described above has been tested and complies with the terms of the order. This certificate has been created by a data processing system and does not contain a personal signature but the name and the offical address of the appointet department.",
       "Z02": "2018-10-23",
       "Z03": "Mr. Super Inspector",
+      "Z04": {
+        "NotifiedBodyNumber": "0780",
+        "DoCYear": "19",
+        "DoCNumber": "0780-CPD-P012",
+        "CE_Image": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABACAMAAACtO5DNAAAAmVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjHWqVAAAAMnRSTlMAzexb/E0FmyQJ+NLj3/Hn2qynhlOiuZJ8VzsqFQyf1caPjG5CMCEP9b6wgHVpHZRHHxEaALYAAAHuSURBVFjDxZjZcoMwDEUNYQ0QAoSUACFbsy9t9f8f14d2bIfgIjOj6X2+PgO2LEtiKh3tollH5tgyI5vh5Y2yJAgn1smMug1VZljANUJiHbsJQajD4d8N4MKjDxuTr+hGL28xgD66yvlvqtCLEEAfvdxysAr9mAMMQNth17JniwkD0M4GoA99BRiArtfQh3ZcGII+TKEP7STwInOdNG5zeWdqeTG0ZU3nqevmc+5pf/Mknx1Yr+qotSy4ln7Lkz07jIXPEFoGIGvs7jvC58mywmaNFGTljw7LlynvVeYgyXcZHHUfyVk+uxKd5cYgdDl2ekaSZeoxrOSr+6FIzbFErtHkmUTeKDyFsMQeQ2sllqWqCDLFCZZsyEcbqkjdCU/G8DJEOFcqTyDi2cGT98BVIDw2w2vLV4V+vydgGhJRtWP9+7HQIFcijyk/uu7x9J69i4ihlGlIZHd1Ni8G7Qfjb8vJQeRFT4PsWDyojRfd2pE/YRry4A+9/Zoiflt10CUGzRPIWQf9iUHzdJ7ooGeEaMIN+a9jJAw+witDcNEJ0hNdUqV8CggfMMpnl7JYICxxKAszynKStAimLN1JGw7SNom4uaNvSQkbacL2n2BoQTBqoRsQ0Y+16Idx9CNE+sEn/bhWDJnznyFzOHDI/A3NAGlA3stefgAAAABJRU5ErkJggg=="
+      },
       "SupplementaryInformation": {
         "Z05": {
           "Key": "Quality Department Tel.",
