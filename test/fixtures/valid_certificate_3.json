@@ -104,7 +104,7 @@
         }
       }
     },
-    "Inspection": [
+    "Inspections": [
       {
         "C00": "175508",
         "ChemicalComposition": {
@@ -174,13 +174,6 @@
         "C00": "175509",
         "C02": "0001 längs",
         "C03": "-20 Celsius",
-        "SupplementaryInformation": {
-          "C04": {
-            "Key": "Sample Identifier",
-            "Value": "10001011/175508",
-            "Type": "string"
-          }
-        },
         "TensileTest": {
           "C11": {
             "Property": "Streckgrenze ReH/RP0,2",
@@ -202,14 +195,14 @@
               "Key": "Re/Rm",
               "Value": "0.83",
               "Type": "number"
-            },
-            "C15": {
-              "Key": "Sample Identifier",
-              "Value": "10001011/175508",
-              "Type": "string"
             }
           }
-        },
+        }
+      },
+      {
+        "C00": "175509",
+        "C02": "0001 längs",
+        "C03": "-20 Celsius",
         "NotchedBarImpactTest": {
           "C40": "0001 längs",
           "C41": {
@@ -236,13 +229,6 @@
             "Unit": "J",
             "Minimum": 78,
             "Maximum": 90
-          },
-          "SupplementaryInformation": {
-            "C44": {
-              "Key": "Sample Identifier",
-              "Value": "10001011/175508",
-              "Type": "string"
-            }
           }
         }
       }
