@@ -343,6 +343,96 @@
       "required": ["Form", "Width", "Thickness"],
       "additionalProperties": false
     },
+    "Sheet": {
+      "title": "Sheet",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "Form of product",
+          "type": "string",
+          "const": "Sheet",
+          "default": "Sheet"
+        },
+        "Width": {
+          "description": "Width of sheet",
+          "type": "number",
+          "minimum": 0
+        },
+        "Thickness": {
+          "description": "Thickness of sheet",
+          "type": "number",
+          "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
+        }
+      },
+      "required": ["Form", "Width", "Thickness"],
+      "additionalProperties": false
+    },
+    "Slab": {
+      "title": "Slab",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "Form of product",
+          "type": "string",
+          "const": "Slab",
+          "default": "Slab"
+        },
+        "Width": {
+          "description": "Width of slab",
+          "type": "number",
+          "minimum": 0
+        },
+        "Thickness": {
+          "description": "Thickness of slab",
+          "type": "number",
+          "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
+        }
+      },
+      "required": ["Form", "Width", "Thickness"],
+      "additionalProperties": false
+    },
+    "Plate": {
+      "title": "Plate",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "Form of product",
+          "type": "string",
+          "const": "Plate",
+          "default": "Plate"
+        },
+        "Width": {
+          "description": "Width of plate",
+          "type": "number",
+          "minimum": 0
+        },
+        "Thickness": {
+          "description": "Thickness of plate",
+          "type": "number",
+          "minimum": 0
+        },
+        "Unit": {
+          "description": "The Unit of Value.",
+          "type": "string",
+          "default": "mm"
+        }
+      },
+      "required": ["Form", "Width", "Thickness"],
+      "additionalProperties": false
+    },
     "Other": {
       "title": "Other",
       "description": "",
@@ -396,6 +486,15 @@
         },
         {
           "$ref": "#/definitions/FlatBar"
+        },
+        {
+          "$ref": "#/definitions/Sheet"
+        },
+        {
+          "$ref": "#/definitions/Slab"
+        },
+        {
+          "$ref": "#/definitions/Plate"
         },
         {
           "$ref": "#/definitions/Other"
