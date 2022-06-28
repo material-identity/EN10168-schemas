@@ -874,6 +874,36 @@
                 {{/ifEqual}}
               {{/each}}
             {{/ifEqual}}
+            {{#ifEqual @key "OtherMechanicalTests"}}
+            <table class="main-table">
+              <tbody>
+                {{#each this}}
+                {{!-- KeyValueObject --}}
+                <tr class="table-rows">
+                  <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
+                  <td class="table-cells">{{ localizeValue this.Value this.Type ../../../Certificate.CertificateLanguages.[0]
+                    }}
+                    {{this.Unit}}
+                  </td>
+                  <td class="table-cells">{{this.Interpretation}}</td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+            {{/ifEqual}}
+          {{else}}
+          {{!-- C00, C01, C02, C03--}}
+          <table class="main-table">
+            <tbody>
+              <tr class="table-rows">
+              <th class="table-headers">{{@key}} {{ i18n @key "certificateFields" ../../Certificate.CertificateLanguages }}
+                </th>
+                <td class="table-cells">{{this}}</td>
+              </tr>
+            </tbody>
+          </table>
+          {{/typeOf}}
+        {{/each}}
       {{/each}}
       {{/in}}
     </section>
