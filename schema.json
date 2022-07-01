@@ -1492,12 +1492,20 @@
         "ProductDescription": {
           "$ref": "#/definitions/ProductDescription"
         },
-        "Inspections":  {
+        "Inspection": {
+          "oneOf": [
+            {
+              "type": "object",
+              "$ref": "#/definitions/Inspection"
+            },
+            {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/Inspection"
               },
-              "minItems": 1 
+              "minItems": 1
+            }
+          ]
         },
         "OtherTests": {
           "$ref": "#/definitions/OtherTests"
