@@ -544,7 +544,7 @@
           }
         }
       },
-      "required": ["CompanyName", "Street", "ZipCode", "City", "Country", "Email", "VAT_Id"],
+      "required": ["CompanyName", "Street", "ZipCode", "City", "Country"],
       "additionalProperties": true
     },
     "CommercialTransactionBase": {
