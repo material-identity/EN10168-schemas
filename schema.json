@@ -527,6 +527,11 @@
           "minLength": 4,
           "maxLength": 15
         },
+        "DUNS": {
+          "type": "string",
+          "minLength": 9,
+          "maxLength": 9
+        },
         "Email": {
           "type": "string",
           "format": "email"
