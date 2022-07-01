@@ -28,7 +28,7 @@
     "B11": "Product mass",
     "B12": "Theoretical mass",
     "B13": "Actual mass",
-    "C00": "Heat number",
+    "C00": "Batch number",
     "C01": "Location of the sample",
     "C02": "Direction of the test piece",
     "C03": "Test temperature",
