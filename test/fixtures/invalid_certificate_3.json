@@ -92,7 +92,7 @@
         }
       }
     },
-    "Inspections": [],
+    "Inspection": [],
     "OtherTests": {
       "D01": "Marking",
       "NonDestructiveTests": {

@@ -99,7 +99,7 @@
       "B14": "SupplementaryInformation",
       "B99": "SupplementaryInformation"
     },
-    "Inspections": [
+    "Inspection": [
       {
         "C02": "0001 längs",
         "C03": "-20 Celsius",
