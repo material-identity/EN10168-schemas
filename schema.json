@@ -45,7 +45,7 @@
     "ChemicalElement": {
       "title": "ChemicalElement",
       "type": "object",
-      "description": "The chemical elements of the product.",
+      "description": "The chemical composition of the product.",
       "properties": {
         "Symbol": {
           "description": "The symbol of the element",
@@ -64,7 +64,7 @@
           "maximum": 100
         },
         "Maximum": {
-          "description": "The maximum as defined by the product specification.",
+          "description": "The maximum as defined by the product specification, otherwise the element must not provided.",
           "type": "number",
           "minimum": 0,
           "maximum": 100
@@ -95,7 +95,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -125,7 +125,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description":"The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -160,7 +160,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -190,7 +190,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -225,7 +225,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -255,7 +255,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -280,7 +280,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -305,7 +305,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -335,7 +335,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -365,7 +365,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -395,7 +395,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -425,7 +425,7 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
@@ -447,11 +447,6 @@
         "Description": {
           "description": "Free text describing the form",
           "type": "string"
-        },
-        "Unit": {
-          "description": "The Unit of Value.",
-          "type": "string",
-          "default": "mm"
         }
       },
       "required": ["Form", "Description"],
@@ -537,7 +532,7 @@
           "format": "email"
         },
         "AdditionalInformation": {
-          "description": "Each entry to the array is rendered as a new line in HTML and PDF",
+          "description": "Each entry of the array is rendered as a new line in HTML and PDF",
           "type": "array",
           "items": {
             "type": "string"
