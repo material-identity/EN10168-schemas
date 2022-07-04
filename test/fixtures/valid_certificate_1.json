@@ -1,7 +1,7 @@
 {
   "RefSchemaUrl": "https://schemas.s1seven.com/en10168-schemas/0.2.1/schema.json",
   "Certificate": {
-    "CertificateLanguages": ["DE"],
+    "CertificateLanguages": ["EN"],
     "CommercialTransaction": {
       "A01": {
         "CompanyName": "Steel Mill SE",
@@ -92,19 +92,11 @@
         }
       }
     },
-    "Inspections": [
+    "Inspection": [
       {
-        "C00": "175508",
-        "C02": "0001 längs",
-        "C03": "-20 Celsius",
-        "SupplementaryInformation": {
-          "C04": {
-            "Key": "Sample Identifier",
-            "Value": "10001011/175508",
-            "Type": "string"
-          }
-        },
+        "C00": "Charge Chemical Analysis",
         "ChemicalComposition": {
+          "C70": "Y",
           "C71": {
             "Actual": 0.15,
             "Symbol": "C"
@@ -164,8 +156,20 @@
           "C92": {
             "Actual": 0.3227,
             "Symbol": "CEV"
+          },
+          "SupplementaryInformation": {
+            "C110": {
+              "Key": "Sample Identifier",
+              "Value": "10001011/175508",
+              "Type": "string"
+            }
           }
-        },
+        }
+      },
+      {
+        "C00": "Charge TensileTest",
+        "C02": "0001 längs",
+        "C03": "-20 Celsius",
         "TensileTest": {
           "C11": {
             "Property": "Streckgrenze ReH/RP0,2",
@@ -194,7 +198,38 @@
               "Type": "string"
             }
           }
-        },
+        }
+      },
+      {
+        "C00": "Charge HardnessTest",
+        "C03": "-20 Celsius",
+        "HardnessTest": {
+          "C30": "Brunell",
+          "C31": [
+            {
+              "Value": 71.2,
+              "Unit": "J"
+            },
+            {
+              "Value": 84.2,
+              "Unit": "J"
+            },
+            {
+              "Value": 85.2,
+              "Unit": "J"
+            }
+          ],
+          "C32": {
+            "Value": 80.3,
+            "Unit": "J",
+            "Minimum": 78.5,
+            "Maximum": 90.6
+          }
+        }
+      },
+      {
+        "C00": "Charge NotchedImpactTest",
+        "C03": "-20 Celsius",
         "NotchedBarImpactTest": {
           "C40": "0001 längs",
           "C41": {

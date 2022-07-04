@@ -1,5 +1,5 @@
 {
-  "RefSchemaUrl": "https://schemas.s1seven.com/en10168-schemas/0.2.1/schema.json",
+  "RefSchemaUrl": "https://schemas.s1seven.com/en10168-schemas/0.3.0/schema.json",
   "Certificate": {
     "CertificateLanguages": ["EN", "FR"],
     "CommercialTransaction": {
@@ -9,7 +9,6 @@
         "ZipCode": "4040",
         "City": "Linz",
         "Country": "AT",
-        "Email": "sbs.steelfactory@gmail.com",
         "VAT_Id": "AT123456789"
       },
       "A02": "Mill Certificate EN 10204 3.1",
@@ -22,7 +21,6 @@
         "ZipCode": "10115",
         "City": "Berlin",
         "Country": "DE",
-        "Email": "sbs.steeltrader@gmail.com",
         "VAT_Id": "DE12234567890"
       },
       "A06.3": {
@@ -30,9 +28,7 @@
         "Street": "Handelsgasse 1",
         "ZipCode": "10115",
         "City": "Berlin",
-        "Country": "DE",
-        "Email": "sbs.steeltrader@gmail.com",
-        "VAT_Id": "DE12234567890"
+        "Country": "DE"
       },
       "A07": "0334/2019/ZZS",
       "A08": "958722",
@@ -95,7 +91,7 @@
         }
       }
     },
-    "Inspections": [
+    "Inspection": [
       {
         "C00": "175508",
         "C02": "0001 längs",
@@ -108,6 +104,7 @@
           }
         },
         "ChemicalComposition": {
+          "C70": "Y",
           "C71": {
             "Actual": 0.15,
             "Symbol": "C"
