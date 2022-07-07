@@ -1175,11 +1175,11 @@
         "NonDestructiveTests": {
           "title": "NonDestructiveTests",
           "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^D[0][2-9]|^D[1-4]D[0-9]|^D50"
+          },
           "patternProperties": {
-            "propertyNames": {
-              "type": "string",
-              "pattern": "^D[0][2-9]|^D[1-4]D[0-9]|^D50"
-            },
             "^D[0][2-9]|^D[1-4]D[0-9]|^D50": {
               "$ref": "#/definitions/KeyValueObject"
             }
@@ -1189,11 +1189,11 @@
         "OtherProductTests": {
           "title": "OtherProductTests",
           "type": "object",
-          "patternProperties": {
-            "propertyNames": {
-              "type": "string",
-              "pattern": "^D[5][1-9]|^D[6-9][0-9]"
-            },
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^D[5][1-9]|^D[6-9][0-9]"
+          },
+          "patternProperties": {    
             "^D[5][1-9]|^D[6-9][0-9]": {
               "$ref": "#/definitions/KeyValueObject"
             }
