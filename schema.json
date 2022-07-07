@@ -1084,7 +1084,7 @@
           "additionalProperties": false
         },
         "B03": {
-          "description": "Any supplemantary requirements",
+          "description": "Any supplementary requirements",
           "type": "string"
         },
         "B04": {
