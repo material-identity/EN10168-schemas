@@ -601,7 +601,7 @@
         },
         "A97": {
           "description": "A custom field for the position number in the order",
-          "type": "number"
+          "type": "string"
         },
         "A98": {
           "description": "A custom field for the delivery note number",
