@@ -197,8 +197,6 @@
         }
       },
       "HardnessTest": {
-        "C00": "Charge HardnessTest",
-        "C03": "-20 Celsius",
         "C30": "Brunell",
         "C31": [
           {
