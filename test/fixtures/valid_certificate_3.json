@@ -195,6 +195,31 @@
           "Minimum": 78,
           "Maximum": 90
         }
+      },
+      "HardnessTest": {
+        "C00": "Charge HardnessTest",
+        "C03": "-20 Celsius",
+        "C30": "Brunell",
+        "C31": [
+          {
+            "Value": 71.2,
+            "Unit": "J"
+          },
+          {
+            "Value": 84.2,
+            "Unit": "J"
+          },
+          {
+            "Value": 85.2,
+            "Unit": "J"
+          }
+        ],
+        "C32": {
+          "Value": 80.3,
+          "Unit": "J",
+          "Minimum": 78.5,
+          "Maximum": 90.6
+        }
       }
     },
     "OtherTests": {
