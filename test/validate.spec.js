@@ -49,6 +49,13 @@ describe('Validate', function () {
           message: "must have required property 'CertificateLanguages'",
         },
         {
+          instancePath: '/Certificate/CommercialTransaction/A97',
+          schemaPath: '#/properties/A97/type',
+          keyword: 'type',
+          params: { type: 'string' },
+          message: 'must be string',
+        },
+        {
           instancePath: '/Certificate/ProductDescription',
           schemaPath: '#/required',
           keyword: 'required',
@@ -85,8 +92,8 @@ describe('Validate', function () {
           instancePath: '/Certificate/CommercialTransaction/A97',
           schemaPath: '#/properties/A97/type',
           keyword: 'type',
-          params: { type: 'number' },
-          message: 'must be number',
+          params: { type: 'string' },
+          message: 'must be string',
         },
         {
           instancePath: '/Certificate/CommercialTransaction/A98',
