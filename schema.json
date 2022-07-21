@@ -1259,7 +1259,7 @@
             "type": "string",
             "pattern": "^D[5][1-9]|^D[6-9][0-9]"
           },
-          "patternProperties": {    
+          "patternProperties": {
             "^D[5][1-9]|^D[6-9][0-9]": {
               "$ref": "#/definitions/KeyValueObject"
             }
@@ -1542,7 +1542,7 @@
     "Certificate": {
       "description": "",
       "type": "object",
-      "required": ["CertificateLanguages", "CommercialTransaction", "ProductDescription",  "Validation"],
+      "required": ["CertificateLanguages", "CommercialTransaction", "ProductDescription", "Validation"],
       "properties": {
         "CertificateLanguages": {
           "$ref": "#/definitions/CertificateLanguages"
