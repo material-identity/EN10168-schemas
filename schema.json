@@ -431,6 +431,64 @@
         }
       },
       "required": ["Form", "Width", "Thickness"],
+    "Strip": {
+      "title": "Strip",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "Form of product",
+          "type": "string",
+          "const": "Strip",
+          "default": "Strip"
+        },
+        "Width": {
+          "description": "Width of strip",
+          "type": "number",
+          "minimum": 0
+        },
+        "Thickness": {
+          "description": "Thickness of strip",
+          "type": "number",
+          "minimum": 0
+        },
+        "Unit": {
+          "description": "The unit of the dimensions.",
+          "type": "string",
+          "default": "mm"
+        }
+      },
+      "required": ["Form", "Width", "Thickness", "Unit"],
+      "additionalProperties": false
+    },
+    "Scroll": {
+      "title": "Scroll",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "Form of product",
+          "type": "string",
+          "const": "Scroll",
+          "default": "Scroll"
+        },
+        "Width": {
+          "description": "Width of scroll",
+          "type": "number",
+          "minimum": 0
+        },
+        "Thickness": {
+          "description": "Thickness of scroll",
+          "type": "number",
+          "minimum": 0
+        },
+        "Unit": {
+          "description": "The unit of the dimensions.",
+          "type": "string",
+          "default": "mm"
+        }
+      },
+      "required": ["Form", "Width", "Thickness", "Unit"],
       "additionalProperties": false
     },
     "Other": {
@@ -490,6 +548,12 @@
         },
         {
           "$ref": "#/definitions/Plate"
+        },
+        {
+          "$ref": "#/definitions/Scroll"
+        },
+        {
+          "$ref": "#/definitions/Strip"
         },
         {
           "$ref": "#/definitions/Other"
