@@ -100,7 +100,7 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "OuterDiameter", "WallThickness"],
+      "required": ["Form", "OuterDiameter", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "QuadraticTube": {
@@ -125,12 +125,12 @@
           "minimum": 0
         },
         "Unit": {
-          "description":"The unit of the dimensions.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
       },
-      "required": ["Form", "SideLength", "WallThickness"],
+      "required": ["Form", "SideLength", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "RectangularTube": {
@@ -165,7 +165,7 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Height", "WallThickness"],
+      "required": ["Form", "Width", "Height", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "Pipe": {
@@ -195,7 +195,7 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "SideLength", "WallThickness"],
+      "required": ["Form", "SideLength", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "RectangularPipe": {
@@ -230,7 +230,7 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Height", "WallThickness"],
+      "required": ["Form", "Width", "Height", "WallThickness", "Unit"],
       "additionalProperties": true
     },
     "Coil": {
@@ -260,7 +260,7 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "WallThickness"],
+      "required": ["Form", "Width", "WallThickness", "Unit"],
       "additionalProperties": true
     },
     "RoundBar": {
@@ -285,7 +285,7 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Diameter"],
+      "required": ["Form", "Diameter", "Unit"],
       "additionalProperties": false
     },
     "HexagonalBar": {
@@ -310,7 +310,7 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Diameter"],
+      "required": ["Form", "Diameter", "Unit"],
       "additionalProperties": false
     },
     "FlatBar": {
@@ -340,7 +340,7 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Thickness"],
+      "required": ["Form", "Width", "Thickness", "Unit"],
       "additionalProperties": false
     },
     "Sheet": {
@@ -370,7 +370,7 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Thickness"],
+      "required": ["Form", "Width", "Thickness", "Unit"],
       "additionalProperties": false
     },
     "Slab": {
@@ -400,7 +400,7 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Thickness"],
+      "required": ["Form", "Width", "Thickness", "Unit"],
       "additionalProperties": false
     },
     "Plate": {
@@ -430,7 +430,9 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Thickness"],
+      "required": ["Form", "Width", "Thickness", "Unit"],
+      "additionalProperties": false
+    },
     "Strip": {
       "title": "Strip",
       "description": "",
