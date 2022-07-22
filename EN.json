@@ -87,6 +87,8 @@
     "Sheet": "Sheet",
     "Slab": "Slab",
     "Plate": "Plate",
+    "Strip": "Strip",
+    "Scroll": "Scroll",
     "Validation": "Validation",
     "Other": "Other",
     "Description": "Description",

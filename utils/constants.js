@@ -124,6 +124,8 @@ const translationProperties = {
     'Sheet',
     'Slab',
     'Plate',
+    'Strip',
+    'Scroll',
     'Validation',
     'Other',
     'Description',
