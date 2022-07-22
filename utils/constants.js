@@ -4,6 +4,7 @@ const { resolve } = require('path');
 const defaultServerUrl = 'https://schemas.s1seven.com/en10168-schemas';
 
 const htmlTemplatePath = resolve('template.hbs');
+const inspectionTemplatePath = resolve('inspection.hbs');
 
 const pdfGeneratorPath = resolve('generate-pdf.min.js');
 const pdfStylesPath = resolve('generate-pdf.styles.json');
@@ -140,6 +141,7 @@ const translationProperties = {
 module.exports = {
   defaultServerUrl,
   htmlTemplatePath,
+  inspectionTemplatePath,
   languages,
   pdfDocDefinition,
   pdfGeneratorPath,
