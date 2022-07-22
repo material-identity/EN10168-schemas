@@ -11,9 +11,7 @@ const { version: pkgVersion } = require('../package.json');
     await updater.updateSchemasVersion();
     const inspectionTemplate = await readFile(inspectionTemplatePath, 'utf-8');
     await updater.updateHtmlFixturesVersion(certificatePattern, htmlTemplatePath, {
-      partials: {
-        inspection: (ctx, opts) => compile(inspectionTemplate)(ctx, opts),
-      },
+      partials: { inspection: (ctx, opts) => compile(inspectionTemplate)(ctx, opts) },
     });
   } catch (error) {
     console.error(error.message);

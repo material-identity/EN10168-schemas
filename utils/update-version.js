@@ -1,9 +1,13 @@
-const { execSync } = require('child_process');
 const { SchemaRepositoryVersion } = require('@s1seven/schema-tools-versioning');
+const { execSync } = require('child_process');
+const { readFile } = require('fs/promises');
+const { compile } = require('handlebars');
+
 const { version: pkgVersion } = require('../package.json');
 const {
   defaultServerUrl,
   htmlTemplatePath,
+  inspectionTemplatePath,
   pdfDocDefinition,
   pdfFonts,
   pdfGeneratorPath,
@@ -40,7 +44,7 @@ function stageAndCommitChanges(version) {
 }
 
 (async function (argv) {
-  const version = argv[2] || pkgVersion;
+  const version = argv[2] || `v${pkgVersion}`;
   const updater = new SchemaRepositoryVersion(
     defaultServerUrl,
     schemaFilePaths,
@@ -50,7 +54,10 @@ function stageAndCommitChanges(version) {
   );
   await updater.updateSchemasVersion();
   await updater.updateJsonFixturesVersion(jsonFixturesPattern);
-  await updater.updateHtmlFixturesVersion(validCertificateFixturesPattern, htmlTemplatePath);
+  const inspectionTemplate = await readFile(inspectionTemplatePath, 'utf-8');
+  await updater.updateHtmlFixturesVersion(validCertificateFixturesPattern, htmlTemplatePath, {
+    partials: { inspection: (ctx, opts) => compile(inspectionTemplate)(ctx, opts) },
+  });
   await updater.updatePdfFixturesVersion(
     validCertificateFixturesPattern,
     pdfGeneratorPath,
