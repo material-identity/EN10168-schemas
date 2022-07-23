@@ -49,6 +49,27 @@ describe('Validate', function () {
           message: "must have required property 'CertificateLanguages'",
         },
         {
+          instancePath: '/Certificate/CommercialTransaction/A01',
+          schemaPath: '#/definitions/Company/allOf/7/anyOf/0/required',
+          keyword: 'required',
+          params: { missingProperty: 'VAT_Id' },
+          message: "must have required property 'VAT_Id'",
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction/A01',
+          schemaPath: '#/definitions/Company/allOf/7/anyOf/1/required',
+          keyword: 'required',
+          params: { missingProperty: 'DUNS' },
+          message: "must have required property 'DUNS'",
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction/A01',
+          schemaPath: '#/definitions/Company/allOf/7/anyOf',
+          keyword: 'anyOf',
+          params: {},
+          message: 'must match a schema in anyOf',
+        },
+        {
           instancePath: '/Certificate/CommercialTransaction/A97',
           schemaPath: '#/properties/A97/type',
           keyword: 'type',

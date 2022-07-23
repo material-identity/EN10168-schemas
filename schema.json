@@ -565,48 +565,93 @@
     "Company": {
       "title": "Company",
       "type": "object",
-      "properties": {
-        "CompanyName": {
-          "type": "string"
+      "allOf": [
+        {
+          "properties": {
+            "CompanyName": {
+              "type": "string"
+            }
+          },
+          "required": ["CompanyName"]
         },
-        "Street": {
-          "type": "string"
+        {
+          "properties": {
+            "Street": {
+              "type": "string"
+            }
+          },
+          "required": ["Street"]
         },
-        "ZipCode": {
-          "type": "string"
+        {
+          "properties": {
+            "ZipCode": {
+              "type": "string"
+            }
+          },
+          "required": ["ZipCode"]
         },
-        "City": {
-          "type": "string"
+        {
+          "properties": {
+            "City": {
+              "type": "string"
+            }
+          },
+          "required": ["City"]
         },
-        "Country": {
-          "type": "string",
-          "minLength": 2,
-          "maxLength": 2
+        {
+          "properties": {
+            "Country": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2
+            }
+          },
+          "required": ["Country"]
         },
-        "VAT_Id": {
-          "type": "string",
-          "minLength": 4,
-          "maxLength": 15
-        },
-        "DUNS": {
-          "type": "string",
-          "minLength": 9,
-          "maxLength": 9
-        },
-        "Email": {
-          "type": "string",
-          "format": "email"
-        },
-        "AdditionalInformation": {
-          "description": "Each entry of the array is rendered as a new line in HTML and PDF",
-          "type": "array",
-          "items": {
-            "type": "string"
+        {
+          "properties": {
+            "Email": {
+              "type": "string",
+              "format": "email"
+            }
           }
+        },
+        {
+          "properties": {
+            "AdditionalInformation": {
+              "description": "Each entry of the array is rendered as a new line in HTML and PDF",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "anyOf": [
+            {
+              "properties": {
+                "VAT_Id": {
+                  "type": "string",
+                  "minLength": 8,
+                  "maxLength": 15
+                }
+              },
+              "required": ["VAT_Id"]
+            },
+            {
+              "properties": {
+                "DUNS": {
+                  "type": "string",
+                  "minLength": 9,
+                  "maxLength": 9
+                }
+              },
+              "required": ["DUNS"]
+            }
+          ]
         }
-      },
-      "required": ["CompanyName", "Street", "ZipCode", "City", "Country"],
-      "additionalProperties": true
+      ]
     },
     "CommercialTransactionBase": {
       "title": "CommercialTransactionBase",

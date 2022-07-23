@@ -28,7 +28,8 @@
         "Street": "Handelsgasse 1",
         "ZipCode": "10115",
         "City": "Berlin",
-        "Country": "DE"
+        "Country": "DE",
+        "DUNS": "123456789"
       },
       "A07": "0334/2019/ZZS",
       "A08": "958722",
