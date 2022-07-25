@@ -562,94 +562,78 @@
         }
       ]
     },
+    "CompanyBase": {
+      "type": "object",
+      "properties": {
+        "CompanyName": {
+          "description": "Name of the company",
+          "type": "string"
+        },
+        "Street": {
+          "description": "Address of the company",
+          "type": "string"
+        },
+        "City": {
+          "description": "City of the company",
+          "type": "string"
+        },
+        "ZipCode": {
+          "description": "Postal code of the company",
+          "type": "string"
+        },
+        "Country": {
+          "description": "Country of the company",
+          "type": "string"
+        },
+        "Email": {
+          "description": "Email address of the company",
+          "type": "string",
+          "format": "email"
+        },
+        "AdditionalInformation": {
+          "description": "Each entry of the array is rendered as a new line in HTML and PDF",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["CompanyName", "Street", "City", "ZipCode", "Country"]
+    },
+    "CompanyIdentifiers": {
+      "type": "object",
+      "anyOf": [
+        {
+          "properties": {
+            "VAT_Id": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 15
+            }
+          },
+          "required": ["VAT_Id"]
+        },
+        {
+          "properties": {
+            "DUNS": {
+              "type": "string",
+              "minLength": 9,
+              "maxLength": 9
+            }
+          },
+          "required": ["DUNS"]
+        }
+      ]
+    },
     "Company": {
       "title": "Company",
       "type": "object",
       "allOf": [
         {
-          "properties": {
-            "CompanyName": {
-              "type": "string"
-            }
-          },
-          "required": ["CompanyName"]
+          "$ref": "#/definitions/CompanyBase"
         },
         {
-          "properties": {
-            "Street": {
-              "type": "string"
-            }
-          },
-          "required": ["Street"]
-        },
-        {
-          "properties": {
-            "ZipCode": {
-              "type": "string"
-            }
-          },
-          "required": ["ZipCode"]
-        },
-        {
-          "properties": {
-            "City": {
-              "type": "string"
-            }
-          },
-          "required": ["City"]
-        },
-        {
-          "properties": {
-            "Country": {
-              "type": "string",
-              "minLength": 2,
-              "maxLength": 2
-            }
-          },
-          "required": ["Country"]
-        },
-        {
-          "properties": {
-            "Email": {
-              "type": "string",
-              "format": "email"
-            }
-          }
-        },
-        {
-          "properties": {
-            "AdditionalInformation": {
-              "description": "Each entry of the array is rendered as a new line in HTML and PDF",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        {
-          "anyOf": [
-            {
-              "properties": {
-                "VAT_Id": {
-                  "type": "string",
-                  "minLength": 8,
-                  "maxLength": 15
-                }
-              },
-              "required": ["VAT_Id"]
-            },
-            {
-              "properties": {
-                "DUNS": {
-                  "type": "string",
-                  "minLength": 9,
-                  "maxLength": 9
-                }
-              },
-              "required": ["DUNS"]
-            }
-          ]
+          "$ref": "#/definitions/CompanyIdentifiers"
         }
       ]
     },
