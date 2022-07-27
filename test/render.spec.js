@@ -1,9 +1,10 @@
 /* eslint-disable no-undef */
 const { generateHtml } = require('@s1seven/schema-tools-generate-html');
 const { generatePdf } = require('@s1seven/schema-tools-generate-pdf');
-const { readFileSync } = require('fs');
 const { HtmlDiffer } = require('@markedjs/html-differ');
 const logger = require('@markedjs/html-differ/lib/logger');
+const { readFileSync } = require('fs');
+const { compile } = require('handlebars');
 const { resolve } = require('path');
 const { fromBuffer } = require('pdf2pic');
 const { translations } = require('../utils/constants');
@@ -22,18 +23,28 @@ describe('Render', function () {
     {
       certificateName: `valid_certificate_4`,
     },
+    {
+      certificateName: `valid_certificate_5`,
+    },
   ];
 
   testSuitesMap.forEach(({ certificateName }) => {
     it(`${certificateName} should be rendered as a valid HTML`, async () => {
       const templatePath = resolve(__dirname, '../template.hbs');
       const certificatePath = resolve(__dirname, `./fixtures/${certificateName}.json`);
+      const inspectionTemplatePath = resolve(__dirname, '../inspection.hbs');
+      const inspectionTemplate = readFileSync(inspectionTemplatePath, 'utf-8');
       const expectedHTML = readFileSync(resolve(__dirname, `./fixtures/${certificateName}.html`), 'utf-8');
       //
       const html = await generateHtml(certificatePath, {
         templatePath,
         templateType: 'hbs',
         translations: translations(),
+        handlebars: {
+          partials: {
+            inspection: compile(inspectionTemplate),
+          },
+        },
       });
 
       const htmlDiffer = new HtmlDiffer({
