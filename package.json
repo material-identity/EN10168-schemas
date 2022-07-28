@@ -4,14 +4,14 @@
   "description": "EN10168 JSON schema and dependencies developed by S1Seven",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/s1seven/EN10168-schemas.git"
+    "url": "git+https://github.com/thematerials-network/EN10168-schemas.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/s1seven/EN10168-schemas/issues"
+    "url": "https://github.com/thematerials-network/EN10168-schemas/issues"
   },
-  "homepage": "https://github.com/s1seven/EN10168-schemas#readme",
+  "homepage": "https://github.com/thematerials-network/EN10168-schemas#readme",
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./*.js",
@@ -26,20 +26,21 @@
   },
   "devDependencies": {
     "@markedjs/html-differ": "^3.0.4",
-    "@s1seven/schema-tools-generate-html": "0.1.0",
-    "@s1seven/schema-tools-generate-pdf": "0.0.19",
-    "@s1seven/schema-tools-utils": "0.0.25",
-    "@s1seven/schema-tools-versioning": "^0.1.0",
-    "ajv": "^8.8.0",
-    "ajv-formats": "^2.1.0",
-    "eslint": "^8.4.0",
-    "eslint-config-prettier": "^8.3.0",
+    "@s1seven/schema-tools-generate-html": "0.2.2",
+    "@s1seven/schema-tools-generate-pdf": "0.1.2",
+    "@s1seven/schema-tools-utils": "0.1.2",
+    "@s1seven/schema-tools-versioning": "^0.2.3",
+    "ajv": "^8.11.0",
+    "ajv-formats": "^2.1.1",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^27.4.3",
-    "lint-staged": "^12.1.2",
+    "handlebars": "^4.7.7",
+    "jest": "^28.1.0",
+    "lint-staged": "^12.4.1",
     "pdf2pic": "^2.1.4",
     "pre-commit": "^1.2.2",
-    "prettier": "2.5.1",
+    "prettier": "2.6.2",
     "release-it": "*"
   },
   "lint-staged": {

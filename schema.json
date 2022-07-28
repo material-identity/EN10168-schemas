@@ -6,7 +6,7 @@
     "of the License at https://www.gnu.org/licenses/agpl-3.0.en.html"
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.s1seven.com/en10168-schemas/v0.2.1/schema.json",
+  "$id": "https://schemas.s1seven.com/en10168-schemas/v0.3.0/schema.json",
   "definitions": {
     "KeyValueObject": {
       "title": "KeyValueObject",
@@ -45,7 +45,7 @@
     "ChemicalElement": {
       "title": "ChemicalElement",
       "type": "object",
-      "description": "The chemical elements of the product.",
+      "description": "The chemical composition of the product.",
       "properties": {
         "Symbol": {
           "description": "The symbol of the element",
@@ -64,7 +64,7 @@
           "maximum": 100
         },
         "Maximum": {
-          "description": "The maximum as defined by the product specification.",
+          "description": "The maximum as defined by the product specification, otherwise the element must not provided.",
           "type": "number",
           "minimum": 0,
           "maximum": 100
@@ -95,12 +95,12 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
       },
-      "required": ["Form", "OuterDiameter", "WallThickness"],
+      "required": ["Form", "OuterDiameter", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "QuadraticTube": {
@@ -125,12 +125,12 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
       },
-      "required": ["Form", "SideLength", "WallThickness"],
+      "required": ["Form", "SideLength", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "RectangularTube": {
@@ -160,12 +160,12 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Height", "WallThickness"],
+      "required": ["Form", "Width", "Height", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "Pipe": {
@@ -190,12 +190,12 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
       },
-      "required": ["Form", "SideLength", "WallThickness"],
+      "required": ["Form", "SideLength", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "RectangularPipe": {
@@ -225,12 +225,12 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Height", "WallThickness"],
+      "required": ["Form", "Width", "Height", "WallThickness", "Unit"],
       "additionalProperties": true
     },
     "Coil": {
@@ -255,12 +255,12 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "WallThickness"],
+      "required": ["Form", "Width", "WallThickness", "Unit"],
       "additionalProperties": true
     },
     "RoundBar": {
@@ -280,12 +280,12 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
       },
-      "required": ["Form", "Diameter"],
+      "required": ["Form", "Diameter", "Unit"],
       "additionalProperties": false
     },
     "HexagonalBar": {
@@ -305,12 +305,12 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
       },
-      "required": ["Form", "Diameter"],
+      "required": ["Form", "Diameter", "Unit"],
       "additionalProperties": false
     },
     "FlatBar": {
@@ -335,12 +335,162 @@
           "minimum": 0
         },
         "Unit": {
-          "description": "The Unit of Value.",
+          "description": "The unit of the dimensions.",
           "type": "string",
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Thickness"],
+      "required": ["Form", "Width", "Thickness", "Unit"],
+      "additionalProperties": false
+    },
+    "Sheet": {
+      "title": "Sheet",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "Form of product",
+          "type": "string",
+          "const": "Sheet",
+          "default": "Sheet"
+        },
+        "Width": {
+          "description": "Width of sheet",
+          "type": "number",
+          "minimum": 0
+        },
+        "Thickness": {
+          "description": "Thickness of sheet",
+          "type": "number",
+          "minimum": 0
+        },
+        "Unit": {
+          "description": "The unit of the dimensions.",
+          "type": "string",
+          "default": "mm"
+        }
+      },
+      "required": ["Form", "Width", "Thickness", "Unit"],
+      "additionalProperties": false
+    },
+    "Slab": {
+      "title": "Slab",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "Form of product",
+          "type": "string",
+          "const": "Slab",
+          "default": "Slab"
+        },
+        "Width": {
+          "description": "Width of slab",
+          "type": "number",
+          "minimum": 0
+        },
+        "Thickness": {
+          "description": "Thickness of slab",
+          "type": "number",
+          "minimum": 0
+        },
+        "Unit": {
+          "description": "The unit of the dimensions.",
+          "type": "string",
+          "default": "mm"
+        }
+      },
+      "required": ["Form", "Width", "Thickness", "Unit"],
+      "additionalProperties": false
+    },
+    "Plate": {
+      "title": "Plate",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "Form of product",
+          "type": "string",
+          "const": "Plate",
+          "default": "Plate"
+        },
+        "Width": {
+          "description": "Width of plate",
+          "type": "number",
+          "minimum": 0
+        },
+        "Thickness": {
+          "description": "Thickness of plate",
+          "type": "number",
+          "minimum": 0
+        },
+        "Unit": {
+          "description": "The unit of the dimensions.",
+          "type": "string",
+          "default": "mm"
+        }
+      },
+      "required": ["Form", "Width", "Thickness", "Unit"],
+      "additionalProperties": false
+    },
+    "Strip": {
+      "title": "Strip",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "Form of product",
+          "type": "string",
+          "const": "Strip",
+          "default": "Strip"
+        },
+        "Width": {
+          "description": "Width of strip",
+          "type": "number",
+          "minimum": 0
+        },
+        "Thickness": {
+          "description": "Thickness of strip",
+          "type": "number",
+          "minimum": 0
+        },
+        "Unit": {
+          "description": "The unit of the dimensions.",
+          "type": "string",
+          "default": "mm"
+        }
+      },
+      "required": ["Form", "Width", "Thickness", "Unit"],
+      "additionalProperties": false
+    },
+    "Scroll": {
+      "title": "Scroll",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Form": {
+          "description": "Form of product",
+          "type": "string",
+          "const": "Scroll",
+          "default": "Scroll"
+        },
+        "Width": {
+          "description": "Width of scroll",
+          "type": "number",
+          "minimum": 0
+        },
+        "Thickness": {
+          "description": "Thickness of scroll",
+          "type": "number",
+          "minimum": 0
+        },
+        "Unit": {
+          "description": "The unit of the dimensions.",
+          "type": "string",
+          "default": "mm"
+        }
+      },
+      "required": ["Form", "Width", "Thickness", "Unit"],
       "additionalProperties": false
     },
     "Other": {
@@ -357,11 +507,6 @@
         "Description": {
           "description": "Free text describing the form",
           "type": "string"
-        },
-        "Unit": {
-          "description": "The Unit of Value.",
-          "type": "string",
-          "default": "mm"
         }
       },
       "required": ["Form", "Description"],
@@ -398,50 +543,99 @@
           "$ref": "#/definitions/FlatBar"
         },
         {
+          "$ref": "#/definitions/Sheet"
+        },
+        {
+          "$ref": "#/definitions/Slab"
+        },
+        {
+          "$ref": "#/definitions/Plate"
+        },
+        {
+          "$ref": "#/definitions/Scroll"
+        },
+        {
+          "$ref": "#/definitions/Strip"
+        },
+        {
           "$ref": "#/definitions/Other"
         }
       ]
     },
-    "Company": {
-      "title": "Company",
+    "CompanyBase": {
       "type": "object",
       "properties": {
         "CompanyName": {
+          "description": "Name of the company",
           "type": "string"
         },
         "Street": {
-          "type": "string"
-        },
-        "ZipCode": {
+          "description": "Address of the company",
           "type": "string"
         },
         "City": {
+          "description": "City of the company",
+          "type": "string"
+        },
+        "ZipCode": {
+          "description": "Postal code of the company",
           "type": "string"
         },
         "Country": {
-          "type": "string",
-          "minLength": 2,
-          "maxLength": 2
-        },
-        "VAT_Id": {
-          "type": "string",
-          "minLength": 4,
-          "maxLength": 15
+          "description": "Country of the company",
+          "type": "string"
         },
         "Email": {
+          "description": "Email address of the company",
           "type": "string",
           "format": "email"
         },
         "AdditionalInformation": {
-          "description": "Each entry to the array is rendered as a new line in HTML and PDF",
+          "description": "Each entry of the array is rendered as a new line in HTML and PDF",
           "type": "array",
           "items": {
             "type": "string"
           }
         }
       },
-      "required": ["CompanyName", "Street", "ZipCode", "City", "Country", "Email", "VAT_Id"],
-      "additionalProperties": true
+      "required": ["CompanyName", "Street", "City", "ZipCode", "Country"]
+    },
+    "CompanyIdentifiers": {
+      "type": "object",
+      "anyOf": [
+        {
+          "properties": {
+            "VAT_Id": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 15
+            }
+          },
+          "required": ["VAT_Id"]
+        },
+        {
+          "properties": {
+            "DUNS": {
+              "type": "string",
+              "minLength": 9,
+              "maxLength": 9
+            }
+          },
+          "required": ["DUNS"]
+        }
+      ]
+    },
+    "Company": {
+      "title": "Company",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CompanyBase"
+        },
+        {
+          "$ref": "#/definitions/CompanyIdentifiers"
+        }
+      ]
     },
     "CommercialTransactionBase": {
       "title": "CommercialTransactionBase",
@@ -502,7 +696,7 @@
         },
         "A97": {
           "description": "A custom field for the position number in the order",
-          "type": "number"
+          "type": "string"
         },
         "A98": {
           "description": "A custom field for the delivery note number",
@@ -985,7 +1179,7 @@
           "additionalProperties": false
         },
         "B03": {
-          "description": "Any supplemantary requirements",
+          "description": "Any supplementary requirements",
           "type": "string"
         },
         "B04": {
@@ -1076,11 +1270,11 @@
         "NonDestructiveTests": {
           "title": "NonDestructiveTests",
           "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^D[0][2-9]|^D[1-4]D[0-9]|^D50"
+          },
           "patternProperties": {
-            "propertyNames": {
-              "type": "string",
-              "pattern": "^D[0][2-9]|^D[1-4]D[0-9]|^D50"
-            },
             "^D[0][2-9]|^D[1-4]D[0-9]|^D50": {
               "$ref": "#/definitions/KeyValueObject"
             }
@@ -1090,11 +1284,11 @@
         "OtherProductTests": {
           "title": "OtherProductTests",
           "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^D[5][1-9]|^D[6-9][0-9]"
+          },
           "patternProperties": {
-            "propertyNames": {
-              "type": "string",
-              "pattern": "^D[5][1-9]|^D[6-9][0-9]"
-            },
             "^D[5][1-9]|^D[6-9][0-9]": {
               "$ref": "#/definitions/KeyValueObject"
             }
@@ -1284,7 +1478,6 @@
           "$ref": "#/definitions/ChemicalComposition"
         }
       },
-      "required": ["C00", "ChemicalComposition"],
       "additionalProperties": false
     },
     "Validation": {
@@ -1378,7 +1571,7 @@
     "Certificate": {
       "description": "",
       "type": "object",
-      "required": ["CertificateLanguages", "CommercialTransaction", "ProductDescription", "Inspection", "Validation"],
+      "required": ["CertificateLanguages", "CommercialTransaction", "ProductDescription", "Validation"],
       "properties": {
         "CertificateLanguages": {
           "$ref": "#/definitions/CertificateLanguages"
@@ -1390,7 +1583,19 @@
           "$ref": "#/definitions/ProductDescription"
         },
         "Inspection": {
-          "$ref": "#/definitions/Inspection"
+          "oneOf": [
+            {
+              "type": "object",
+              "$ref": "#/definitions/Inspection"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Inspection"
+              },
+              "minItems": 1
+            }
+          ]
         },
         "OtherTests": {
           "$ref": "#/definitions/OtherTests"

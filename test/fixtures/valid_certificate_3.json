@@ -1,5 +1,5 @@
 {
-  "RefSchemaUrl": "https://schemas.s1seven.com/en10168-schemas/v0.2.1/schema.json",
+  "RefSchemaUrl": "https://schemas.s1seven.com/en10168-schemas/v0.3.0/schema.json",
   "Certificate": {
     "CertificateLanguages": ["EN", "FR"],
     "CommercialTransaction": {
@@ -46,7 +46,7 @@
       "A07": "0334/2019/ZZS",
       "A08": "958722",
       "A09": "TR-12456",
-      "A97": 1,
+      "A97": "1",
       "A98": "DN-1583836",
       "A99": "AV-87682933",
       "SupplementaryInformation": {
@@ -106,15 +106,6 @@
     },
     "Inspection": {
       "C00": "175508",
-      "C02": "0001 längs",
-      "C03": "-20 Celsius",
-      "SupplementaryInformation": {
-        "C04": {
-          "Key": "Sample Identifier",
-          "Value": "10001011/175508",
-          "Type": "string"
-        }
-      },
       "ChemicalComposition": {
         "C71": {
           "Actual": 0.15,
@@ -177,35 +168,6 @@
           "Symbol": "CEV"
         }
       },
-      "TensileTest": {
-        "C11": {
-          "Property": "Streckgrenze ReH/RP0,2",
-          "Value": 377,
-          "Unit": "MPa"
-        },
-        "C12": {
-          "Property": "Zugfestigkeit Rm",
-          "Value": 456,
-          "Unit": "MPa"
-        },
-        "C13": {
-          "Property": "Bruchdehnung A5/A80",
-          "Value": 29.7,
-          "Unit": "%"
-        },
-        "SupplementaryInformation": {
-          "C14": {
-            "Key": "Re/Rm",
-            "Value": "0.83",
-            "Type": "number"
-          },
-          "C15": {
-            "Key": "Sample Identifier",
-            "Value": "10001011/175508",
-            "Type": "string"
-          }
-        }
-      },
       "NotchedBarImpactTest": {
         "C40": "0001 längs",
         "C41": {
@@ -232,13 +194,29 @@
           "Unit": "J",
           "Minimum": 78,
           "Maximum": 90
-        },
-        "SupplementaryInformation": {
-          "C44": {
-            "Key": "Sample Identifier",
-            "Value": "10001011/175508",
-            "Type": "string"
+        }
+      },
+      "HardnessTest": {
+        "C30": "Brunell",
+        "C31": [
+          {
+            "Value": 71.2,
+            "Unit": "J"
+          },
+          {
+            "Value": 84.2,
+            "Unit": "J"
+          },
+          {
+            "Value": 85.2,
+            "Unit": "J"
           }
+        ],
+        "C32": {
+          "Value": 80.3,
+          "Unit": "J",
+          "Minimum": 78.5,
+          "Maximum": 90.6
         }
       }
     },

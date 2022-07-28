@@ -36,6 +36,9 @@ describe('Validate', function () {
     {
       certificateName: `valid_certificate_4`,
     },
+    {
+      certificateName: `valid_certificate_5`,
+    },
   ];
   const invalidCertTestSuitesMap = [
     {
@@ -50,10 +53,31 @@ describe('Validate', function () {
         },
         {
           instancePath: '/Certificate/CommercialTransaction/A01',
-          schemaPath: '#/definitions/Company/required',
+          schemaPath: '#/definitions/CompanyIdentifiers/anyOf/0/required',
           keyword: 'required',
           params: { missingProperty: 'VAT_Id' },
           message: "must have required property 'VAT_Id'",
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction/A01',
+          schemaPath: '#/definitions/CompanyIdentifiers/anyOf/1/required',
+          keyword: 'required',
+          params: { missingProperty: 'DUNS' },
+          message: "must have required property 'DUNS'",
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction/A01',
+          schemaPath: '#/definitions/CompanyIdentifiers/anyOf',
+          keyword: 'anyOf',
+          params: {},
+          message: 'must match a schema in anyOf',
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction/A97',
+          schemaPath: '#/properties/A97/type',
+          keyword: 'type',
+          params: { type: 'string' },
+          message: 'must be string',
         },
         {
           instancePath: '/Certificate/ProductDescription',
@@ -69,6 +93,20 @@ describe('Validate', function () {
           params: { missingProperty: 'Symbol' },
           message: "must have required property 'Symbol'",
         },
+        {
+          instancePath: '/Certificate/Inspection',
+          schemaPath: '#/properties/Certificate/properties/Inspection/oneOf/1/type',
+          keyword: 'type',
+          params: { type: 'array' },
+          message: 'must be array',
+        },
+        {
+          instancePath: '/Certificate/Inspection',
+          schemaPath: '#/properties/Certificate/properties/Inspection/oneOf',
+          keyword: 'oneOf',
+          params: { passingSchemas: null },
+          message: 'must match exactly one schema in oneOf',
+        },
       ],
     },
     {
@@ -78,8 +116,8 @@ describe('Validate', function () {
           instancePath: '/Certificate/CommercialTransaction/A97',
           schemaPath: '#/properties/A97/type',
           keyword: 'type',
-          params: { type: 'number' },
-          message: 'must be number',
+          params: { type: 'string' },
+          message: 'must be string',
         },
         {
           instancePath: '/Certificate/CommercialTransaction/A98',
@@ -111,17 +149,31 @@ describe('Validate', function () {
         },
         {
           instancePath: '/Certificate/Inspection',
-          schemaPath: '#/required',
-          keyword: 'required',
-          params: { missingProperty: 'C00' },
-          message: "must have required property 'C00'",
+          schemaPath: '#/properties/Certificate/properties/Inspection/oneOf/0/type',
+          keyword: 'type',
+          params: { type: 'object' },
+          message: 'must be object',
         },
         {
-          instancePath: '/Certificate/Inspection/ChemicalComposition/C71/Actual',
+          instancePath: '/Certificate/Inspection',
+          schemaPath: '#/type',
+          keyword: 'type',
+          params: { type: 'object' },
+          message: 'must be object',
+        },
+        {
+          instancePath: '/Certificate/Inspection/0/ChemicalComposition/C71/Actual',
           schemaPath: '#/definitions/ChemicalElement/properties/Actual/maximum',
           keyword: 'maximum',
           params: { comparison: '<=', limit: 100 },
           message: 'must be <= 100',
+        },
+        {
+          instancePath: '/Certificate/Inspection',
+          schemaPath: '#/properties/Certificate/properties/Inspection/oneOf',
+          keyword: 'oneOf',
+          params: { passingSchemas: null },
+          message: 'must match exactly one schema in oneOf',
         },
         {
           instancePath: '/Certificate/Validation',
@@ -136,6 +188,39 @@ describe('Validate', function () {
           keyword: 'required',
           params: { missingProperty: 'Z02' },
           message: "must have required property 'Z02'",
+        },
+      ],
+    },
+    {
+      certificateName: `invalid_certificate_3`,
+      expectedErrors: [
+        {
+          instancePath: '/Certificate/Inspection',
+          schemaPath: '#/properties/Certificate/properties/Inspection/oneOf/0/type',
+          keyword: 'type',
+          params: { type: 'object' },
+          message: 'must be object',
+        },
+        {
+          instancePath: '/Certificate/Inspection',
+          schemaPath: '#/type',
+          keyword: 'type',
+          params: { type: 'object' },
+          message: 'must be object',
+        },
+        {
+          instancePath: '/Certificate/Inspection',
+          schemaPath: '#/properties/Certificate/properties/Inspection/oneOf/1/minItems',
+          keyword: 'minItems',
+          params: { limit: 1 },
+          message: 'must NOT have fewer than 1 items',
+        },
+        {
+          instancePath: '/Certificate/Inspection',
+          schemaPath: '#/properties/Certificate/properties/Inspection/oneOf',
+          keyword: 'oneOf',
+          params: { passingSchemas: null },
+          message: 'must match exactly one schema in oneOf',
         },
       ],
     },
