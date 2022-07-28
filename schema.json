@@ -25,21 +25,36 @@
           "type": "string"
         },
         "Type": {
-          "enum": ["string", "number", "date", "date-time", "boolean"],
+          "enum": [
+            "string",
+            "number",
+            "date",
+            "date-time",
+            "boolean"
+          ],
           "default": "string"
         }
       },
-      "required": ["Key"],
+      "required": [
+        "Key"
+      ],
       "additionalProperties": false
     },
     "CertificateLanguages": {
       "type": "array",
       "items": {
-        "enum": ["EN", "DE", "FR", "PL"]
+        "enum": [
+          "EN",
+          "DE",
+          "FR",
+          "PL"
+        ]
       },
       "minItems": 1,
       "maxItems": 2,
-      "default": ["EN"],
+      "default": [
+        "EN"
+      ],
       "uniqueItems": true
     },
     "ChemicalElement": {
@@ -70,7 +85,10 @@
           "maximum": 100
         }
       },
-      "required": ["Symbol", "Actual"],
+      "required": [
+        "Symbol",
+        "Actual"
+      ],
       "additionalProperties": false
     },
     "Tube": {
@@ -100,7 +118,12 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "OuterDiameter", "WallThickness", "Unit"],
+      "required": [
+        "Form",
+        "OuterDiameter",
+        "WallThickness",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "QuadraticTube": {
@@ -130,7 +153,12 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "SideLength", "WallThickness", "Unit"],
+      "required": [
+        "Form",
+        "SideLength",
+        "WallThickness",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "RectangularTube": {
@@ -165,7 +193,13 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Height", "WallThickness", "Unit"],
+      "required": [
+        "Form",
+        "Width",
+        "Height",
+        "WallThickness",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "Pipe": {
@@ -195,7 +229,12 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "SideLength", "WallThickness", "Unit"],
+      "required": [
+        "Form",
+        "SideLength",
+        "WallThickness",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "RectangularPipe": {
@@ -230,7 +269,13 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Height", "WallThickness", "Unit"],
+      "required": [
+        "Form",
+        "Width",
+        "Height",
+        "WallThickness",
+        "Unit"
+      ],
       "additionalProperties": true
     },
     "Coil": {
@@ -260,7 +305,12 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "WallThickness", "Unit"],
+      "required": [
+        "Form",
+        "Width",
+        "WallThickness",
+        "Unit"
+      ],
       "additionalProperties": true
     },
     "RoundBar": {
@@ -285,7 +335,11 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Diameter", "Unit"],
+      "required": [
+        "Form",
+        "Diameter",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "HexagonalBar": {
@@ -310,7 +364,11 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Diameter", "Unit"],
+      "required": [
+        "Form",
+        "Diameter",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "FlatBar": {
@@ -340,7 +398,12 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Thickness", "Unit"],
+      "required": [
+        "Form",
+        "Width",
+        "Thickness",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "Sheet": {
@@ -370,7 +433,12 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Thickness", "Unit"],
+      "required": [
+        "Form",
+        "Width",
+        "Thickness",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "Slab": {
@@ -400,7 +468,12 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Thickness", "Unit"],
+      "required": [
+        "Form",
+        "Width",
+        "Thickness",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "Plate": {
@@ -430,7 +503,12 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Thickness", "Unit"],
+      "required": [
+        "Form",
+        "Width",
+        "Thickness",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "Strip": {
@@ -460,7 +538,12 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Thickness", "Unit"],
+      "required": [
+        "Form",
+        "Width",
+        "Thickness",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "Scroll": {
@@ -490,7 +573,12 @@
           "default": "mm"
         }
       },
-      "required": ["Form", "Width", "Thickness", "Unit"],
+      "required": [
+        "Form",
+        "Width",
+        "Thickness",
+        "Unit"
+      ],
       "additionalProperties": false
     },
     "Other": {
@@ -509,7 +597,10 @@
           "type": "string"
         }
       },
-      "required": ["Form", "Description"],
+      "required": [
+        "Form",
+        "Description"
+      ],
       "additionalProperties": false
     },
     "ProductShape": {
@@ -598,7 +689,13 @@
           }
         }
       },
-      "required": ["CompanyName", "Street", "City", "ZipCode", "Country"]
+      "required": [
+        "CompanyName",
+        "Street",
+        "City",
+        "ZipCode",
+        "Country"
+      ]
     },
     "CompanyIdentifiers": {
       "type": "object",
@@ -611,7 +708,9 @@
               "maxLength": 15
             }
           },
-          "required": ["VAT_Id"]
+          "required": [
+            "VAT_Id"
+          ]
         },
         {
           "properties": {
@@ -621,7 +720,9 @@
               "maxLength": 9
             }
           },
-          "required": ["DUNS"]
+          "required": [
+            "DUNS"
+          ]
         }
       ]
     },
@@ -707,7 +808,14 @@
           "type": "string"
         }
       },
-      "required": ["A01", "A02", "A03", "A04", "A05", "A07"]
+      "required": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A07"
+      ]
     },
     "CommercialTransactionReceivers": {
       "title": "CommercialTransactionReceivers",
@@ -725,7 +833,9 @@
               "description": "The purchaser of the product and receiver of the certificate"
             }
           },
-          "required": ["A06"]
+          "required": [
+            "A06"
+          ]
         },
         {
           "properties": {
@@ -754,7 +864,9 @@
               "description": "The receiver/consignee of the certificate"
             }
           },
-          "required": ["A06.1"]
+          "required": [
+            "A06.1"
+          ]
         }
       ]
     },
@@ -796,7 +908,9 @@
           "type": "string"
         }
       },
-      "required": ["Value"],
+      "required": [
+        "Value"
+      ],
       "additionalProperties": false
     },
     "ChemicalComposition": {
@@ -805,7 +919,10 @@
       "properties": {
         "C70": {
           "description": "The metallurgic process, which is restricted to 2 types: Y = Basic oxygen process, E = Electric furnace",
-          "enum": ["Y", "E"]
+          "enum": [
+            "Y",
+            "E"
+          ]
         },
         "C71": {
           "description": "Share of element",
@@ -1256,7 +1373,15 @@
           "additionalProperties": false
         }
       },
-      "required": ["B01", "B02", "B07", "B08", "B09", "B10", "B13"],
+      "required": [
+        "B01",
+        "B02",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B13"
+      ],
       "additionalProperties": false
     },
     "OtherTests": {
@@ -1520,7 +1645,12 @@
               "type": "string"
             }
           },
-          "required": ["CE_Image", "NotifiedBodyNumber", "DoCYear", "DoCNumber"]
+          "required": [
+            "CE_Image",
+            "NotifiedBodyNumber",
+            "DoCYear",
+            "DoCNumber"
+          ]
         },
         "SupplementaryInformation": {
           "title": "ValidationSupplementaryInformation",
@@ -1535,7 +1665,10 @@
           }
         }
       },
-      "required": ["Z01", "Z02"],
+      "required": [
+        "Z01",
+        "Z02"
+      ],
       "additionalProperties": false
     }
   },
@@ -1563,15 +1696,26 @@
         "state": {
           "description": "",
           "type": "string",
-          "enum": ["draft", "valid", "cancelled"]
+          "enum": [
+            "draft",
+            "valid",
+            "cancelled"
+          ]
         }
       },
-      "required": ["id"]
+      "required": [
+        "id"
+      ]
     },
     "Certificate": {
       "description": "",
       "type": "object",
-      "required": ["CertificateLanguages", "CommercialTransaction", "ProductDescription", "Validation"],
+      "required": [
+        "CertificateLanguages",
+        "CommercialTransaction",
+        "ProductDescription",
+        "Validation"
+      ],
       "properties": {
         "CertificateLanguages": {
           "$ref": "#/definitions/CertificateLanguages"
@@ -1607,6 +1751,9 @@
       "additionalProperties": false
     }
   },
-  "required": ["Certificate", "RefSchemaUrl"],
+  "required": [
+    "Certificate",
+    "RefSchemaUrl"
+  ],
   "additionalProperties": false
 }
