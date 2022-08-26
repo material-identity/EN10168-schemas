@@ -12,14 +12,18 @@
       "$ref": "key-value-object.json#/definitions/KeyValueObject"
     },
     "CertificateLanguages": {
-      "type": "array",
-      "items": {
-        "enum": ["EN", "DE", "FR", "PL"]
-      },
-      "minItems": 1,
-      "maxItems": 2,
-      "default": ["EN"],
-      "uniqueItems": true
+      "allOf": [
+        {
+          "$ref": "languages.json#/definitions/CertificateLanguages"
+        }
+      ]
+    },
+    "Company": {
+      "allOf": [
+        {
+          "$ref": "company.json#/definitions/Company"
+        }
+      ]
     },
     "ChemicalElement": {
       "title": "ChemicalElement",
@@ -541,167 +545,12 @@
         }
       ]
     },
-    "CommercialTransactionBase": {
-      "title": "CommercialTransactionBase",
-      "description": "",
-      "type": "object",
-      "properties": {
-        "A01": {
-          "allOf": [
-            {
-              "$ref": "company.json#/definitions/Company"
-            }
-          ],
-          "description": "The manufacturer's works which delivers the certificate along the product"
-        },
-        "A02": {
-          "description": "The type of inspection document, e.g. 'EN 10204 3.1 Certificate'",
-          "type": "string"
-        },
-        "A03": {
-          "description": "The document number of the certifcate",
-          "type": "string"
-        },
-        "A04": {
-          "description": "The mark of the manufacturer as base64 png file. The maximum size is <TBD>",
-          "type": "string",
-          "contentEncoding": "base64",
-          "contentMediaType": "image/png"
-        },
-        "A05": {
-          "description": "The originator of the document, not necessarily equal to A01",
-          "type": "string",
-          "default": "Factory Production Control"
-        },
-        "A07": {
-          "description": "Purchase number",
-          "type": "string"
-        },
-        "A08": {
-          "description": "Manufacturer's work number",
-          "type": "string"
-        },
-        "A09": {
-          "description": "The article number used by the purchaser",
-          "type": "string"
-        },
-        "SupplementaryInformation": {
-          "title": "CommercialTransactionSupplementaryInformation",
-          "type": "object",
-          "propertyNames": {
-            "pattern": "^A1[0-9]|^A[2-8][0-9]|^A[2-9][0-6]"
-          },
-          "patternProperties": {
-            "^A1[0-9]|^A[2-8][0-9]|^A[2-9][0-6]": {
-              "$ref": "key-value-object.json#/definitions/KeyValueObject"
-            }
-          },
-          "additionalProperties": false
-        },
-        "A97": {
-          "description": "A custom field for the position number in the order",
-          "type": "string"
-        },
-        "A98": {
-          "description": "A custom field for the delivery note number",
-          "type": "string"
-        },
-        "A99": {
-          "description": "A custom field for the aviso document number",
-          "type": "string"
-        }
-      },
-      "required": ["A01", "A02", "A03", "A04", "A05", "A07"]
-    },
-    "CommercialTransactionReceivers": {
-      "title": "CommercialTransactionReceivers",
-      "description": "",
-      "type": "object",
-      "oneOf": [
-        {
-          "properties": {
-            "A06": {
-              "allOf": [
-                {
-                  "$ref": "company.json#/definitions/Company"
-                }
-              ],
-              "description": "The purchaser of the product and receiver of the certificate"
-            }
-          },
-          "required": ["A06"]
-        },
-        {
-          "properties": {
-            "A06.1": {
-              "allOf": [
-                {
-                  "$ref": "company.json#/definitions/Company"
-                }
-              ],
-              "description": "The purchaser of the product"
-            },
-            "A06.2": {
-              "allOf": [
-                {
-                  "$ref": "company.json#/definitions/Company"
-                }
-              ],
-              "description": "The consignee of the product"
-            },
-            "A06.3": {
-              "allOf": [
-                {
-                  "$ref": "company.json#/definitions/Company"
-                }
-              ],
-              "description": "The receiver/consignee of the certificate"
-            }
-          },
-          "required": ["A06.1"]
-        }
-      ]
-    },
     "CommercialTransaction": {
-      "title": "CommercialTransaction",
-      "description": "List parties and details involved in the transaction",
       "allOf": [
         {
-          "$ref": "#/definitions/CommercialTransactionBase"
-        },
-        {
-          "$ref": "#/definitions/CommercialTransactionReceivers"
+          "$ref": "commercial-transaction.json#/definitions/CommercialTransaction"
         }
       ]
-    },
-    "Measurement": {
-      "title": "Measurement",
-      "type": "object",
-      "description": "Measured Values in a structured fashion for easy processing and rendering of data",
-      "properties": {
-        "Property": {
-          "description": "The property measured",
-          "type": "string"
-        },
-        "Value": {
-          "description": "A measured or calculated Value (e.g. mean of individual measurements).",
-          "type": "number"
-        },
-        "Minimum": {
-          "description": "The lower limit according product specification. If not provided it is 0.",
-          "type": "number"
-        },
-        "Maximum": {
-          "description": "The upper limit according product specification. If not provided it is ∞.",
-          "type": "number"
-        },
-        "Unit": {
-          "description": "The Unit of Value.",
-          "type": "string"
-        }
-      },
-      "required": ["Value"],
-      "additionalProperties": false
     },
     "ChemicalComposition": {
       "title": "ChemicalComposition",
@@ -1031,13 +880,20 @@
           },
           "patternProperties": {
             "": {
-              "$ref": "key-value-object.json#/definitions/KeyValueObject"
+              "$ref": "#/definitions/KeyValueObject"
             }
           },
           "additionalProperties": false
         }
       },
       "additionalProperties": false
+    },
+    "Measurement": {
+      "allOf": [
+        {
+          "$ref": "measurement.json#/definitions/Measurement"
+        }
+      ]
     },
     "ProductDescription": {
       "$ref": "product-description.json#/definitions/ProductDescription"
@@ -1059,7 +915,7 @@
           },
           "patternProperties": {
             "^D[0][2-9]|^D[1-4]D[0-9]|^D50": {
-              "$ref": "key-value-object.json#/definitions/KeyValueObject"
+              "$ref": "#/definitions/KeyValueObject"
             }
           },
           "additionalProperties": false
@@ -1073,7 +929,7 @@
           },
           "patternProperties": {
             "^D[5][1-9]|^D[6-9][0-9]": {
-              "$ref": "key-value-object.json#/definitions/KeyValueObject"
+              "$ref": "#/definitions/KeyValueObject"
             }
           },
           "additionalProperties": false
@@ -1109,7 +965,7 @@
           },
           "patternProperties": {
             "^C0[4-9]": {
-              "$ref": "key-value-object.json#/definitions/KeyValueObject"
+              "$ref": "#/definitions/KeyValueObject"
             }
           },
           "additionalProperties": false
@@ -1154,7 +1010,7 @@
               },
               "patternProperties": {
                 "^C1[4-9]|^C2[0-9]": {
-                  "$ref": "key-value-object.json#/definitions/KeyValueObject"
+                  "$ref": "#/definitions/KeyValueObject"
                 }
               }
             }
@@ -1192,7 +1048,7 @@
               },
               "patternProperties": {
                 "^C3[3-9]": {
-                  "$ref": "key-value-object.json#/definitions/KeyValueObject"
+                  "$ref": "#/definitions/KeyValueObject"
                 }
               }
             }
@@ -1238,7 +1094,7 @@
               },
               "patternProperties": {
                 "^C4[4-9]": {
-                  "$ref": "key-value-object.json#/definitions/KeyValueObject"
+                  "$ref": "#/definitions/KeyValueObject"
                 }
               }
             }
@@ -1253,7 +1109,7 @@
           },
           "patternProperties": {
             "^C[5-6][0-9]": {
-              "$ref": "key-value-object.json#/definitions/KeyValueObject"
+              "$ref": "#/definitions/KeyValueObject"
             }
           }
         },
@@ -1264,62 +1120,11 @@
       "additionalProperties": false
     },
     "Validation": {
-      "title": "Validation",
-      "type": "object",
-      "properties": {
-        "Z01": {
-          "description": "Statement of compliance",
-          "type": "string"
-        },
-        "Z02": {
-          "description": "Date of issue and validation",
-          "type": "string",
-          "format": "date"
-        },
-        "Z03": {
-          "description": "Stamp of the inspection representative",
-          "type": "string"
-        },
-        "Z04": {
-          "description": "CE marking",
-          "type": "object",
-          "properties": {
-            "CE_Image": {
-              "description": "The CE image as base64 encoded png file. A default with size 90x65 is provided by example",
-              "type": "string",
-              "contentEncoding": "base64",
-              "contentMediaType": "image/png"
-            },
-            "NotifiedBodyNumber": {
-              "description": "The identification number of the Notified body. Refer to https://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CELEX:31993L0068:en:HTML and https://ec.europa.eu/growth/tools-databases/nando/index.cfm?fuseaction=notifiedbody.main",
-              "type": "string"
-            },
-            "DoCYear": {
-              "description": "The year when the declaration of conformance was issued",
-              "type": "string"
-            },
-            "DoCNumber": {
-              "description": "The declaration of conformance document number ",
-              "type": "string"
-            }
-          },
-          "required": ["CE_Image", "NotifiedBodyNumber", "DoCYear", "DoCNumber"]
-        },
-        "SupplementaryInformation": {
-          "title": "ValidationSupplementaryInformation",
-          "type": "object",
-          "propertyNames": {
-            "pattern": "^Z0[5-9]|^Z[1-9][0-9]"
-          },
-          "patternProperties": {
-            "^Z0[5-9]|^Z[1-9][0-9]": {
-              "$ref": "key-value-object.json#/definitions/KeyValueObject"
-            }
-          }
+      "allOf": [
+        {
+          "$ref": "validation.json#/definitions/Validation"
         }
-      },
-      "required": ["Z01", "Z02"],
-      "additionalProperties": false
+      ]
     }
   },
   "title": "Certificate",
@@ -1357,7 +1162,11 @@
       "required": ["CertificateLanguages", "CommercialTransaction", "ProductDescription", "Validation"],
       "properties": {
         "CertificateLanguages": {
-          "$ref": "#/definitions/CertificateLanguages"
+          "allOf": [
+            {
+              "$ref": "#/definitions/CertificateLanguages"
+            }
+          ]
         },
         "CommercialTransaction": {
           "$ref": "#/definitions/CommercialTransaction"
