@@ -14,6 +14,12 @@ This repository contains translations and templates used for HTML / PDF renderin
 
 To run the PDF rendering tests we use [pdf2image](https://github.com/yakovmeister/pdf2image) lib. Please refer to this [guide](https://github.com/yakovmeister/pdf2image/blob/master/docs/gm-installation.md) to install required dependencies.
 
+## Updating the partials-map
+
+When a new release is made, `update:partials-map` should run automatically and update the version of the `inspection` path.
+
+When a new version of the `schema-definitions` is released, the script will need to be run manually, with the new version passed in along with the flag `-d` or `--newDefinitionsVersion`.
+
 ## License
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fthematerials-network%2FEN10168-schemas.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fthematerials-network%2FEN10168-schemas?ref=badge_large)
