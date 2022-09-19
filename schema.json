@@ -9,52 +9,45 @@
   "$id": "schema.json",
   "definitions": {
     "KeyValueObject": {
-      "$ref": "key-value-object.json#/definitions/KeyValueObject"
+      "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/key-value-object/key-value-object.json#/definitions/KeyValueObject"
     },
     "CertificateLanguages": {
       "allOf": [
         {
-          "$ref": "languages.json#/definitions/CertificateLanguages"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/languages/languages.json#/definitions/CertificateLanguages"
         }
       ]
     },
     "Company": {
       "allOf": [
         {
-          "$ref": "company.json#/definitions/Company"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/company/company.json#/definitions/Company"
         }
       ]
     },
     "ChemicalElement": {
-      "title": "ChemicalElement",
-      "type": "object",
-      "description": "The chemical composition of the product.",
-      "properties": {
-        "Symbol": {
-          "description": "The symbol of the element",
-          "type": "string"
-        },
-        "Actual": {
-          "description": "The measured part of the element in percentage.",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
-        },
-        "Minimum": {
-          "description": "The minimum if defined by the product specification, otherwise the element must not provided.",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
-        },
-        "Maximum": {
-          "description": "The maximum as defined by the product specification, otherwise the element must not provided.",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/chemical-element/chemical-element.json"
         }
-      },
-      "required": ["Symbol", "Actual"],
-      "additionalProperties": false
+      ]
+    },
+    "Measurement": {
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/measurement/measurement.json"
+        }
+      ]
+    },
+    "ProductDescription": {
+      "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/product-description/product-description.json#/definitions/ProductDescription"
+    },
+    "Validation": {
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/validation/validation.json"
+        }
+      ]
     },
     "Tube": {
       "title": "Tube",
@@ -545,10 +538,50 @@
         }
       ]
     },
+    "CommercialTransactionExtended": {
+      "title": "CommercialTransactionReceivers",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "A07": {
+          "description": "Purchase number",
+          "type": "string"
+        },
+        "SupplementaryInformation": {
+          "title": "CommercialTransactionSupplementaryInformation",
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^A1[0-9]|^A[2-8][0-9]|^A[2-9][0-6]"
+          },
+          "patternProperties": {
+            "^A1[0-9]|^A[2-8][0-9]|^A[2-9][0-6]": {
+              "$ref": "#/definitions/KeyValueObject"
+            }
+          },
+          "additionalProperties": false
+        },
+        "A97": {
+          "description": "A custom field for the position number in the order",
+          "type": "string"
+        },
+        "A98": {
+          "description": "A custom field for the delivery note number",
+          "type": "string"
+        },
+        "A99": {
+          "description": "A custom field for the aviso document number",
+          "type": "string"
+        }
+      },
+      "required": ["A07"]
+    },
     "CommercialTransaction": {
       "allOf": [
         {
-          "$ref": "commercial-transaction.json#/definitions/CommercialTransaction"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/commercial-transaction/commercial-transaction.json#/definitions/CommercialTransaction"
+        },
+        {
+          "$ref": "#/definitions/CommercialTransactionExtended"
         }
       ]
     },
@@ -888,16 +921,6 @@
       },
       "additionalProperties": false
     },
-    "Measurement": {
-      "allOf": [
-        {
-          "$ref": "measurement.json#/definitions/Measurement"
-        }
-      ]
-    },
-    "ProductDescription": {
-      "$ref": "product-description.json#/definitions/ProductDescription"
-    },
     "OtherTests": {
       "title": "OtherTests",
       "type": "object",
@@ -1118,13 +1141,6 @@
         }
       },
       "additionalProperties": false
-    },
-    "Validation": {
-      "allOf": [
-        {
-          "$ref": "validation.json#/definitions/Validation"
-        }
-      ]
     }
   },
   "title": "Certificate",
