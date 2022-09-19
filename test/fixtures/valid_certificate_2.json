@@ -9,7 +9,9 @@
         "ZipCode": "4040",
         "City": "Linz",
         "Country": "AT",
-        "VAT_Id": "AT123456789"
+        "Identifiers": {
+          "VAT": "AT123456789"
+        }
       },
       "A02": "Mill Certificate EN 10204 3.1",
       "A03": "1866645/001",
@@ -21,7 +23,9 @@
         "ZipCode": "10115",
         "City": "Berlin",
         "Country": "DE",
-        "VAT_Id": "DE12234567890"
+        "Identifiers": {
+          "VAT": "DE12234567890"
+        }
       },
       "A06.3": {
         "CompanyName": "Steel User AG",
@@ -29,7 +33,9 @@
         "ZipCode": "10115",
         "City": "Berlin",
         "Country": "DE",
-        "DUNS": "123456789"
+        "Identifiers": {
+          "DUNS": "123456789"
+        }
       },
       "A07": "0334/2019/ZZS",
       "A08": "958722",

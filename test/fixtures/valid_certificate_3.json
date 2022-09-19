@@ -10,7 +10,9 @@
         "City": "Linz",
         "Country": "AT",
         "Email": "sbs.steelfactory@gmail.com",
-        "VAT_Id": "AT123456789"
+        "Identifiers": {
+          "VAT": "AT123456789"
+        }
       },
       "A02": "Mill Certificate EN 10204 3.1",
       "A03": "1866645/001",
@@ -23,7 +25,9 @@
         "City": "Berlin",
         "Country": "DE",
         "Email": "sbs.steeltrader@gmail.com",
-        "VAT_Id": "DE12234567890"
+        "Identifiers": {
+          "VAT": "DE12234567890"
+        }
       },
       "A06.2": {
         "CompanyName": "Steel Storage AG",
@@ -32,7 +36,9 @@
         "City": "Berlin",
         "Country": "DE",
         "Email": "sbs.steeltrader@gmail.com",
-        "VAT_Id": "DE12234567890"
+        "Identifiers": {
+          "VAT": "DE12234567890"
+        }
       },
       "A06.3": {
         "CompanyName": "Steel User AG",
@@ -41,7 +47,9 @@
         "City": "Berlin",
         "Country": "DE",
         "Email": "sbs.steeltrader@gmail.com",
-        "VAT_Id": "DE12234567890"
+        "Identifiers": {
+          "VAT": "DE12234567890"
+        }
       },
       "A07": "0334/2019/ZZS",
       "A08": "958722",
