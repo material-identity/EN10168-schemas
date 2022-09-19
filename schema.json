@@ -28,24 +28,30 @@
     "ChemicalElement": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/chemical-element/chemical-element.json"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/chemical-element/chemical-element.json#/definitions/ChemicalElement"
         }
       ]
     },
     "Measurement": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/measurement/measurement.json"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/measurement/measurement.json#/definitions/Measurement"
         }
       ]
     },
     "ProductDescription": {
-      "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/product-description/product-description.json#/definitions/ProductDescription"
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/product-description/product-description.json#/definitions/ProductDescription"
+        }
+      ],
+      "unevaluatedProperties": false
     },
     "Validation": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/validation/validation.json"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/validation/validation.json#/definitions/Validation"
         }
       ]
     },
