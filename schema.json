@@ -6,7 +6,7 @@
     "of the License at https://www.gnu.org/licenses/agpl-3.0.en.html"
   ],
   "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "$id": "schema.json",
+  "$id": "https://schemas.s1seven.com/en10168-schemas/v0.3.0/schema.json",
   "definitions": {
     "KeyValueObject": {
       "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/key-value-object/key-value-object.json#/definitions/KeyValueObject"
