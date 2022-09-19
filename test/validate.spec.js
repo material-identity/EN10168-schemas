@@ -1,13 +1,14 @@
 /* eslint-disable no-undef */
 const { loadExternalFile } = require('@s1seven/schema-tools-utils');
-const Ajv = require('ajv');
+const Ajv2019 = require('ajv/dist/2019');
+const draft7MetaSchema = require('ajv/dist/refs/json-schema-draft-07.json');
 const addFormats = require('ajv-formats');
 const { readFileSync } = require('fs');
 const { resolve } = require('path');
 const { languages, translationProperties } = require('../utils/constants');
 
 const createAjvInstance = () => {
-  const ajv = new Ajv({
+  const ajv = new Ajv2019({
     loadSchema: (uri) => loadExternalFile(uri, 'json'),
     strictSchema: true,
     strictNumbers: true,
@@ -16,6 +17,7 @@ const createAjvInstance = () => {
     allErrors: true,
   });
   ajv.addKeyword('meta:license');
+  ajv.addMetaSchema(draft7MetaSchema);
   addFormats(ajv);
   return ajv;
 };
@@ -39,6 +41,9 @@ describe('Validate', function () {
     {
       certificateName: `valid_certificate_5`,
     },
+    {
+      certificateName: `valid_certificate_6`,
+    },
   ];
   const invalidCertTestSuitesMap = [
     {
@@ -53,24 +58,31 @@ describe('Validate', function () {
         },
         {
           instancePath: '/Certificate/CommercialTransaction/A01',
-          schemaPath: '#/definitions/CompanyIdentifiers/anyOf/0/required',
+          schemaPath: '#/allOf/2/required',
           keyword: 'required',
-          params: { missingProperty: 'VAT_Id' },
-          message: "must have required property 'VAT_Id'",
+          params: { missingProperty: 'Identifiers' },
+          message: "must have required property 'Identifiers'",
         },
         {
-          instancePath: '/Certificate/CommercialTransaction/A01',
-          schemaPath: '#/definitions/CompanyIdentifiers/anyOf/1/required',
+          instancePath: '/Certificate/CommercialTransaction/A06',
+          schemaPath: '#/allOf/2/required',
           keyword: 'required',
-          params: { missingProperty: 'DUNS' },
-          message: "must have required property 'DUNS'",
+          params: { missingProperty: 'Identifiers' },
+          message: "must have required property 'Identifiers'",
         },
         {
-          instancePath: '/Certificate/CommercialTransaction/A01',
-          schemaPath: '#/definitions/CompanyIdentifiers/anyOf',
-          keyword: 'anyOf',
-          params: {},
-          message: 'must match a schema in anyOf',
+          instancePath: '/Certificate/CommercialTransaction',
+          schemaPath: '#/oneOf/1/required',
+          keyword: 'required',
+          params: { missingProperty: 'A06.1' },
+          message: "must have required property 'A06.1'",
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction',
+          schemaPath: '#/oneOf',
+          keyword: 'oneOf',
+          params: { passingSchemas: null },
+          message: 'must match exactly one schema in oneOf',
         },
         {
           instancePath: '/Certificate/CommercialTransaction/A97',
@@ -79,39 +91,39 @@ describe('Validate', function () {
           params: { type: 'string' },
           message: 'must be string',
         },
-        {
-          instancePath: '/Certificate/ProductDescription',
-          schemaPath: '#/required',
-          keyword: 'required',
-          params: { missingProperty: 'B10' },
-          message: "must have required property 'B10'",
-        },
-        {
-          instancePath: '/Certificate/Inspection/ChemicalComposition/C71',
-          schemaPath: '#/definitions/ChemicalElement/required',
-          keyword: 'required',
-          params: { missingProperty: 'Symbol' },
-          message: "must have required property 'Symbol'",
-        },
-        {
-          instancePath: '/Certificate/Inspection',
-          schemaPath: '#/properties/Certificate/properties/Inspection/oneOf/1/type',
-          keyword: 'type',
-          params: { type: 'array' },
-          message: 'must be array',
-        },
-        {
-          instancePath: '/Certificate/Inspection',
-          schemaPath: '#/properties/Certificate/properties/Inspection/oneOf',
-          keyword: 'oneOf',
-          params: { passingSchemas: null },
-          message: 'must match exactly one schema in oneOf',
-        },
       ],
     },
     {
       certificateName: `invalid_certificate_2`,
       expectedErrors: [
+        {
+          instancePath: '/Certificate/CommercialTransaction/A01',
+          schemaPath: '#/allOf/2/required',
+          keyword: 'required',
+          params: { missingProperty: 'Identifiers' },
+          message: "must have required property 'Identifiers'",
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction/A06',
+          schemaPath: '#/allOf/2/required',
+          keyword: 'required',
+          params: { missingProperty: 'Identifiers' },
+          message: "must have required property 'Identifiers'",
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction',
+          schemaPath: '#/oneOf/1/required',
+          keyword: 'required',
+          params: { missingProperty: 'A06.1' },
+          message: "must have required property 'A06.1'",
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction',
+          schemaPath: '#/oneOf',
+          keyword: 'oneOf',
+          params: { passingSchemas: null },
+          message: 'must match exactly one schema in oneOf',
+        },
         {
           instancePath: '/Certificate/CommercialTransaction/A97',
           schemaPath: '#/properties/A97/type',
@@ -132,62 +144,6 @@ describe('Validate', function () {
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
-        },
-        {
-          instancePath: '/Certificate/ProductDescription',
-          schemaPath: '#/additionalProperties',
-          keyword: 'additionalProperties',
-          params: { additionalProperty: 'B14' },
-          message: 'must NOT have additional properties',
-        },
-        {
-          instancePath: '/Certificate/ProductDescription',
-          schemaPath: '#/additionalProperties',
-          keyword: 'additionalProperties',
-          params: { additionalProperty: 'B99' },
-          message: 'must NOT have additional properties',
-        },
-        {
-          instancePath: '/Certificate/Inspection',
-          schemaPath: '#/properties/Certificate/properties/Inspection/oneOf/0/type',
-          keyword: 'type',
-          params: { type: 'object' },
-          message: 'must be object',
-        },
-        {
-          instancePath: '/Certificate/Inspection',
-          schemaPath: '#/type',
-          keyword: 'type',
-          params: { type: 'object' },
-          message: 'must be object',
-        },
-        {
-          instancePath: '/Certificate/Inspection/0/ChemicalComposition/C71/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/maximum',
-          keyword: 'maximum',
-          params: { comparison: '<=', limit: 100 },
-          message: 'must be <= 100',
-        },
-        {
-          instancePath: '/Certificate/Inspection',
-          schemaPath: '#/properties/Certificate/properties/Inspection/oneOf',
-          keyword: 'oneOf',
-          params: { passingSchemas: null },
-          message: 'must match exactly one schema in oneOf',
-        },
-        {
-          instancePath: '/Certificate/Validation',
-          schemaPath: '#/required',
-          keyword: 'required',
-          params: { missingProperty: 'Z01' },
-          message: "must have required property 'Z01'",
-        },
-        {
-          instancePath: '/Certificate/Validation',
-          schemaPath: '#/required',
-          keyword: 'required',
-          params: { missingProperty: 'Z02' },
-          message: "must have required property 'Z02'",
         },
       ],
     },
@@ -226,8 +182,8 @@ describe('Validate', function () {
     },
   ];
 
-  it('should validate schema', () => {
-    const validateSchema = createAjvInstance().compile(localSchema);
+  it('should validate schema', async () => {
+    const validateSchema = await createAjvInstance().compileAsync(localSchema);
     expect(() => validateSchema()).not.toThrow();
   });
 
