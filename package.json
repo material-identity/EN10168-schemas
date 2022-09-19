@@ -18,6 +18,7 @@
     "lint:staged": "lint-staged",
     "format": "prettier --write \"**/*.{js,json}\"",
     "test": "jest --runInBand",
+    "update:partials-map": "node utils/update-partials-map-versions.js",
     "update-version": "node ./utils/update-version.js",
     "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it",
     "release:dry-run": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --dry-run",
@@ -41,7 +42,8 @@
     "pdf2pic": "^2.1.4",
     "pre-commit": "^1.2.2",
     "prettier": "2.6.2",
-    "release-it": "*"
+    "release-it": "*",
+    "yargs": "^17.5.1"
   },
   "lint-staged": {
     "*.{js}": [
@@ -64,7 +66,7 @@
         "npm run lint",
         "npm run test"
       ],
-      "after:bump": "npm run update-version -- v${version} ${name}",
+      "after:bump": "npm run update-version -- v${version} ${name} && npm run update:partials-map -- -s true -c true",
       "after:release": "echo Successfully released ${name} v${version} to ${repo.repository}."
     }
   },
