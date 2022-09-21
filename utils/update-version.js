@@ -14,10 +14,78 @@ const {
   defaultSchemaDefinitionsVersion,
 } = require('./constants');
 
-const schemaFilePaths = [{ filePath: 'schema.json', properties: [{ path: '$id', value: 'schema.json' }] }];
+const schemaFilePaths = [
+  {
+    filePath: 'schema.json',
+    properties: [
+      { path: '$id', value: 'schema.json' },
+      {
+        path: 'definitions.KeyValueObject.$ref',
+        schemaType: schemaDefinitionsPath,
+        version: defaultSchemaDefinitionsVersion,
+        value: 'key-value-object/key-value-object.json#/definitions/KeyValueObject',
+      },
+      {
+        path: 'definitions.CertificateLanguages.allOf.0.$ref',
+        schemaType: schemaDefinitionsPath,
+        version: defaultSchemaDefinitionsVersion,
+        value: 'languages/languages.json#/definitions/CertificateLanguages',
+      },
+      {
+        path: 'definitions.Company.allOf.0.$ref',
+        schemaType: schemaDefinitionsPath,
+        version: defaultSchemaDefinitionsVersion,
+        value: 'company/company.json#/definitions/Company',
+      },
+      {
+        path: 'definitions.ChemicalElement.allOf.0.$ref',
+        schemaType: schemaDefinitionsPath,
+        version: defaultSchemaDefinitionsVersion,
+        value: 'chemical-element/chemical-element.json#/definitions/ChemicalElement',
+      },
+      {
+        path: 'definitions.Measurement.allOf.0.$ref',
+        schemaType: schemaDefinitionsPath,
+        version: defaultSchemaDefinitionsVersion,
+        value: 'measurement/measurement.json#/definitions/Measurement',
+      },
+      {
+        path: 'definitions.ProductDescription.allOf.0.$ref',
+        schemaType: schemaDefinitionsPath,
+        version: defaultSchemaDefinitionsVersion,
+        value: 'product-description/product-description.json#/definitions/ProductDescription',
+      },
+      {
+        path: 'definitions.Validation.allOf.0.$ref',
+        schemaType: schemaDefinitionsPath,
+        version: defaultSchemaDefinitionsVersion,
+        value: 'validation/validation.json#/definitions/Validation',
+      },
+      {
+        path: 'definitions.CommercialTransaction.allOf.0.$ref',
+        schemaType: schemaDefinitionsPath,
+        version: defaultSchemaDefinitionsVersion,
+        value: 'commercial-transaction/commercial-transaction.json#/definitions/CommercialTransaction',
+      },
+    ],
+  },
+];
+
 const partialsMapPaths = {
   filePath: 'partials-map.json',
   properties: [
+    {
+      path: 'chemicalElement',
+      schemaType: schemaDefinitionsPath,
+      version: defaultSchemaDefinitionsVersion,
+      value: 'chemical-element/chemical-element.hbs',
+    },
+    {
+      path: 'commercialTransaction',
+      schemaType: schemaDefinitionsPath,
+      version: defaultSchemaDefinitionsVersion,
+      value: 'commercial-transaction/commercial-transaction.hbs',
+    },
     {
       path: 'company',
       schemaType: schemaDefinitionsPath,
@@ -35,22 +103,16 @@ const partialsMapPaths = {
       value: 'measurement/measurement.hbs',
     },
     {
-      path: 'validation',
-      schemaType: schemaDefinitionsPath,
-      version: defaultSchemaDefinitionsVersion,
-      value: 'validation/validation.hbs',
-    },
-    {
       path: 'productDescription',
       schemaType: schemaDefinitionsPath,
       version: defaultSchemaDefinitionsVersion,
       value: 'product-description/product-description.hbs',
     },
     {
-      path: 'chemicalElement',
+      path: 'validation',
       schemaType: schemaDefinitionsPath,
       version: defaultSchemaDefinitionsVersion,
-      value: 'chemical-element/chemical-element.hbs',
+      value: 'validation/validation.hbs',
     },
   ],
 };
