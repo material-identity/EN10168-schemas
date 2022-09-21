@@ -1,20 +1,60 @@
 const { SchemaRepositoryVersion } = require('@s1seven/schema-tools-versioning');
 const { execSync } = require('child_process');
-const { readFile } = require('fs/promises');
-const { compile } = require('handlebars');
 
 const { version: pkgVersion } = require('../package.json');
+const partialsMap = require('../partials-map.json');
 const {
   defaultServerUrl,
   htmlTemplatePath,
-  inspectionTemplatePath,
   pdfDocDefinition,
   pdfFonts,
   pdfGeneratorPath,
   translations,
+  schemaDefinitionsPath,
+  defaultSchemaDefinitionsVersion,
 } = require('./constants');
 
 const schemaFilePaths = [{ filePath: 'schema.json', properties: [{ path: '$id', value: 'schema.json' }] }];
+const partialsMapPaths = {
+  filePath: 'partials-map.json',
+  properties: [
+    {
+      path: 'company',
+      schemaType: schemaDefinitionsPath,
+      version: defaultSchemaDefinitionsVersion,
+      value: 'company/company.hbs',
+    },
+    {
+      path: 'inspection',
+      value: 'inspection.hbs',
+    },
+    {
+      path: 'measurement',
+      schemaType: schemaDefinitionsPath,
+      version: defaultSchemaDefinitionsVersion,
+      value: 'measurement/measurement.hbs',
+    },
+    {
+      path: 'validation',
+      schemaType: schemaDefinitionsPath,
+      version: defaultSchemaDefinitionsVersion,
+      value: 'validation/validation.hbs',
+    },
+    {
+      path: 'productDescription',
+      schemaType: schemaDefinitionsPath,
+      version: defaultSchemaDefinitionsVersion,
+      value: 'product-description/product-description.hbs',
+    },
+    {
+      path: 'chemicalElement',
+      schemaType: schemaDefinitionsPath,
+      version: defaultSchemaDefinitionsVersion,
+      value: 'chemical-element/chemical-element.hbs',
+    },
+  ],
+};
+
 const fixturesFolder = 'test/fixtures';
 const jsonFixturesPattern = `${fixturesFolder}/*valid_certificate_*.json`;
 const htmlFixturesPattern = `${fixturesFolder}/*valid_certificate_*.html`;
@@ -54,10 +94,8 @@ function stageAndCommitChanges(version) {
   );
   await updater.updateSchemasVersion();
   await updater.updateJsonFixturesVersion(jsonFixturesPattern);
-  const inspectionTemplate = await readFile(inspectionTemplatePath, 'utf-8');
-  await updater.updateHtmlFixturesVersion(validCertificateFixturesPattern, htmlTemplatePath, {
-    partials: { inspection: (ctx, opts) => compile(inspectionTemplate)(ctx, opts) },
-  });
+  await updater.updatePartialsMapVersion(partialsMapPaths);
+  await updater.updateHtmlFixturesVersion(validCertificateFixturesPattern, htmlTemplatePath, {}, partialsMap);
   await updater.updatePdfFixturesVersion(
     validCertificateFixturesPattern,
     pdfGeneratorPath,

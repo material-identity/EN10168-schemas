@@ -1,7 +1,10 @@
 const { readFileSync } = require('fs');
 const { resolve } = require('path');
+const { name } = require('../package.json');
 
-const defaultServerUrl = 'https://schemas.s1seven.com/en10168-schemas';
+const defaultServerUrl = `https://schemas.s1seven.com/${name}`;
+const schemaDefinitionsPath = 'schema-definitions';
+const defaultSchemaDefinitionsVersion = 'v0.0.5';
 
 const htmlTemplatePath = resolve('template.hbs');
 
@@ -140,6 +143,7 @@ const translationProperties = {
 };
 
 module.exports = {
+  defaultSchemaDefinitionsVersion,
   defaultServerUrl,
   htmlTemplatePath,
   languages,
@@ -148,6 +152,7 @@ module.exports = {
   pdfStylesPath,
   pdfStyles,
   pdfFonts,
+  schemaDefinitionsPath,
   translationProperties,
   translations,
 };
