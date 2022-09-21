@@ -5,91 +5,55 @@
     "you may not use this file except in compliance with the License. You may obtain a copy",
     "of the License at https://www.gnu.org/licenses/agpl-3.0.en.html"
   ],
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "https://schemas.s1seven.com/en10168-schemas/v0.3.0/schema.json",
   "definitions": {
     "KeyValueObject": {
-      "title": "KeyValueObject",
-      "type": "object",
-      "properties": {
-        "Key": {
-          "type": "string"
-        },
-        "Value": {
-          "type": "string"
-        },
-        "Unit": {
-          "type": "string"
-        },
-        "Interpretation": {
-          "type": "string"
-        },
-        "Type": {
-          "enum": [
-            "string",
-            "number",
-            "date",
-            "date-time",
-            "boolean"
-          ],
-          "default": "string"
-        }
-      },
-      "required": [
-        "Key"
-      ],
-      "additionalProperties": false
+      "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/key-value-object/key-value-object.json#/definitions/KeyValueObject"
     },
     "CertificateLanguages": {
-      "type": "array",
-      "items": {
-        "enum": [
-          "EN",
-          "DE",
-          "FR",
-          "PL"
-        ]
-      },
-      "minItems": 1,
-      "maxItems": 2,
-      "default": [
-        "EN"
-      ],
-      "uniqueItems": true
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/languages/languages.json#/definitions/CertificateLanguages"
+        }
+      ]
+    },
+    "Company": {
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/company/company.json#/definitions/Company"
+        }
+      ]
     },
     "ChemicalElement": {
-      "title": "ChemicalElement",
-      "type": "object",
-      "description": "The chemical composition of the product.",
-      "properties": {
-        "Symbol": {
-          "description": "The symbol of the element",
-          "type": "string"
-        },
-        "Actual": {
-          "description": "The measured part of the element in percentage.",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
-        },
-        "Minimum": {
-          "description": "The minimum if defined by the product specification, otherwise the element must not provided.",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
-        },
-        "Maximum": {
-          "description": "The maximum as defined by the product specification, otherwise the element must not provided.",
-          "type": "number",
-          "minimum": 0,
-          "maximum": 100
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/chemical-element/chemical-element.json#/definitions/ChemicalElement"
         }
-      },
-      "required": [
-        "Symbol",
-        "Actual"
+      ]
+    },
+    "Measurement": {
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/measurement/measurement.json#/definitions/Measurement"
+        }
+      ]
+    },
+    "ProductDescription": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/product-description/product-description.json#/definitions/ProductDescription"
+        }
       ],
-      "additionalProperties": false
+      "unevaluatedProperties": false
+    },
+    "Validation": {
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/validation/validation.json#/definitions/Validation"
+        }
+      ]
     },
     "Tube": {
       "title": "Tube",
@@ -118,12 +82,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "OuterDiameter",
-        "WallThickness",
-        "Unit"
-      ],
+      "required": ["Form", "OuterDiameter", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "QuadraticTube": {
@@ -153,12 +112,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "SideLength",
-        "WallThickness",
-        "Unit"
-      ],
+      "required": ["Form", "SideLength", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "RectangularTube": {
@@ -193,13 +147,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Height",
-        "WallThickness",
-        "Unit"
-      ],
+      "required": ["Form", "Width", "Height", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "Pipe": {
@@ -229,12 +177,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "SideLength",
-        "WallThickness",
-        "Unit"
-      ],
+      "required": ["Form", "SideLength", "WallThickness", "Unit"],
       "additionalProperties": false
     },
     "RectangularPipe": {
@@ -269,13 +212,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Height",
-        "WallThickness",
-        "Unit"
-      ],
+      "required": ["Form", "Width", "Height", "WallThickness", "Unit"],
       "additionalProperties": true
     },
     "Coil": {
@@ -305,12 +242,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "WallThickness",
-        "Unit"
-      ],
+      "required": ["Form", "Width", "WallThickness", "Unit"],
       "additionalProperties": true
     },
     "RoundBar": {
@@ -335,11 +267,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Diameter",
-        "Unit"
-      ],
+      "required": ["Form", "Diameter", "Unit"],
       "additionalProperties": false
     },
     "HexagonalBar": {
@@ -364,11 +292,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Diameter",
-        "Unit"
-      ],
+      "required": ["Form", "Diameter", "Unit"],
       "additionalProperties": false
     },
     "FlatBar": {
@@ -398,12 +322,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Thickness",
-        "Unit"
-      ],
+      "required": ["Form", "Width", "Thickness", "Unit"],
       "additionalProperties": false
     },
     "Sheet": {
@@ -433,12 +352,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Thickness",
-        "Unit"
-      ],
+      "required": ["Form", "Width", "Thickness", "Unit"],
       "additionalProperties": false
     },
     "Slab": {
@@ -468,12 +382,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Thickness",
-        "Unit"
-      ],
+      "required": ["Form", "Width", "Thickness", "Unit"],
       "additionalProperties": false
     },
     "Plate": {
@@ -503,12 +412,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Thickness",
-        "Unit"
-      ],
+      "required": ["Form", "Width", "Thickness", "Unit"],
       "additionalProperties": false
     },
     "Strip": {
@@ -538,12 +442,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Thickness",
-        "Unit"
-      ],
+      "required": ["Form", "Width", "Thickness", "Unit"],
       "additionalProperties": false
     },
     "Scroll": {
@@ -573,12 +472,7 @@
           "default": "mm"
         }
       },
-      "required": [
-        "Form",
-        "Width",
-        "Thickness",
-        "Unit"
-      ],
+      "required": ["Form", "Width", "Thickness", "Unit"],
       "additionalProperties": false
     },
     "Other": {
@@ -597,10 +491,7 @@
           "type": "string"
         }
       },
-      "required": [
-        "Form",
-        "Description"
-      ],
+      "required": ["Form", "Description"],
       "additionalProperties": false
     },
     "ProductShape": {
@@ -653,133 +544,13 @@
         }
       ]
     },
-    "CompanyBase": {
-      "type": "object",
-      "properties": {
-        "CompanyName": {
-          "description": "Name of the company",
-          "type": "string"
-        },
-        "Street": {
-          "description": "Address of the company",
-          "type": "string"
-        },
-        "City": {
-          "description": "City of the company",
-          "type": "string"
-        },
-        "ZipCode": {
-          "description": "Postal code of the company",
-          "type": "string"
-        },
-        "Country": {
-          "description": "Country of the company",
-          "type": "string"
-        },
-        "Email": {
-          "description": "Email address of the company",
-          "type": "string",
-          "format": "email"
-        },
-        "AdditionalInformation": {
-          "description": "Each entry of the array is rendered as a new line in HTML and PDF",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "required": [
-        "CompanyName",
-        "Street",
-        "City",
-        "ZipCode",
-        "Country"
-      ]
-    },
-    "CompanyIdentifiers": {
-      "type": "object",
-      "anyOf": [
-        {
-          "properties": {
-            "VAT_Id": {
-              "type": "string",
-              "minLength": 8,
-              "maxLength": 15
-            }
-          },
-          "required": [
-            "VAT_Id"
-          ]
-        },
-        {
-          "properties": {
-            "DUNS": {
-              "type": "string",
-              "minLength": 9,
-              "maxLength": 9
-            }
-          },
-          "required": [
-            "DUNS"
-          ]
-        }
-      ]
-    },
-    "Company": {
-      "title": "Company",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/CompanyBase"
-        },
-        {
-          "$ref": "#/definitions/CompanyIdentifiers"
-        }
-      ]
-    },
-    "CommercialTransactionBase": {
-      "title": "CommercialTransactionBase",
+    "CommercialTransactionExtended": {
+      "title": "CommercialTransactionReceivers",
       "description": "",
       "type": "object",
       "properties": {
-        "A01": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/Company"
-            }
-          ],
-          "description": "The manufacturer's works which delivers the certificate along the product"
-        },
-        "A02": {
-          "description": "The type of inspection document, e.g. 'EN 10204 3.1 Certificate'",
-          "type": "string"
-        },
-        "A03": {
-          "description": "The document number of the certifcate",
-          "type": "string"
-        },
-        "A04": {
-          "description": "The mark of the manufacturer as base64 png file. The maximum size is <TBD>",
-          "type": "string",
-          "contentEncoding": "base64",
-          "contentMediaType": "image/png"
-        },
-        "A05": {
-          "description": "The originator of the document, not necessarily equal to A01",
-          "type": "string",
-          "default": "Factory Production Control"
-        },
         "A07": {
           "description": "Purchase number",
-          "type": "string"
-        },
-        "A08": {
-          "description": "Manufacturer's work number",
-          "type": "string"
-        },
-        "A09": {
-          "description": "The article number used by the purchaser",
           "type": "string"
         },
         "SupplementaryInformation": {
@@ -808,110 +579,17 @@
           "type": "string"
         }
       },
-      "required": [
-        "A01",
-        "A02",
-        "A03",
-        "A04",
-        "A05",
-        "A07"
-      ]
-    },
-    "CommercialTransactionReceivers": {
-      "title": "CommercialTransactionReceivers",
-      "description": "",
-      "type": "object",
-      "oneOf": [
-        {
-          "properties": {
-            "A06": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/Company"
-                }
-              ],
-              "description": "The purchaser of the product and receiver of the certificate"
-            }
-          },
-          "required": [
-            "A06"
-          ]
-        },
-        {
-          "properties": {
-            "A06.1": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/Company"
-                }
-              ],
-              "description": "The purchaser of the product"
-            },
-            "A06.2": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/Company"
-                }
-              ],
-              "description": "The consignee of the product"
-            },
-            "A06.3": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/Company"
-                }
-              ],
-              "description": "The receiver/consignee of the certificate"
-            }
-          },
-          "required": [
-            "A06.1"
-          ]
-        }
-      ]
+      "required": ["A07"]
     },
     "CommercialTransaction": {
-      "title": "CommercialTransaction",
-      "description": "List parties and details involved in the transaction",
       "allOf": [
         {
-          "$ref": "#/definitions/CommercialTransactionBase"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/commercial-transaction/commercial-transaction.json#/definitions/CommercialTransaction"
         },
         {
-          "$ref": "#/definitions/CommercialTransactionReceivers"
+          "$ref": "#/definitions/CommercialTransactionExtended"
         }
       ]
-    },
-    "Measurement": {
-      "title": "Measurement",
-      "type": "object",
-      "description": "Measured Values in a structured fashion for easy processing and rendering of data",
-      "properties": {
-        "Property": {
-          "description": "The property measured",
-          "type": "string"
-        },
-        "Value": {
-          "description": "A measured or calculated Value (e.g. mean of individual measurements).",
-          "type": "number"
-        },
-        "Minimum": {
-          "description": "The lower limit according product specification. If not provided it is 0.",
-          "type": "number"
-        },
-        "Maximum": {
-          "description": "The upper limit according product specification. If not provided it is ∞.",
-          "type": "number"
-        },
-        "Unit": {
-          "description": "The Unit of Value.",
-          "type": "string"
-        }
-      },
-      "required": [
-        "Value"
-      ],
-      "additionalProperties": false
     },
     "ChemicalComposition": {
       "title": "ChemicalComposition",
@@ -919,10 +597,7 @@
       "properties": {
         "C70": {
           "description": "The metallurgic process, which is restricted to 2 types: Y = Basic oxygen process, E = Electric furnace",
-          "enum": [
-            "Y",
-            "E"
-          ]
+          "enum": ["Y", "E"]
         },
         "C71": {
           "description": "Share of element",
@@ -1252,138 +927,6 @@
       },
       "additionalProperties": false
     },
-    "ProductDescription": {
-      "title": "ProductDescription",
-      "type": "object",
-      "properties": {
-        "B01": {
-          "description": "The product",
-          "type": "string"
-        },
-        "B02": {
-          "description": "",
-          "type": "object",
-          "properties": {
-            "ProductNorm": {
-              "description": "The product norm designation",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "MaterialNorm": {
-              "description": "The material norm(s)",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "MassNorm": {
-              "description": "The mass norm(s)",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "SteelDesignation": {
-              "description": "The steel designation(s)",
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          "additionalProperties": false
-        },
-        "B03": {
-          "description": "Any supplementary requirements",
-          "type": "string"
-        },
-        "B04": {
-          "description": "The delivery conditions for the product",
-          "type": "string"
-        },
-        "B05": {
-          "description": "Reference heat treatment of samples",
-          "type": "string"
-        },
-        "B06": {
-          "description": "Marking of the product",
-          "type": "string"
-        },
-        "B07": {
-          "description": "Identification of the product, usually batch, charge or lot number",
-          "type": "string"
-        },
-        "B08": {
-          "description": "Number of pieces of the product.",
-          "type": "number"
-        },
-        "B09": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/ProductShape"
-            }
-          ],
-          "description": "Product type and its describing dimensional parameters"
-        },
-        "B10": {
-          "description": "Product dimensions - length of the product",
-          "allOf": [
-            {
-              "$ref": "#/definitions/Measurement"
-            }
-          ]
-        },
-        "B11": {
-          "description": "Product dimensions ",
-          "allOf": [
-            {
-              "$ref": "#/definitions/Measurement"
-            }
-          ]
-        },
-        "B12": {
-          "description": "Theoretical mass",
-          "allOf": [
-            {
-              "$ref": "#/definitions/Measurement"
-            }
-          ]
-        },
-        "B13": {
-          "description": "Actual mass",
-          "allOf": [
-            {
-              "$ref": "#/definitions/Measurement"
-            }
-          ]
-        },
-        "SupplementaryInformation": {
-          "title": "ProductDescriptionSupplementaryInformation",
-          "type": "object",
-          "propertyNames": {
-            "pattern": "^B1[4-9]|^B[2-9][0-9]"
-          },
-          "patternProperties": {
-            "^B1[4-9]|^B[2-9][0-9]": {
-              "$ref": "#/definitions/KeyValueObject"
-            }
-          },
-          "additionalProperties": false
-        }
-      },
-      "required": [
-        "B01",
-        "B02",
-        "B07",
-        "B08",
-        "B09",
-        "B10",
-        "B13"
-      ],
-      "additionalProperties": false
-    },
     "OtherTests": {
       "title": "OtherTests",
       "type": "object",
@@ -1604,72 +1147,6 @@
         }
       },
       "additionalProperties": false
-    },
-    "Validation": {
-      "title": "Validation",
-      "type": "object",
-      "properties": {
-        "Z01": {
-          "description": "Statement of compliance",
-          "type": "string"
-        },
-        "Z02": {
-          "description": "Date of issue and validation",
-          "type": "string",
-          "format": "date"
-        },
-        "Z03": {
-          "description": "Stamp of the inspection representative",
-          "type": "string"
-        },
-        "Z04": {
-          "description": "CE marking",
-          "type": "object",
-          "properties": {
-            "CE_Image": {
-              "description": "The CE image as base64 encoded png file. A default with size 90x65 is provided by example",
-              "type": "string",
-              "contentEncoding": "base64",
-              "contentMediaType": "image/png"
-            },
-            "NotifiedBodyNumber": {
-              "description": "The identification number of the Notified body. Refer to https://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CELEX:31993L0068:en:HTML and https://ec.europa.eu/growth/tools-databases/nando/index.cfm?fuseaction=notifiedbody.main",
-              "type": "string"
-            },
-            "DoCYear": {
-              "description": "The year when the declaration of conformance was issued",
-              "type": "string"
-            },
-            "DoCNumber": {
-              "description": "The declaration of conformance document number ",
-              "type": "string"
-            }
-          },
-          "required": [
-            "CE_Image",
-            "NotifiedBodyNumber",
-            "DoCYear",
-            "DoCNumber"
-          ]
-        },
-        "SupplementaryInformation": {
-          "title": "ValidationSupplementaryInformation",
-          "type": "object",
-          "propertyNames": {
-            "pattern": "^Z0[5-9]|^Z[1-9][0-9]"
-          },
-          "patternProperties": {
-            "^Z0[5-9]|^Z[1-9][0-9]": {
-              "$ref": "#/definitions/KeyValueObject"
-            }
-          }
-        }
-      },
-      "required": [
-        "Z01",
-        "Z02"
-      ],
-      "additionalProperties": false
     }
   },
   "title": "Certificate",
@@ -1696,29 +1173,22 @@
         "state": {
           "description": "",
           "type": "string",
-          "enum": [
-            "draft",
-            "valid",
-            "cancelled"
-          ]
+          "enum": ["draft", "valid", "cancelled"]
         }
       },
-      "required": [
-        "id"
-      ]
+      "required": ["id"]
     },
     "Certificate": {
       "description": "",
       "type": "object",
-      "required": [
-        "CertificateLanguages",
-        "CommercialTransaction",
-        "ProductDescription",
-        "Validation"
-      ],
+      "required": ["CertificateLanguages", "CommercialTransaction", "ProductDescription", "Validation"],
       "properties": {
         "CertificateLanguages": {
-          "$ref": "#/definitions/CertificateLanguages"
+          "allOf": [
+            {
+              "$ref": "#/definitions/CertificateLanguages"
+            }
+          ]
         },
         "CommercialTransaction": {
           "$ref": "#/definitions/CommercialTransaction"
@@ -1751,9 +1221,6 @@
       "additionalProperties": false
     }
   },
-  "required": [
-    "Certificate",
-    "RefSchemaUrl"
-  ],
+  "required": ["Certificate", "RefSchemaUrl"],
   "additionalProperties": false
 }
