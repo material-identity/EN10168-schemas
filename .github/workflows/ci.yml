@@ -59,3 +59,24 @@ jobs:
 
       - name: Run validation and rendering tests
         run: npm run test
+
+      - name: Get branch names
+        id: branch-name
+        uses: tj-actions/branch-names@v6
+
+      - name: Set inspection path to remote on merge
+        if: steps.branch-name.outputs.is_default == 'true' && github.event_name != 'release'
+        run: |
+          npm run update:version --stage true
+          npx lint-staged
+
+      # commit updated path
+
+      - name: Add, commit and push updated paths
+        id: commit-paths
+        if: steps.branch-name.outputs.is_default == 'true' && github.event_name != 'release'
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore: update paths to remote urls [skip ci]'
+          file_pattern: 'partials-map.json'
+          commit_options: '--no-verify'
