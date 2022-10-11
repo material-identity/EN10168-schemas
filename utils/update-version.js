@@ -9,6 +9,7 @@ const {
   pdfDocDefinition,
   pdfFonts,
   pdfGeneratorPath,
+  localPartialsMapPaths,
   translations,
   schemaDefinitionsPath,
   defaultSchemaDefinitionsVersion,
@@ -71,51 +72,45 @@ const schemaFilePaths = [
   },
 ];
 
-const partialsMapPaths = {
-  filePath: 'partials-map.json',
-  properties: [
-    {
-      path: 'chemicalElement',
-      schemaType: schemaDefinitionsPath,
-      version: defaultSchemaDefinitionsVersion,
-      value: 'chemical-element/chemical-element.hbs',
-    },
-    {
-      path: 'commercialTransaction',
-      schemaType: schemaDefinitionsPath,
-      version: defaultSchemaDefinitionsVersion,
-      value: 'commercial-transaction/commercial-transaction.hbs',
-    },
-    {
-      path: 'company',
-      schemaType: schemaDefinitionsPath,
-      version: defaultSchemaDefinitionsVersion,
-      value: 'company/company.hbs',
-    },
-    {
-      path: 'inspection',
-      value: 'inspection.hbs',
-    },
-    {
-      path: 'measurement',
-      schemaType: schemaDefinitionsPath,
-      version: defaultSchemaDefinitionsVersion,
-      value: 'measurement/measurement.hbs',
-    },
-    {
-      path: 'productDescription',
-      schemaType: schemaDefinitionsPath,
-      version: defaultSchemaDefinitionsVersion,
-      value: 'product-description/product-description.hbs',
-    },
-    {
-      path: 'validation',
-      schemaType: schemaDefinitionsPath,
-      version: defaultSchemaDefinitionsVersion,
-      value: 'validation/validation.hbs',
-    },
-  ],
-};
+const remotePartialsMapPaths = Object.create(localPartialsMapPaths);
+remotePartialsMapPaths.properties = [
+  {
+    path: 'chemicalElement',
+    schemaType: schemaDefinitionsPath,
+    version: defaultSchemaDefinitionsVersion,
+    value: 'chemical-element/chemical-element.hbs',
+  },
+  {
+    path: 'commercialTransaction',
+    schemaType: schemaDefinitionsPath,
+    version: defaultSchemaDefinitionsVersion,
+    value: 'commercial-transaction/commercial-transaction.hbs',
+  },
+  {
+    path: 'company',
+    schemaType: schemaDefinitionsPath,
+    version: defaultSchemaDefinitionsVersion,
+    value: 'company/company.hbs',
+  },
+  {
+    path: 'measurement',
+    schemaType: schemaDefinitionsPath,
+    version: defaultSchemaDefinitionsVersion,
+    value: 'measurement/measurement.hbs',
+  },
+  {
+    path: 'productDescription',
+    schemaType: schemaDefinitionsPath,
+    version: defaultSchemaDefinitionsVersion,
+    value: 'product-description/product-description.hbs',
+  },
+  {
+    path: 'validation',
+    schemaType: schemaDefinitionsPath,
+    version: defaultSchemaDefinitionsVersion,
+    value: 'validation/validation.hbs',
+  },
+];
 
 const fixturesFolder = 'test/fixtures';
 const jsonFixturesPattern = `${fixturesFolder}/*valid_certificate_*.json`;
@@ -156,8 +151,9 @@ function stageAndCommitChanges(version) {
   );
   await updater.updateSchemasVersion();
   await updater.updateJsonFixturesVersion(jsonFixturesPattern);
-  await updater.updatePartialsMapVersion(partialsMapPaths);
+  await updater.updatePartialsMapVersion(remotePartialsMapPaths); // only update remote version because local version is needed for the html fixtures
   await updater.updateHtmlFixturesVersion(validCertificateFixturesPattern, htmlTemplatePath, {}, partialsMap);
+  await updater.updatePartialsMapVersion(localPartialsMapPaths); // only update local version as remote versions are already updated
   await updater.updatePdfFixturesVersion(
     validCertificateFixturesPattern,
     pdfGeneratorPath,
