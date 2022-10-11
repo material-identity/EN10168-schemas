@@ -6,6 +6,16 @@ const defaultServerUrl = `https://schemas.s1seven.com/${name}`;
 const schemaDefinitionsPath = 'schema-definitions';
 const defaultSchemaDefinitionsVersion = 'v0.0.5';
 
+const localPartialsMapPaths = {
+  filePath: 'partials-map.json',
+  properties: [
+    {
+      path: 'inspection',
+      value: 'inspection.hbs',
+    },
+  ],
+};
+
 const htmlTemplatePath = resolve('template.hbs');
 
 const pdfGeneratorPath = resolve('generate-pdf.min.js');
@@ -147,6 +157,7 @@ module.exports = {
   defaultServerUrl,
   htmlTemplatePath,
   languages,
+  localPartialsMapPaths,
   pdfDocDefinition,
   pdfGeneratorPath,
   pdfStylesPath,
