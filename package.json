@@ -19,6 +19,7 @@
     "format": "prettier --write \"**/*.{js,json}\"",
     "test": "jest --runInBand",
     "update-version": "node ./utils/update-version.js",
+    "set-local-paths": "node ./utils/set-local-paths.js",
     "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it",
     "release:dry-run": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --dry-run",
     "generate-html": "node ./utils/generate-html-cli",
