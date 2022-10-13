@@ -9,33 +9,44 @@
   "$id": "https://schemas.s1seven.com/en10168-schemas/v0.3.0/schema.json",
   "definitions": {
     "KeyValueObject": {
-      "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/key-value-object/key-value-object.json#/definitions/KeyValueObject"
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/key-value-object/key-value-object.json#/definitions/KeyValueObject"
+        }
+      ]
     },
     "CertificateLanguages": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/languages/languages.json#/definitions/CertificateLanguages"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/languages/languages.json#/definitions/CertificateLanguages"
+        }
+      ]
+    },
+    "RefSchemaUrl": {
+      "allOf": [
+        {
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/ref-schema-url/ref-schema-url.json#/definitions/RefSchemaUrl"
         }
       ]
     },
     "Company": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/company/company.json#/definitions/Company"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/company/company.json#/definitions/Company"
         }
       ]
     },
     "ChemicalElement": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/chemical-element/chemical-element.json#/definitions/ChemicalElement"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/chemical-element/chemical-element.json#/definitions/ChemicalElement"
         }
       ]
     },
     "Measurement": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/measurement/measurement.json#/definitions/Measurement"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/measurement/measurement.json#/definitions/Measurement"
         }
       ]
     },
@@ -43,7 +54,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/product-description/product-description.json#/definitions/ProductDescription"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/product-description/product-description.json#/definitions/ProductDescription"
         }
       ],
       "unevaluatedProperties": false
@@ -51,7 +62,7 @@
     "Validation": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/validation/validation.json#/definitions/Validation"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/validation/validation.json#/definitions/Validation"
         }
       ]
     },
@@ -584,7 +595,7 @@
     "CommercialTransaction": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.5/commercial-transaction/commercial-transaction.json#/definitions/CommercialTransaction"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/commercial-transaction/commercial-transaction.json#/definitions/CommercialTransaction"
         },
         {
           "$ref": "#/definitions/CommercialTransactionExtended"
@@ -1153,8 +1164,11 @@
   "type": "object",
   "properties": {
     "RefSchemaUrl": {
-      "type": "string",
-      "format": "uri"
+      "allOf": [
+        {
+          "$ref": "#/definitions/RefSchemaUrl"
+        }
+      ]
     },
     "DocumentMetadata": {
       "title": "MetaData",

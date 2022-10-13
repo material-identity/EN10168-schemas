@@ -21,7 +21,7 @@ const schemaFilePaths = [
     properties: [
       { path: '$id', value: 'schema.json' },
       {
-        path: 'definitions.KeyValueObject.$ref',
+        path: 'definitions.KeyValueObject.allOf.0.$ref',
         schemaType: schemaDefinitionsPath,
         version: defaultSchemaDefinitionsVersion,
         value: 'key-value-object/key-value-object.json#/definitions/KeyValueObject',
@@ -61,6 +61,12 @@ const schemaFilePaths = [
         schemaType: schemaDefinitionsPath,
         version: defaultSchemaDefinitionsVersion,
         value: 'validation/validation.json#/definitions/Validation',
+      },
+      {
+        path: 'definitions.RefSchemaUrl.allOf.0.$ref',
+        schemaType: schemaDefinitionsPath,
+        version: defaultSchemaDefinitionsVersion,
+        value: 'ref-schema-url/ref-schema-url.json#/definitions/RefSchemaUrl',
       },
       {
         path: 'definitions.CommercialTransaction.allOf.0.$ref',
