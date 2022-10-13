@@ -94,7 +94,7 @@ describe('Validate', function () {
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C71',
           schemaPath:
-            'https://schemas.s1seven.com/schema-definitions/v0.0.5/chemical-element/chemical-element.json#/definitions/ChemicalElement/required',
+            'https://schemas.s1seven.com/schema-definitions/v0.0.6/chemical-element/chemical-element.json#/definitions/ChemicalElement/required',
           keyword: 'required',
           params: { missingProperty: 'Symbol' },
           message: "must have required property 'Symbol'",
@@ -198,7 +198,7 @@ describe('Validate', function () {
         {
           instancePath: '/Certificate/Inspection/0/ChemicalComposition/C71/Actual',
           schemaPath:
-            'https://schemas.s1seven.com/schema-definitions/v0.0.5/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/maximum',
+            'https://schemas.s1seven.com/schema-definitions/v0.0.6/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/maximum',
           keyword: 'maximum',
           params: { comparison: '<=', limit: 100 },
           message: 'must be <= 100',
