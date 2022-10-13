@@ -17,7 +17,7 @@ function stageChanges(filePath) {
 
     let partialsMapHasChanged = false;
     for (const { value, path } of properties) {
-      if (typeof get(partialsMap, path, undefined) === 'string') {
+      if (get(partialsMap, path, undefined)) {
         set(partialsMap, path, value);
         partialsMapHasChanged = true;
       }
