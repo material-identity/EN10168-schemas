@@ -1,6 +1,6 @@
 {
   "name": "en10168-schemas",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "EN10168 JSON schema and dependencies developed by S1Seven",
   "repository": {
     "type": "git",
