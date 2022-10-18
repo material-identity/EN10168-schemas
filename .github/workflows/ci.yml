@@ -30,17 +30,17 @@ jobs:
 
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache Node.js modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -49,7 +49,9 @@ jobs:
             ${{ runner.OS }}-
 
       - name: Install GraphicsMagick
-        run: sudo apt-get install -y ghostscript graphicsmagick
+        run: |
+          sudo apt-get update 
+          sudo apt-get install -y ghostscript graphicsmagick
 
       - name: Install dependencies
         run: npm ci
@@ -57,5 +59,23 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Set local paths
+        run: npm run set-local-paths
+
       - name: Run validation and rendering tests
         run: npm run test
+
+      - name: Get branch names
+        id: branch-name
+        uses: tj-actions/branch-names@v6
+
+      # commit updated path
+
+      - name: Add, commit and push updated paths
+        id: commit-paths
+        if: steps.branch-name.outputs.is_default == 'true' && github.event_name != 'release'
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore: update paths to local [skip ci]'
+          file_pattern: 'partials-map.json'
+          commit_options: '--no-verify'

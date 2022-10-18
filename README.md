@@ -14,6 +14,9 @@ This repository contains translations and templates used for HTML / PDF renderin
 
 To run the PDF rendering tests we use [pdf2image](https://github.com/yakovmeister/pdf2image) lib. Please refer to this [guide](https://github.com/yakovmeister/pdf2image/blob/master/docs/gm-installation.md) to install required dependencies.
 
+## Editing a local partial
+
+When editing a local partial such as `inspection.hbs`, run the script `npm run set-local-paths` to use the local partials for HTML rendering instead of the remote ones. The paths will be updated automatically when a release is made using the `update-version` script.
 
 ## License
 

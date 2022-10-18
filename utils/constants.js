@@ -4,7 +4,17 @@ const { name } = require('../package.json');
 
 const defaultServerUrl = `https://schemas.s1seven.com/${name}`;
 const schemaDefinitionsPath = 'schema-definitions';
-const defaultSchemaDefinitionsVersion = 'v0.0.5';
+const defaultSchemaDefinitionsVersion = 'v0.0.6';
+
+const localPartialsMapPaths = {
+  filePath: 'partials-map.json',
+  properties: [
+    {
+      path: 'inspection',
+      value: 'inspection.hbs',
+    },
+  ],
+};
 
 const htmlTemplatePath = resolve('template.hbs');
 
@@ -147,6 +157,7 @@ module.exports = {
   defaultServerUrl,
   htmlTemplatePath,
   languages,
+  localPartialsMapPaths,
   pdfDocDefinition,
   pdfGeneratorPath,
   pdfStylesPath,

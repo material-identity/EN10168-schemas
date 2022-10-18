@@ -276,6 +276,25 @@
         </tbody>
       </table>
     {{/ifEqual}}
+    {{#ifEqual @key "SupplementaryInformation"}}
+      <h3 class="third-level-title">
+        {{ i18n "SupplementaryInformation" "otherFields" ../CertificateLanguages }}
+      </h3>
+      <table class="main-table">
+        <tbody>
+          {{#each this}}
+            <tr class="table-rows">
+              <th class="table-headers" colspan="2">{{@key}} {{this.Key}}</th>
+              <td class="table-cells">
+                {{localizeValue this.Value this.Type ../../CertificateLanguages.[0]}}
+                {{this.Unit}}
+              </td>
+              <td class="table-cells">{{this.Interpretation}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{/ifEqual}}
   {{else}}
     {{! C00, C01, C02, C03}}
     <table class="main-table">

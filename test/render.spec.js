@@ -98,6 +98,6 @@ describe('Render', function () {
       const result = await fromBuffer(buffer, options)(1, true);
       expect(buffer instanceof Buffer).toEqual(true);
       expect(result.base64).toEqual(expectedPDF.base64);
-    }, 8000);
+    }, 10000);
   });
 });
