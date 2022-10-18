@@ -20,6 +20,7 @@ function stageChanges(filePath) {
       if (get(partialsMap, path, undefined)) {
         set(partialsMap, path, value);
         partialsMapHasChanged = true;
+        break;
       }
     }
     if (partialsMapHasChanged) {
