@@ -29,6 +29,11 @@ jobs:
         node-version: [16.x]
 
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
       - name: Check out repository code
         uses: actions/checkout@v3
         with:
@@ -69,7 +74,7 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v6
 
-      # commit updated path
+      # commit updated path when merging
 
       - name: Add, commit and push updated paths
         id: commit-paths
