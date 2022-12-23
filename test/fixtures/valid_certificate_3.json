@@ -124,7 +124,7 @@
           "Symbol": "Si"
         },
         "C73": {
-          "Actual": "1",
+          "Actual": "1.000",
           "Symbol": "Mn"
         },
         "C74": {
@@ -152,7 +152,7 @@
           "Symbol": "Mo"
         },
         "C80": {
-          "Actual": "0.01",
+          "Actual": "0.010",
           "Symbol": "Cu"
         },
         "C81": {
@@ -164,15 +164,15 @@
           "Symbol": "Ti"
         },
         "C85": {
-          "Actual": "0.0047",
+          "Actual": "0.047",
           "Symbol": "N"
         },
         "C86": {
-          "Actual": "0.0001",
+          "Actual": "0.001",
           "Symbol": "B"
         },
         "C92": {
-          "Actual": "0.3227",
+          "Actual": "0.327",
           "Symbol": "CEV"
         }
       },
