@@ -11,42 +11,42 @@
     "KeyValueObject": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/key-value-object/key-value-object.json#/definitions/KeyValueObject"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/key-value-object/key-value-object.json#/definitions/KeyValueObject"
         }
       ]
     },
     "CertificateLanguages": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/languages/languages.json#/definitions/CertificateLanguages"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/languages/languages.json#/definitions/CertificateLanguages"
         }
       ]
     },
     "RefSchemaUrl": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/ref-schema-url/ref-schema-url.json#/definitions/RefSchemaUrl"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/ref-schema-url/ref-schema-url.json#/definitions/RefSchemaUrl"
         }
       ]
     },
     "Company": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/company/company.json#/definitions/Company"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/company/company.json#/definitions/Company"
         }
       ]
     },
     "ChemicalElement": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/chemical-element/chemical-element.json#/definitions/ChemicalElement"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement"
         }
       ]
     },
     "Measurement": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/measurement/measurement.json#/definitions/Measurement"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/measurement/measurement.json#/definitions/Measurement"
         }
       ]
     },
@@ -54,7 +54,7 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/product-description/product-description.json#/definitions/ProductDescription"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/product-description/product-description.json#/definitions/ProductDescription"
         }
       ],
       "unevaluatedProperties": false
@@ -62,7 +62,7 @@
     "Validation": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/validation/validation.json#/definitions/Validation"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/validation/validation.json#/definitions/Validation"
         }
       ]
     },
@@ -106,7 +106,7 @@
     "CommercialTransaction": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.6/commercial-transaction/commercial-transaction.json#/definitions/CommercialTransaction"
+          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/commercial-transaction/commercial-transaction.json#/definitions/CommercialTransaction"
         },
         {
           "$ref": "#/definitions/CommercialTransactionExtended"
