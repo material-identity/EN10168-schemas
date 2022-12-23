@@ -96,7 +96,7 @@
         "ChemicalComposition": {
           "C70": "Y",
           "C71": {
-            "Actual": "0.15",
+            "Actual": "0.150",
             "Symbol": "C"
           },
           "C72": {
@@ -104,7 +104,7 @@
             "Symbol": "Si"
           },
           "C73": {
-            "Actual": "1",
+            "Actual": "1.000",
             "Symbol": "Mn"
           },
           "C74": {
