@@ -260,16 +260,6 @@ describe('Validate', function () {
           message: 'must be object',
         },
         {
-          instancePath: '/Certificate/Inspection/0/ChemicalComposition/C71/Actual',
-          keyword: 'pattern',
-          message: 'must match pattern "^(?:[0-9]{1,2}(\\.\\d{1,4})?|100)$"',
-          params: {
-            pattern: '^(?:[0-9]{1,2}(\\.\\d{1,4})?|100)$',
-          },
-          schemaPath:
-            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/pattern',
-        },
-        {
           instancePath: '/Certificate/Inspection/0/ChemicalComposition/C86/Actual',
           keyword: 'pattern',
           message: 'must match pattern "^(?:[0-9]{1,2}(\\.\\d{1,4})?|100)$"',
