@@ -57,34 +57,6 @@ describe('Validate', function () {
           message: "must have required property 'CertificateLanguages'",
         },
         {
-          instancePath: '/Certificate/CommercialTransaction/A01',
-          schemaPath: '#/allOf/2/required',
-          keyword: 'required',
-          params: { missingProperty: 'Identifiers' },
-          message: "must have required property 'Identifiers'",
-        },
-        {
-          instancePath: '/Certificate/CommercialTransaction/A06',
-          schemaPath: '#/allOf/2/required',
-          keyword: 'required',
-          params: { missingProperty: 'Identifiers' },
-          message: "must have required property 'Identifiers'",
-        },
-        {
-          instancePath: '/Certificate/CommercialTransaction',
-          schemaPath: '#/oneOf/1/required',
-          keyword: 'required',
-          params: { missingProperty: 'A06.1' },
-          message: "must have required property 'A06.1'",
-        },
-        {
-          instancePath: '/Certificate/CommercialTransaction',
-          schemaPath: '#/oneOf',
-          keyword: 'oneOf',
-          params: { passingSchemas: null },
-          message: 'must match exactly one schema in oneOf',
-        },
-        {
           instancePath: '/Certificate/CommercialTransaction/A97',
           schemaPath: '#/properties/A97/type',
           keyword: 'type',
@@ -93,112 +65,128 @@ describe('Validate', function () {
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C71',
-          schemaPath: '#/definitions/ChemicalElement/required',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/required',
           keyword: 'required',
           params: { missingProperty: 'Symbol' },
           message: "must have required property 'Symbol'",
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C71/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C72/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C73/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C74/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C75/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C76/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C77/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C78/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C79/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C80/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C81/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C82/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C85/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C86/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
         },
         {
           instancePath: '/Certificate/Inspection/ChemicalComposition/C92/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
@@ -222,34 +210,6 @@ describe('Validate', function () {
     {
       certificateName: `invalid_certificate_2`,
       expectedErrors: [
-        {
-          instancePath: '/Certificate/CommercialTransaction/A01',
-          schemaPath: '#/allOf/2/required',
-          keyword: 'required',
-          params: { missingProperty: 'Identifiers' },
-          message: "must have required property 'Identifiers'",
-        },
-        {
-          instancePath: '/Certificate/CommercialTransaction/A06',
-          schemaPath: '#/allOf/2/required',
-          keyword: 'required',
-          params: { missingProperty: 'Identifiers' },
-          message: "must have required property 'Identifiers'",
-        },
-        {
-          instancePath: '/Certificate/CommercialTransaction',
-          schemaPath: '#/oneOf/1/required',
-          keyword: 'required',
-          params: { missingProperty: 'A06.1' },
-          message: "must have required property 'A06.1'",
-        },
-        {
-          instancePath: '/Certificate/CommercialTransaction',
-          schemaPath: '#/oneOf',
-          keyword: 'oneOf',
-          params: { passingSchemas: null },
-          message: 'must match exactly one schema in oneOf',
-        },
         {
           instancePath: '/Certificate/CommercialTransaction/A97',
           schemaPath: '#/properties/A97/type',
@@ -300,8 +260,29 @@ describe('Validate', function () {
           message: 'must be object',
         },
         {
+          instancePath: '/Certificate/Inspection/0/ChemicalComposition/C71/Actual',
+          keyword: 'pattern',
+          message: 'must match pattern "^(?:[0-9]{1,2}(\\.\\d{1,4})?|100)$"',
+          params: {
+            pattern: '^(?:[0-9]{1,2}(\\.\\d{1,4})?|100)$',
+          },
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/pattern',
+        },
+        {
+          instancePath: '/Certificate/Inspection/0/ChemicalComposition/C86/Actual',
+          keyword: 'pattern',
+          message: 'must match pattern "^(?:[0-9]{1,2}(\\.\\d{1,4})?|100)$"',
+          params: {
+            pattern: '^(?:[0-9]{1,2}(\\.\\d{1,4})?|100)$',
+          },
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/pattern',
+        },
+        {
           instancePath: '/Certificate/Inspection/0/ChemicalComposition/C92/Actual',
-          schemaPath: '#/definitions/ChemicalElement/properties/Actual/type',
+          schemaPath:
+            'https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement/properties/Actual/type',
           keyword: 'type',
           params: { type: 'string' },
           message: 'must be string',
@@ -360,6 +341,27 @@ describe('Validate', function () {
     {
       certificateName: `invalid_certificate_3`,
       expectedErrors: [
+        {
+          instancePath: '/Certificate/CommercialTransaction/A01/Identifiers',
+          schemaPath: '#/definitions/CompanyIdentifiers/anyOf/0/required',
+          keyword: 'required',
+          params: { missingProperty: 'VAT' },
+          message: "must have required property 'VAT'",
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction/A01/Identifiers',
+          schemaPath: '#/definitions/CompanyIdentifiers/anyOf/1/required',
+          keyword: 'required',
+          params: { missingProperty: 'DUNS' },
+          message: "must have required property 'DUNS'",
+        },
+        {
+          instancePath: '/Certificate/CommercialTransaction/A01/Identifiers',
+          schemaPath: '#/definitions/CompanyIdentifiers/anyOf',
+          keyword: 'anyOf',
+          params: {},
+          message: 'must match a schema in anyOf',
+        },
         {
           instancePath: '/Certificate/Inspection',
           schemaPath: '#/properties/Certificate/properties/Inspection/oneOf/0/type',
