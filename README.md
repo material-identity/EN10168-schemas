@@ -53,6 +53,12 @@ If you have trouble loading the file, you can **temporarily** update the propert
     },
 ```
 
+## Updating the partial versions in schema.json
+
+First, update `defaultSchemaDefinitionsVersion` in `utils/constants.js` to the latest version number.
+
+Then run `npm run update-version`.
+
 ## License
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fthematerials-network%2FEN10168-schemas.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fthematerials-network%2FEN10168-schemas?ref=badge_large)
