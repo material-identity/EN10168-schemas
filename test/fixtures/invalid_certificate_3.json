@@ -10,9 +10,7 @@
         "City": "Linz",
         "Country": "AT",
         "Email": "sbs.steelfactory@gmail.com",
-        "Identifiers": {
-          "VAT": "AT123456789"
-        }
+        "Identifiers": {}
       },
       "A02": "Mill Certificate EN 10204 3.1",
       "A03": "1866645/001",

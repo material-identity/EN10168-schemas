@@ -110,63 +110,63 @@
         },
         "ChemicalComposition": {
           "C71": {
-            "Actual": 0.15,
+            "Actual": "0.1500",
             "Symbol": "C"
           },
           "C72": {
-            "Actual": 0.005,
+            "Actual": "0.0050",
             "Symbol": "Si"
           },
           "C73": {
-            "Actual": 1,
+            "Actual": "1.000",
             "Symbol": "Mn"
           },
           "C74": {
-            "Actual": 0.014,
+            "Actual": "0.0140",
             "Symbol": "P"
           },
           "C75": {
-            "Actual": 0.007,
+            "Actual": "0.0070",
             "Symbol": "S"
           },
           "C76": {
-            "Actual": 0.041,
+            "Actual": "0.0410",
             "Symbol": "Al"
           },
           "C77": {
-            "Actual": 0.02,
+            "Actual": "0.0200",
             "Symbol": "Cr"
           },
           "C78": {
-            "Actual": 0.009,
+            "Actual": "0.0090",
             "Symbol": "Ni"
           },
           "C79": {
-            "Actual": 0.002,
+            "Actual": "0.0020",
             "Symbol": "Mo"
           },
           "C80": {
-            "Actual": 0.01,
+            "Actual": "0.0100",
             "Symbol": "Cu"
           },
           "C81": {
-            "Actual": 0.002,
+            "Actual": "0.0020",
             "Symbol": "V"
           },
           "C82": {
-            "Actual": 0.001,
+            "Actual": "0.0010",
             "Symbol": "Ti"
           },
           "C85": {
-            "Actual": 0.0047,
+            "Actual": "0.0047",
             "Symbol": "N"
           },
           "C86": {
-            "Actual": 0.00001,
+            "Actual": "0.0001",
             "Symbol": "B"
           },
           "C92": {
-            "Actual": 0.3227,
+            "Actual": "0.3227",
             "Symbol": "CEV"
           }
         },
