@@ -176,6 +176,16 @@
           "Symbol": "CEV"
         }
       },
+      "OtherMechanicalTests": {
+        "C50": {
+          "Key": "Flattening test (EN ISO 8492)",
+          "Value": "satisfactory"
+        },
+        "C53": {
+          "Key": "Ring expanding test (EN ISO 8495)",
+          "Value": "satisfactory"
+        }
+      },
       "NotchedBarImpactTest": {
         "C40": "0001 längs",
         "C41": {
