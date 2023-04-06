@@ -86,13 +86,20 @@ jobs:
           file_pattern: 'partials-map.json'
           commit_options: '--no-verify'
 
-  fossa-scan:
+  fossa:
     needs: setup-and-test
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' || !github.event.pull_request.draft }}
 
     steps:
+      - uses: actions/checkout@v3
+
       - name: FOSSA analysis
+        uses: fossas/fossa-action@main
+        with:
+          api-key: ${{ secrets.FOSSA_API_KEY }}
+
+      - name: FOSSA tests
         uses: fossas/fossa-action@main
         with:
           api-key: ${{ secrets.FOSSA_API_KEY }}
