@@ -85,3 +85,15 @@ jobs:
           commit_message: 'chore: update paths to local [skip ci]'
           file_pattern: 'partials-map.json'
           commit_options: '--no-verify'
+
+  fossa-scan:
+    needs: setup-and-test
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || !github.event.pull_request.draft }}
+
+    steps:
+      - name: FOSSA analysis
+        uses: fossas/fossa-action@main
+        with:
+          api-key: ${{ secrets.FOSSA_API_KEY }}
+          run-tests: true
