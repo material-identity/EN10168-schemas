@@ -1,7 +1,7 @@
 # EN10168-schemas
 
 [![EN10168 Schema CI](https://github.com/material-identity/EN10168-schemas/actions/workflows/ci.yml/badge.svg)](https://github.com/material-identity/EN10168-schemas/actions/workflows/ci.yml)
-[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B18065%2Fgit%40github.com%3Amaterial-identity%2FEN10168-schemas.git.svg?type=shield)](https://app.fossa.com/projects/custom%2B18065%2Fgit%40github.com%3Amaterial-identity%2FEN10168-schemas.git?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B18065%2Fgithub.com%2Fmaterial-identity%2FEN10168-schemas.svg?type=shield)](https://app.fossa.com/projects/custom%2B18065%2Fgithub.com%2Fmaterial-identity%2FEN10168-schemas?ref=badge_shield)
 
 The EN10168.schema.json is an implementation of the European Union steel standards of the same name.
 This repository contains translations and templates used for HTML / PDF rendering of EN10168 certificates.
@@ -61,4 +61,4 @@ Then run `npm run update-version`.
 
 ## License
 
-[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B18065%2Fgit%40github.com%3Amaterial-identity%2FEN10168-schemas.git.svg?type=large)](https://app.fossa.com/projects/custom%2B18065%2Fgit%40github.com%3Amaterial-identity%2FEN10168-schemas.git?ref=badge_large)
+[![FOSSA Status](https://app.fossa.com/api/projects/custom%2B18065%2Fgithub.com%2Fmaterial-identity%2FEN10168-schemas.svg?type=large)](https://app.fossa.com/projects/custom%2B18065%2Fgithub.com%2Fmaterial-identity%2FEN10168-schemas?ref=badge_large)
