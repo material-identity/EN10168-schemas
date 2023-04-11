@@ -106,3 +106,7 @@ typings/
 
 # TernJS port file
 .tern-port
+
+# FOSSA
+fossa.telemetry.json
+fossa.debug.json.gz
