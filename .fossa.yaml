@@ -1,0 +1,11 @@
+version: 3
+
+server: https://app.fossa.com
+
+project:
+  id: git@github.com:material-identity/EN10168-schemas.git
+  name: EN10168-schemas
+  link: https://materialidentity.org/
+  url: https://github.com/material-identity/EN10168-schemas
+  labels:
+    - schemas

@@ -25,6 +25,9 @@
     "generate-html": "DEBUG=schema-tools-* node ./utils/generate-html-cli",
     "generate-pdf": "DEBUG=schema-tools-* node ./utils/generate-pdf-cli"
   },
+  "dependencies": {
+    "@s1seven/schema-tools-generate-en10168-pdf-template": "0.7.1"
+  },
   "devDependencies": {
     "@markedjs/html-differ": "^3.0.4",
     "@s1seven/schema-tools-generate-html": "^0.4.2",
