@@ -8,7 +8,7 @@ This repository contains translations and templates used for HTML / PDF renderin
 
 ## Docs
 
-[Full documentation](https://s1seven.github.io/SEP/EN10168/)
+[Full documentation](https://materialidentity.org/en10168)
 
 ## Tests
 
