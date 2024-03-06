@@ -23,17 +23,18 @@
     "release": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it",
     "release:dry-run": "read -p 'GITHUB_TOKEN: ' GITHUB_TOKEN && export GITHUB_TOKEN=$GITHUB_TOKEN && release-it --dry-run",
     "generate-html": "DEBUG=schema-tools-* node ./utils/generate-html-cli",
-    "generate-pdf": "DEBUG=schema-tools-* node ./utils/generate-pdf-cli"
+    "generate-pdf": "DEBUG=schema-tools-* node ./utils/generate-pdf-cli",
+    "readable-schema": "DEBUG=schema-tools-* node ./utils/generate-readable-schema-cli"
   },
   "dependencies": {
-    "@s1seven/schema-tools-generate-en10168-pdf-template": "0.7.1"
+    "@s1seven/schema-tools-generate-en10168-pdf-template": "0.7.8"
   },
   "devDependencies": {
     "@markedjs/html-differ": "^3.0.4",
-    "@s1seven/schema-tools-generate-html": "^0.4.2",
-    "@s1seven/schema-tools-generate-pdf": "^0.2.5",
-    "@s1seven/schema-tools-utils": "^0.2.4",
-    "@s1seven/schema-tools-versioning": "^0.5.4",
+    "@s1seven/schema-tools-generate-html": "^0.4.9",
+    "@s1seven/schema-tools-generate-pdf": "^0.2.15",
+    "@s1seven/schema-tools-utils": "^0.2.11",
+    "@s1seven/schema-tools-versioning": "^0.6.7",
     "ajv": "^8.11.0",
     "ajv-formats": "^2.1.1",
     "eslint": "^8.23.1",
