@@ -26,7 +26,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x, 20.x]
 
     steps:
       # - name: Dump GitHub context
@@ -35,18 +35,18 @@ jobs:
       #   run: echo "$GITHUB_CONTEXT"
 
       - name: Check out repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GH_PAT }}
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Cache Node.js modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.npm
           key: ${{ runner.OS }}-node-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
@@ -72,14 +72,14 @@ jobs:
 
       - name: Get branch names
         id: branch-name
-        uses: tj-actions/branch-names@v6
+        uses: tj-actions/branch-names@v8
 
       # commit updated path
 
       - name: Add, commit and push updated paths
         id: commit-paths
         if: steps.branch-name.outputs.is_default == 'false' || github.event_name != 'release'
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'chore: update paths to local [skip ci]'
           file_pattern: 'partials-map.json'
@@ -91,7 +91,7 @@ jobs:
     if: ${{ github.event_name == 'push' || !github.event.pull_request.draft }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Get branch name (merge)
         if: github.event_name != 'pull_request'

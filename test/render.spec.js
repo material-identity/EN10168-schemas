@@ -75,7 +75,6 @@ describe('Render', function () {
           alignment: 'center',
         }),
         defaultStyle: {
-          font: 'Lato',
           fontSize: 10,
         },
         styles,
@@ -86,7 +85,7 @@ describe('Render', function () {
         height: 600,
       };
       const expectedPDFBuffer = readFileSync(resolve(__dirname, `./fixtures/${certificateName}.pdf`));
-      const expectedPDF = await fromBuffer(expectedPDFBuffer, options)(1, true);
+      const expectedPDF = await fromBuffer(expectedPDFBuffer, options)(1, { responseType: 'base64' });
       //
       const buffer = await generatePdf(certificate, {
         docDefinition,
@@ -95,7 +94,7 @@ describe('Render', function () {
         generatorPath,
         translations: translations(),
       });
-      const result = await fromBuffer(buffer, options)(1, true);
+      const result = await fromBuffer(buffer, options)(1, { responseType: 'base64' });
       expect(buffer instanceof Buffer).toEqual(true);
       expect(result.base64).toEqual(expectedPDF.base64);
     }, 10000);
