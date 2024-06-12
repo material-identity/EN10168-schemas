@@ -11,42 +11,243 @@
     "KeyValueObject": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/key-value-object/key-value-object.json#/definitions/KeyValueObject"
+          "title": "KeyValueObject",
+          "type": "object",
+          "properties": {
+            "Key": {
+              "type": "string"
+            },
+            "Value": {
+              "type": "string"
+            },
+            "Unit": {
+              "type": "string"
+            },
+            "Interpretation": {
+              "type": "string"
+            },
+            "Type": {
+              "enum": ["string", "number", "date", "date-time", "boolean"],
+              "default": "string"
+            }
+          },
+          "required": ["Key"],
+          "additionalProperties": false
         }
       ]
     },
     "CertificateLanguages": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/languages/languages.json#/definitions/CertificateLanguages"
+          "title": "CertificateLanguages",
+          "description": "For a JSON document one or two translations used in the rendering of HTML and PDF documents can be specificed.",
+          "type": "array",
+          "items": {
+            "enum": ["EN", "DE", "FR", "ES", "PL", "CN", "TR", "IT"]
+          },
+          "minItems": 1,
+          "maxItems": 2,
+          "default": ["EN"],
+          "uniqueItems": true
         }
       ]
     },
     "RefSchemaUrl": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/ref-schema-url/ref-schema-url.json#/definitions/RefSchemaUrl"
+          "type": "string",
+          "pattern": "(https?://[a-z0-9/\\.\\-]+[\\.a-z+])/([a-z0-9\\-]+)/(v\\d+\\.\\d+\\.\\d+(-\\d+)?)/([a-z\\./\\-]+.json)"
         }
       ]
+    },
+    "CompanyIdentifiers": {
+      "type": "object",
+      "properties": {
+        "CageCode": {
+          "description": "The Commercial and Government Entity Code (short CAG), is a unique identifier assigned to suppliers to various government or defense agencies, https://en.wikipedia.org/wiki/Commercial_and_Government_Entity_code",
+          "type": "string",
+          "examples": ["N1950#"]
+        }
+      },
+      "anyOf": [
+        {
+          "properties": {
+            "VAT": {
+              "type": "string",
+              "minLength": 8,
+              "maxLength": 15
+            }
+          },
+          "required": ["VAT"]
+        },
+        {
+          "properties": {
+            "DUNS": {
+              "type": "string",
+              "minLength": 9,
+              "maxLength": 9
+            }
+          },
+          "required": ["DUNS"]
+        }
+      ]
+    },
+    "CompanyAddress": {
+      "type": "object",
+      "properties": {
+        "Street": {
+          "description": "Address of the company",
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "maxItems": 3
+            },
+            {
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "required": ["Street"]
     },
     "Company": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/company/company.json#/definitions/Company"
+          "title": "Company",
+          "type": "object",
+          "allOf": [
+            {
+              "type": "object",
+              "properties": {
+                "ZipCode": {
+                  "type": "string"
+                },
+                "City": {
+                  "type": "string"
+                },
+                "Country": {
+                  "description": "The two-letter ISO country code according https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2.",
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 2,
+                  "pattern": "^[A-Z]{2}$",
+                  "examples": ["AT", "DE", "FR", "ES", "PL", "CN"]
+                },
+                "Email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "AdditionalInformation": {
+                  "description": "An array of additional free text information on the company.",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "uniqueItems": true,
+                  "minItems": 1
+                }
+              },
+              "oneOf": [
+                {
+                  "properties": {
+                    "Name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["Name"]
+                },
+                {
+                  "properties": {
+                    "CompanyName": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["CompanyName"]
+                }
+              ],
+              "required": ["ZipCode", "City", "Country"],
+              "additionalProperties": true
+            },
+            {
+              "$ref": "#/definitions/CompanyAddress"
+            },
+            {
+              "properties": {
+                "Identifiers": {
+                  "$ref": "#/definitions/CompanyIdentifiers"
+                }
+              }
+            }
+          ]
         }
       ]
     },
     "ChemicalElement": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/chemical-element/chemical-element.json#/definitions/ChemicalElement"
+          "title": "ChemicalElement",
+          "type": "object",
+          "description": "The chemical composition of the product.",
+          "properties": {
+            "Symbol": {
+              "description": "The symbol of the element",
+              "type": "string"
+            },
+            "Actual": {
+              "description": "The measured part of the element in percentage.",
+              "type": "string",
+              "pattern": "^(?:[0-9]{1,2}(\\.\\d{1,4})?|100)$"
+            },
+            "Minimum": {
+              "description": "The minimum if defined by the product specification, otherwise the element must not provided.",
+              "type": "string",
+              "pattern": "^(?:[0-9]{1,2}(\\.\\d{1,4})?|100)$"
+            },
+            "Maximum": {
+              "description": "The maximum as defined by the product specification, otherwise the element must not provided.",
+              "type": "string",
+              "pattern": "^(?:[0-9]{1,2}(\\.\\d{1,4})?|100)$"
+            }
+          },
+          "required": ["Symbol", "Actual"],
+          "additionalProperties": false
         }
       ]
     },
     "Measurement": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/measurement/measurement.json#/definitions/Measurement"
+          "title": "Measurement",
+          "type": "object",
+          "description": "Measured Values in a structured fashion for easy processing and rendering of data",
+          "properties": {
+            "Property": {
+              "description": "The property measured",
+              "type": "string"
+            },
+            "Value": {
+              "description": "A measured or calculated Value (e.g. mean of individual measurements).",
+              "type": "number"
+            },
+            "Minimum": {
+              "description": "The lower limit according product specification. If not provided it is 0.",
+              "type": "number"
+            },
+            "Maximum": {
+              "description": "The upper limit according product specification. If not provided it is ∞.",
+              "type": "number"
+            },
+            "Unit": {
+              "description": "The Unit of Value.",
+              "type": "string"
+            }
+          },
+          "required": ["Value"],
+          "additionalProperties": false
         }
       ]
     },
@@ -54,7 +255,593 @@
       "type": "object",
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/product-description/product-description.json#/definitions/ProductDescription"
+          "title": "ProductDescription",
+          "type": "object",
+          "allOf": [
+            {
+              "type": "object",
+              "properties": {
+                "B01": {
+                  "description": "The product",
+                  "type": "string"
+                },
+                "B03": {
+                  "description": "Any supplementary requirements",
+                  "type": "string"
+                },
+                "B04": {
+                  "description": "The delivery conditions for the product",
+                  "type": "string"
+                },
+                "B05": {
+                  "description": "Reference heat treatment of samples",
+                  "type": "string"
+                },
+                "B06": {
+                  "description": "Marking of the product",
+                  "type": "string"
+                },
+                "B07": {
+                  "description": "Identification of the product, usually batch, charge or lot number",
+                  "type": "string"
+                },
+                "B08": {
+                  "description": "Number of pieces of the product.",
+                  "type": "number"
+                }
+              }
+            },
+            {
+              "oneOf": [
+                {
+                  "properties": {
+                    "B02": {
+                      "description": "",
+                      "type": "object",
+                      "properties": {
+                        "ProductNorm": {
+                          "description": "The product norm designation",
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "MaterialNorm": {
+                          "description": "The material norm(s)",
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "MassNorm": {
+                          "description": "The mass norm(s)",
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "SteelDesignation": {
+                          "description": "The steel designation(s)",
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "B09": {
+                      "allOf": [
+                        {
+                          "title": "ProductShape",
+                          "oneOf": [
+                            {
+                              "title": "Tube",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Constant describing tube",
+                                  "type": "string",
+                                  "const": "Tube",
+                                  "default": "Tube"
+                                },
+                                "OuterDiameter": {
+                                  "description": "Outer diameter of tube",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "WallThickness": {
+                                  "description": "Wall thickness of tube",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "OuterDiameter", "WallThickness", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "RectangularTube",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Constant describing rectangular tube",
+                                  "type": "string",
+                                  "const": "RectangularTube",
+                                  "default": "RectangularTube"
+                                },
+                                "Width": {
+                                  "description": "Width of rectangular tube",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Height": {
+                                  "description": "Height of rectangular tube",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "WallThickness": {
+                                  "description": "Wall thickness of rectangular tube",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "Width", "Height", "WallThickness", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "QuadraticTube",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Constant describing quadratic tube",
+                                  "type": "string",
+                                  "const": "QuadraticTube",
+                                  "default": "QuadraticTube"
+                                },
+                                "SideLength": {
+                                  "description": "Side length of quadratic tube",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "WallThickness": {
+                                  "description": "Wall thickness of quadratic tube",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "SideLength", "WallThickness", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "Pipe",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Form of product",
+                                  "type": "string",
+                                  "const": "Pipe",
+                                  "default": "Pipe"
+                                },
+                                "SideLength": {
+                                  "description": "Side length of pipe",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "WallThickness": {
+                                  "description": "Wall thickness of pipe",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "SideLength", "WallThickness", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "RectangularPipe",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Constant defining rectangular pipe",
+                                  "type": "string",
+                                  "const": "RectangularPipe",
+                                  "default": "RectangularPipe"
+                                },
+                                "Width": {
+                                  "description": "Width of rectangular pipe",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Height": {
+                                  "description": "Height of rectangular pipe",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "WallThickness": {
+                                  "description": "Wall thickness of rectangular pipe",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "Width", "Height", "WallThickness", "Unit"],
+                              "additionalProperties": true
+                            },
+                            {
+                              "title": "Coil",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Constant defining coil",
+                                  "type": "string",
+                                  "const": "Coil",
+                                  "default": "Coil"
+                                },
+                                "Width": {
+                                  "description": "Width of coil",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "WallThickness": {
+                                  "description": "Wall thickness of coil",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "Width", "WallThickness", "Unit"],
+                              "additionalProperties": true
+                            },
+                            {
+                              "title": "RoundBar",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Constant defining roound bar",
+                                  "type": "string",
+                                  "const": "RoundBar",
+                                  "default": "RoundBar"
+                                },
+                                "Diameter": {
+                                  "description": "Diameter of round bar",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "Diameter", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "HexagonalBar",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Constant defining hexagonal bar",
+                                  "type": "string",
+                                  "const": "HexagonalBar",
+                                  "default": "HexagonalBar"
+                                },
+                                "Diameter": {
+                                  "description": "Diamater of hexagonal bar",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "Diameter", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "FlatBar",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Form of product",
+                                  "type": "string",
+                                  "const": "FlatBar",
+                                  "default": "FlatBar"
+                                },
+                                "Width": {
+                                  "description": "Width of flat bar",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Thickness": {
+                                  "description": "Thickness of flat bar",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "Width", "Thickness", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "Sheet",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Form of product",
+                                  "type": "string",
+                                  "const": "Sheet",
+                                  "default": "Sheet"
+                                },
+                                "Width": {
+                                  "description": "Width of sheet",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Thickness": {
+                                  "description": "Thickness of sheet",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "Width", "Thickness", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "Slab",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Form of product",
+                                  "type": "string",
+                                  "const": "Slab",
+                                  "default": "Slab"
+                                },
+                                "Width": {
+                                  "description": "Width of slab",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Thickness": {
+                                  "description": "Thickness of slab",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "Width", "Thickness", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "Plate",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Form of product",
+                                  "type": "string",
+                                  "const": "Plate",
+                                  "default": "Plate"
+                                },
+                                "Width": {
+                                  "description": "Width of plate",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Thickness": {
+                                  "description": "Thickness of plate",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "Width", "Thickness", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "Scroll",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Form of product",
+                                  "type": "string",
+                                  "const": "Scroll",
+                                  "default": "Scroll"
+                                },
+                                "Width": {
+                                  "description": "Width of scroll",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Thickness": {
+                                  "description": "Thickness of scroll",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "Width", "Thickness", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "Strip",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Form of product",
+                                  "type": "string",
+                                  "const": "Strip",
+                                  "default": "Strip"
+                                },
+                                "Width": {
+                                  "description": "Width of strip",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Thickness": {
+                                  "description": "Thickness of strip",
+                                  "type": "number",
+                                  "minimum": 0
+                                },
+                                "Unit": {
+                                  "description": "The unit of the dimensions.",
+                                  "type": "string",
+                                  "default": "mm"
+                                }
+                              },
+                              "required": ["Form", "Width", "Thickness", "Unit"],
+                              "additionalProperties": false
+                            },
+                            {
+                              "title": "Other",
+                              "description": "",
+                              "type": "object",
+                              "properties": {
+                                "Form": {
+                                  "description": "Form of product",
+                                  "type": "string",
+                                  "const": "Other",
+                                  "default": "Other"
+                                },
+                                "Description": {
+                                  "description": "Free text describing the form",
+                                  "type": "string"
+                                }
+                              },
+                              "required": ["Form", "Description"],
+                              "additionalProperties": false
+                            }
+                          ]
+                        }
+                      ],
+                      "description": "Product type and its describing dimensional parameters"
+                    },
+                    "B10": {
+                      "description": "Product dimensions - length of the product",
+                      "allOf": [
+                        {
+                          "$ref": "#/definitions/Measurement"
+                        }
+                      ]
+                    },
+                    "B11": {
+                      "description": "Product dimensions ",
+                      "allOf": [
+                        {
+                          "$ref": "#/definitions/Measurement"
+                        }
+                      ]
+                    },
+                    "B12": {
+                      "description": "Theoretical mass",
+                      "allOf": [
+                        {
+                          "$ref": "#/definitions/Measurement"
+                        }
+                      ]
+                    },
+                    "B13": {
+                      "description": "Actual mass",
+                      "allOf": [
+                        {
+                          "$ref": "#/definitions/Measurement"
+                        }
+                      ]
+                    },
+                    "SupplementaryInformation": {
+                      "title": "ProductDescriptionSupplementaryInformation",
+                      "type": "object",
+                      "propertyNames": {
+                        "pattern": "^B1[4-9]|^B[2-9][0-9]"
+                      },
+                      "patternProperties": {
+                        "^B1[4-9]|^B[2-9][0-9]": {
+                          "allOf": [
+                            {
+                              "$ref": "#/definitions/KeyValueObject"
+                            }
+                          ]
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": ["B01", "B02", "B09"]
+                },
+                {
+                  "properties": {
+                    "B02": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["B01", "B02"]
+                }
+              ]
+            }
+          ]
         }
       ],
       "unevaluatedProperties": false
@@ -62,7 +849,97 @@
     "Validation": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/validation/validation.json#/definitions/Validation"
+          "title": "ProductDescription",
+          "type": "object",
+          "allOf": [
+            {
+              "title": "Validation",
+              "type": "object",
+              "properties": {
+                "Z01": {
+                  "description": "Statement of compliance",
+                  "type": "string"
+                },
+                "Z03": {
+                  "description": "Stamp of the inspection representative",
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "anyOf": [
+                {
+                  "properties": {
+                    "Z02": {
+                      "description": "Date of issue and validation",
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "Z04": {
+                      "description": "CE marking",
+                      "type": "object",
+                      "properties": {
+                        "CE_Image": {
+                          "description": "The CE image as base64 encoded png file. A default with size 90x65 is provided by example",
+                          "type": "string",
+                          "contentEncoding": "base64",
+                          "contentMediaType": "image/png"
+                        },
+                        "NotifiedBodyNumber": {
+                          "description": "The identification number of the Notified body. Refer to https://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CELEX:31993L0068:en:HTML and https://ec.europa.eu/growth/tools-databases/nando/index.cfm?fuseaction=notifiedbody.main",
+                          "type": "string"
+                        },
+                        "DoCYear": {
+                          "description": "The year when the declaration of conformance was issued",
+                          "type": "string"
+                        },
+                        "DoCNumber": {
+                          "description": "The declaration of conformance document number ",
+                          "type": "string"
+                        }
+                      },
+                      "required": ["CE_Image", "NotifiedBodyNumber", "DoCYear", "DoCNumber"]
+                    },
+                    "SupplementaryInformation": {
+                      "title": "ValidationSupplementaryInformation",
+                      "type": "object",
+                      "propertyNames": {
+                        "pattern": "^Z0[5-9]|^Z[1-9][0-9]"
+                      },
+                      "patternProperties": {
+                        "^Z0[5-9]|^Z[1-9][0-9]": {
+                          "allOf": [
+                            {
+                              "$ref": "#/definitions/KeyValueObject"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "required": ["Z01", "Z02"]
+                },
+                {
+                  "properties": {
+                    "Z02": {
+                      "description": "Title of inspection representative",
+                      "type": "string"
+                    },
+                    "Z04": {
+                      "description": "Disclaimer",
+                      "type": "string"
+                    },
+                    "Z05": {
+                      "description": "Standard",
+                      "type": "string"
+                    }
+                  },
+                  "required": ["Z01", "Z02", "Z03"]
+                }
+              ]
+            }
+          ],
+          "unevaluatedProperties": false
         }
       ]
     },
@@ -106,7 +983,102 @@
     "CommercialTransaction": {
       "allOf": [
         {
-          "$ref": "https://schemas.s1seven.com/schema-definitions/v0.0.7/commercial-transaction/commercial-transaction.json#/definitions/CommercialTransaction"
+          "title": "CommercialTransaction",
+          "description": "List parties and details involved in the transaction",
+          "allOf": [
+            {
+              "title": "CommercialTransactionBase",
+              "description": "",
+              "type": "object",
+              "properties": {
+                "A01": {
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/Company"
+                    }
+                  ],
+                  "description": "The manufacturer's works which delivers the certificate along the product"
+                },
+                "A02": {
+                  "description": "The type of inspection document, e.g. 'EN 10204 3.1 Certificate'",
+                  "type": "string"
+                },
+                "A03": {
+                  "description": "The document number of the certifcate",
+                  "type": "string"
+                },
+                "A04": {
+                  "description": "The mark of the manufacturer as base64 png file. The maximum size is <TBD>",
+                  "type": "string",
+                  "contentEncoding": "base64",
+                  "contentMediaType": "image/png"
+                },
+                "A05": {
+                  "description": "The originator of the document, not necessarily equal to A01",
+                  "type": "string",
+                  "default": "Factory Production Control"
+                },
+                "A08": {
+                  "description": "Manufacturer's work number",
+                  "type": "string"
+                },
+                "A09": {
+                  "description": "The article number used by the purchaser",
+                  "type": "string"
+                }
+              },
+              "required": ["A01", "A02", "A03", "A04", "A05"]
+            },
+            {
+              "title": "CommercialTransactionReceivers",
+              "description": "",
+              "type": "object",
+              "oneOf": [
+                {
+                  "properties": {
+                    "A06": {
+                      "allOf": [
+                        {
+                          "$ref": "#/definitions/Company"
+                        }
+                      ],
+                      "description": "The purchaser of the product and receiver of the certificate"
+                    }
+                  },
+                  "required": ["A06"]
+                },
+                {
+                  "properties": {
+                    "A06.1": {
+                      "allOf": [
+                        {
+                          "$ref": "#/definitions/Company"
+                        }
+                      ],
+                      "description": "The purchaser of the product"
+                    },
+                    "A06.2": {
+                      "allOf": [
+                        {
+                          "$ref": "#/definitions/Company"
+                        }
+                      ],
+                      "description": "The consignee of the product"
+                    },
+                    "A06.3": {
+                      "allOf": [
+                        {
+                          "$ref": "#/definitions/Company"
+                        }
+                      ],
+                      "description": "The receiver/consignee of the certificate"
+                    }
+                  },
+                  "required": ["A06.1"]
+                }
+              ]
+            }
+          ]
         },
         {
           "$ref": "#/definitions/CommercialTransactionExtended"
