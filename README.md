@@ -1,3 +1,5 @@
+**The code and schema definitions from this repository have been migrated to https://github.com/material-identity/schemas.**
+
 # EN10168-schemas
 
 [![EN10168 Schema CI](https://github.com/material-identity/EN10168-schemas/actions/workflows/ci.yml/badge.svg)](https://github.com/material-identity/EN10168-schemas/actions/workflows/ci.yml)
